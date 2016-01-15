@@ -12,7 +12,6 @@
 		CB5783E71C41A1A300A55D30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
 		CB5783EC1C41A1A300A55D30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783EA1C41A1A300A55D30 /* LaunchScreen.storyboard */; };
-		D3CE8AE226B944E1E82A7BA2 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3CE8AE226B944E1E82A7BA2 /* Pods_oldNYC_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,12 +93,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB5783F01C41A1A300A55D30 /* Build configuration list for PBXNativeTarget "oldNYC-iOS" */;
 			buildPhases = (
-				3757D61C95F453E11CFF73F7 /* Check Pods Manifest.lock */,
 				CB5783DA1C41A1A300A55D30 /* Sources */,
 				CB5783DB1C41A1A300A55D30 /* Frameworks */,
 				CB5783DC1C41A1A300A55D30 /* Resources */,
-				105864D24CC15E991134FED2 /* Embed Pods Frameworks */,
-				6F97C8332F236F97A76F5A74 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -157,54 +152,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		105864D24CC15E991134FED2 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3757D61C95F453E11CFF73F7 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6F97C8332F236F97A76F5A74 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CB5783DA1C41A1A300A55D30 /* Sources */ = {
