@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844F06C41C497460001CFB15 /* LaunchScreen.xib */; };
+		844F06CB1C497A77001CFB15 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F06CA1C497A77001CFB15 /* PhotoViewController.swift */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
-		CB5783E41C41A1A300A55D30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* ViewController.swift */; };
+		CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* MapViewController.swift */; };
 		CB5783E71C41A1A300A55D30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -17,10 +18,11 @@
 /* Begin PBXFileReference section */
 		225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844F06C41C497460001CFB15 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		844F06CA1C497A77001CFB15 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		AB8808A2F957221BCB3F199A /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5783E11C41A1A300A55D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB5783E31C41A1A300A55D30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CB5783E31C41A1A300A55D30 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB5783E61C41A1A300A55D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB5783E81C41A1A300A55D30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5783ED1C41A1A300A55D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
-				CB5783E31C41A1A300A55D30 /* ViewController.swift */,
+				CB5783E31C41A1A300A55D30 /* MapViewController.swift */,
+				844F06CA1C497A77001CFB15 /* PhotoViewController.swift */,
 				CB5783E51C41A1A300A55D30 /* Main.storyboard */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
@@ -158,8 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB5783E41C41A1A300A55D30 /* ViewController.swift in Sources */,
+				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
+				844F06CB1C497A77001CFB15 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

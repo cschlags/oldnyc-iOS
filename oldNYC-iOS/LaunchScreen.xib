@@ -16,7 +16,7 @@
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="600" y="176"/>
+            <point key="canvasLocation" x="143" y="214"/>
         </view>
     </objects>
     <resources>

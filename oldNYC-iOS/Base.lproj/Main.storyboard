@@ -1,26 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="coG-8Y-f0A">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Photos-->
+        <scene sceneID="lGO-BO-dY8">
             <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                <viewController id="svy-Jt-2VJ" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="jE5-TK-BgZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="I8Z-hW-Amw"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GMSMapView">
+                    <view key="view" contentMode="scaleToFill" id="YQz-5r-0CX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRk-y4-CY0">
+                                <rect key="frame" x="245" y="220" width="48" height="30"/>
+                                <state key="normal" title="Photos"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Photos" image="PhotoIcon" id="MnP-YV-sTe">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AMj-b8-52H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="70" y="-208"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dvB-C3-RKe">
+            <objects>
+                <viewController id="Hjj-j1-iNr" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bx5-6z-gdR"/>
+                        <viewControllerLayoutGuide type="bottom" id="qEg-eW-UUt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sAE-Jl-eiB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhg-se-Rja">
+                                <rect key="frame" x="314" y="199" width="36" height="30"/>
+                                <state key="normal" title="More"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="WJt-Ts-JnD"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x1W-2s-c8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="70" y="516"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="DaW-b1-0Ld">
+            <objects>
+                <viewController id="7hd-rf-b07" customClass="MapViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wpu-t4-hvh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y4p-99-OS3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tkv-Jg-v7T">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIE-Hc-e8s">
+                                <rect key="frame" x="272" y="214" width="30" height="30"/>
+                                <state key="normal" title="Map"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="MapIcon" id="chj-y5-3Xx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="70" y="-838"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="lvM-OQ-pM8">
+            <objects>
+                <tabBarController id="coG-8Y-f0A" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="VMZ-qG-cZb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7hd-rf-b07" kind="relationship" relationship="viewControllers" id="P6r-aN-P4C"/>
+                        <segue destination="svy-Jt-2VJ" kind="relationship" relationship="viewControllers" id="0iq-Ua-SPb"/>
+                        <segue destination="Hjj-j1-iNr" kind="relationship" relationship="viewControllers" id="0Fw-FT-IeS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vWM-Yr-OwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-658" y="-620"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="MapIcon" width="29" height="29"/>
+        <image name="PhotoIcon" width="29" height="29"/>
+    </resources>
 </document>
