@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844F06C41C497460001CFB15 /* LaunchScreen.xib */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* ViewController.swift */; };
 		CB5783E71C41A1A300A55D30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		844F06C41C497460001CFB15 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		AB8808A2F957221BCB3F199A /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5783E11C41A1A300A55D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CB5783EA1C41A1A300A55D30 /* LaunchScreen.storyboard */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
+				844F06C41C497460001CFB15 /* LaunchScreen.xib */,
 			);
 			path = "oldNYC-iOS";
 			sourceTree = "<group>";
@@ -118,7 +121,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 397HLL8JUB;
+						DevelopmentTeam = LRAK7WQC9P;
 					};
 				};
 			};
@@ -145,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */,
 				CB5783EC1C41A1A300A55D30 /* LaunchScreen.storyboard in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
 				CB5783E71C41A1A300A55D30 /* Main.storyboard in Resources */,
@@ -270,7 +274,6 @@
 		};
 		CB5783F11C41A1A300A55D30 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB8808A2F957221BCB3F199A /* Pods-oldNYC-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -283,7 +286,6 @@
 		};
 		CB5783F21C41A1A300A55D30 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F66130CB43D4FE35F0022132 /* Pods-oldNYC-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
