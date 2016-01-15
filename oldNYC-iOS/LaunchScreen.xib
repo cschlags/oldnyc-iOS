@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J7x-xL-tLd">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="old_compass" translatesAutoresizingMaskIntoConstraints="NO" id="J7x-xL-tLd">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
             </subviews>
@@ -19,4 +19,7 @@
             <point key="canvasLocation" x="600" y="176"/>
         </view>
     </objects>
+    <resources>
+        <image name="old_compass" width="1000" height="990"/>
+    </resources>
 </document>
