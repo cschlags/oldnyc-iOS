@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* ViewController.swift */; };
-		CB5783E71C41A1A300A55D30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
 		CB5783EC1C41A1A300A55D30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783EA1C41A1A300A55D30 /* LaunchScreen.storyboard */; };
+		CB5783F41C41B3B600A55D30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783F31C41B3B600A55D30 /* Main.storyboard */; };
 		D3CE8AE226B944E1E82A7BA2 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,10 +21,10 @@
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5783E11C41A1A300A55D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5783E31C41A1A300A55D30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CB5783E61C41A1A300A55D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB5783E81C41A1A300A55D30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5783EB1C41A1A300A55D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB5783ED1C41A1A300A55D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB5783F31C41B3B600A55D30 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F66130CB43D4FE35F0022132 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +72,7 @@
 			children = (
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
 				CB5783E31C41A1A300A55D30 /* ViewController.swift */,
-				CB5783E51C41A1A300A55D30 /* Main.storyboard */,
+				CB5783F31C41B3B600A55D30 /* Main.storyboard */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CB5783EA1C41A1A300A55D30 /* LaunchScreen.storyboard */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
@@ -152,7 +152,7 @@
 			files = (
 				CB5783EC1C41A1A300A55D30 /* LaunchScreen.storyboard in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
-				CB5783E71C41A1A300A55D30 /* Main.storyboard in Resources */,
+				CB5783F41C41B3B600A55D30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,14 +219,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CB5783E51C41A1A300A55D30 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB5783E61C41A1A300A55D30 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CB5783EA1C41A1A300A55D30 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
