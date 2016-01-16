@@ -7,24 +7,17 @@
 //
 
 import UIKit
+import Mapbox
+
 
 class MapViewController: UIViewController {
     
     override func viewDidLoad() {
-//        super.viewDidLoad()
+        super.viewDidLoad()
 //        // Do any additional setup after loading the view, typically from a nib.
-//        
-//        let camera = GMSCameraPosition.cameraWithLatitude(-33.868,
-//            longitude:151.2086, zoom:6)
-//        let mapView = GMSMapView.mapWithFrame(CGRectZero, camera:camera)
-//        
-//        let marker = GMSMarker()
-//        marker.position = camera.target
-//        marker.snippet = "Hello World"
-//        marker.appearAnimation = kGMSMarkerAnimationPop
-//        marker.map = mapView
-//        
-//        self.view = mapView
+
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
