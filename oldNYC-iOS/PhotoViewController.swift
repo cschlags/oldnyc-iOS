@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoViewController: UICollectionViewController {
+class PhotoViewController: UICollectionViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
