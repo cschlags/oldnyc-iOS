@@ -2,12 +2,11 @@
 //  AppDelegate.swift
 //  oldNYC-iOS
 //
-//  Created by Orian Breaux on 1/9/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
 import UIKit
-//import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
