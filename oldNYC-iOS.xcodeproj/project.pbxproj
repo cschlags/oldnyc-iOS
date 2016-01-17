@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F088B8A1FFA60B61CC1151C /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */; };
+		5A42BD692D5D31EE2C595F9C /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F119C0CD09CF30A299BF5ED1 /* Pods_oldNYC_iOS.framework */; };
 		844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844F06C41C497460001CFB15 /* LaunchScreen.xib */; };
 		844F06CB1C497A77001CFB15 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F06CA1C497A77001CFB15 /* PhotoViewController.swift */; };
 		CB3CDBC61C4AD7070022F21E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
@@ -17,17 +17,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66412E26C52FC017AF230C9F /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		844F06C41C497460001CFB15 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		844F06CA1C497A77001CFB15 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		AB8808A2F957221BCB3F199A /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		CA40795768A8792741752C60 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5783E11C41A1A300A55D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5783E31C41A1A300A55D30 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB5783E61C41A1A300A55D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB5783E81C41A1A300A55D30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5783ED1C41A1A300A55D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F66130CB43D4FE35F0022132 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		F119C0CD09CF30A299BF5ED1 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,20 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F088B8A1FFA60B61CC1151C /* Pods_oldNYC_iOS.framework in Frameworks */,
+				5A42BD692D5D31EE2C595F9C /* Pods_oldNYC_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		98D51CE993767B5DF5C0B213 /* Pods */ = {
+		0EBE23D231B17969F7F68F50 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AB8808A2F957221BCB3F199A /* Pods-oldNYC-iOS.debug.xcconfig */,
-				F66130CB43D4FE35F0022132 /* Pods-oldNYC-iOS.release.xcconfig */,
+				66412E26C52FC017AF230C9F /* Pods-oldNYC-iOS.debug.xcconfig */,
+				CA40795768A8792741752C60 /* Pods-oldNYC-iOS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF827DC7F9FEB53DFD4E2B38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F119C0CD09CF30A299BF5ED1 /* Pods_oldNYC_iOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CB5783D51C41A1A300A55D30 = {
@@ -56,8 +64,8 @@
 			children = (
 				CB5783E01C41A1A300A55D30 /* oldNYC-iOS */,
 				CB5783DF1C41A1A300A55D30 /* Products */,
-				98D51CE993767B5DF5C0B213 /* Pods */,
-				EDA1011F6BF802688BA5A484 /* Frameworks */,
+				0EBE23D231B17969F7F68F50 /* Pods */,
+				BF827DC7F9FEB53DFD4E2B38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,14 +91,6 @@
 			path = "oldNYC-iOS";
 			sourceTree = "<group>";
 		};
-		EDA1011F6BF802688BA5A484 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,12 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB5783F01C41A1A300A55D30 /* Build configuration list for PBXNativeTarget "oldNYC-iOS" */;
 			buildPhases = (
-				88E79FA99027C2C3434C7B7C /* Check Pods Manifest.lock */,
+				A1473F994F66E79A578C9E02 /* Check Pods Manifest.lock */,
 				CB5783DA1C41A1A300A55D30 /* Sources */,
 				CB5783DB1C41A1A300A55D30 /* Frameworks */,
 				CB5783DC1C41A1A300A55D30 /* Resources */,
-				D118AC98736199946AC1B12A /* Embed Pods Frameworks */,
-				25406C8BA5CC1D206C805A5A /* Copy Pods Resources */,
+				AC10B481159733018F91B05F /* Embed Pods Frameworks */,
+				483607E5D04AEDDEACC0A000 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -162,7 +162,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25406C8BA5CC1D206C805A5A /* Copy Pods Resources */ = {
+		483607E5D04AEDDEACC0A000 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -177,7 +177,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		88E79FA99027C2C3434C7B7C /* Check Pods Manifest.lock */ = {
+		A1473F994F66E79A578C9E02 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -192,7 +192,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D118AC98736199946AC1B12A /* Embed Pods Frameworks */ = {
+		AC10B481159733018F91B05F /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -319,12 +319,13 @@
 		};
 		CB5783F11C41A1A300A55D30 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB8808A2F957221BCB3F199A /* Pods-oldNYC-iOS.debug.xcconfig */;
+			baseConfigurationReference = 66412E26C52FC017AF230C9F /* Pods-oldNYC-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -333,12 +334,13 @@
 		};
 		CB5783F21C41A1A300A55D30 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F66130CB43D4FE35F0022132 /* Pods-oldNYC-iOS.release.xcconfig */;
+			baseConfigurationReference = CA40795768A8792741752C60 /* Pods-oldNYC-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
