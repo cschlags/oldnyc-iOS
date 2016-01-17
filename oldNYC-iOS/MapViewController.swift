@@ -24,11 +24,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     
         view.addSubview(mapView)
         
-        mapView.setCenterCoordinate(, animated:true)
-        
         // configure map properties and settings for rendering
 
-        
     }
 
     override func didReceiveMemoryWarning() {
