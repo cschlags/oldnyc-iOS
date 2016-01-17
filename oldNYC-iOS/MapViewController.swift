@@ -14,11 +14,10 @@ import Mapbox
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     var manager:CLLocationManager!
-    var userLocation:CLLocation = CLLocation(latitude: 40.74421, longitude: -73.97370)
+    var userLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getUserLocation()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -39,32 +38,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
 
         // set the map's center coordinate
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:15, animated:false)
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:true)
         
         view.addSubview(mapView)
 
         // show the user's location on the map (blue dot)
-        mapView.showsUserLocation = true
+        //mapView.showsUserLocation = true
+        //mapView.userTrackingMode = .Follow
+        
+        mapView.logoView.hidden = true
+        mapView.attributionButton.hidden = true
+        mapView.scrollEnabled = true
+        mapView.rotateEnabled = false
     }
     
-    // get user's current location
-    func getUserLocation() {
-        manager = CLLocationManager()
-        self.manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
-    }
-    
-    // location manager 'didUpdateLocations' function
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.manager.stopUpdatingLocation()
-        self.userLocation = locations[0] as CLLocation
-        createMap()
-    }
-    
-    // errors occured
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Error:" + error.localizedDescription)
+    func isUserInNewYorkCity() {
+
     }
 }
+
+/*
+TARGET FLOW:
+- load map centered in NYC (around default coordinates / zoom level)
+- check if user is in NYC
+    - if yes, enable location tracking. display blue dot, enable center-on-current-location button.
+    - if no, do not enable location tracking. do not display blue dot and center-on-current-location button.
+- clicking on center-on-current location button will recent map on user, then put into .Follow tracking mode
+*/
