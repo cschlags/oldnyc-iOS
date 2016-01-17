@@ -10,13 +10,24 @@ import UIKit
 import Mapbox
 
 
-class MapViewController: UIViewController {
-    
+class MapViewController: UIViewController, MGLMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-
         
+        let mapView = MGLMapView(frame: view.bounds,
+                                 styleURL: MGLStyle.lightStyleURL())
+
+        mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        // set the map's center coordinate
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: 40.74421, longitude: -73.97370), zoomLevel:15, animated:false)
+    
+        view.addSubview(mapView)
+        
+        mapView.setCenterCoordinate(, animated:true)
+        
+        // configure map properties and settings for rendering
+
         
     }
 

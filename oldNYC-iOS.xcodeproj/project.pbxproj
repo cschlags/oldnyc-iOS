@@ -10,6 +10,7 @@
 		4F088B8A1FFA60B61CC1151C /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225E54944FA3BBCF1913BF33 /* Pods_oldNYC_iOS.framework */; };
 		844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844F06C41C497460001CFB15 /* LaunchScreen.xib */; };
 		844F06CB1C497A77001CFB15 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F06CA1C497A77001CFB15 /* PhotoViewController.swift */; };
+		CB3CDBC61C4AD7070022F21E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* MapViewController.swift */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
@@ -125,7 +126,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LRAK7WQC9P;
+						DevelopmentTeam = 397HLL8JUB;
 					};
 				};
 			};
@@ -152,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3CDBC61C4AD7070022F21E /* Main.storyboard in Resources */,
 				844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
 			);

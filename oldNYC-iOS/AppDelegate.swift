@@ -2,12 +2,11 @@
 //  AppDelegate.swift
 //  oldNYC-iOS
 //
-//  Created by Orian Breaux on 1/9/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
 import UIKit
-//import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Override point for customization after application launch.
-        GMSServices.provideAPIKey("AIzaSyDiu1p8R7mEWsQ2TJDUsV4yqiQg5u5cGpY")
         
         return true
     }
