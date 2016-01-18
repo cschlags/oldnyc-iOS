@@ -22,6 +22,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(animated: Bool) {
         createMap()
+        generateMarkers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,19 +42,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:true)
         
         view.addSubview(mapView)
-
+        
         // show the user's location on the map (blue dot)
         //mapView.showsUserLocation = true
-        //mapView.userTrackingMode = .Follow
+        mapView.userTrackingMode = .Follow
         
         mapView.logoView.hidden = true
         mapView.attributionButton.hidden = true
         mapView.scrollEnabled = true
         mapView.rotateEnabled = false
+        mapView.pitchEnabled = false
     }
     
     func isUserInNewYorkCity() {
 
+    }
+    
+    func generateMarkers() {
+        // loop through lat-lons, create markers
     }
 }
 
