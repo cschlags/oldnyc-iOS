@@ -11,6 +11,7 @@
 		844F06C51C497460001CFB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844F06C41C497460001CFB15 /* LaunchScreen.xib */; };
 		844F06CB1C497A77001CFB15 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F06CA1C497A77001CFB15 /* PhotoViewController.swift */; };
 		CB3CDBC61C4AD7070022F21E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
+		CB4D3EC71C4D94390038EAAF /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D3EC61C4D94390038EAAF /* LocationData.swift */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* MapViewController.swift */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		844F06C41C497460001CFB15 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		844F06CA1C497A77001CFB15 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		CA40795768A8792741752C60 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		CB4D3EC61C4D94390038EAAF /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5783E11C41A1A300A55D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5783E31C41A1A300A55D30 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		CB5783E01C41A1A300A55D30 /* oldNYC-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D3EC61C4D94390038EAAF /* LocationData.swift */,
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
 				CB5783E31C41A1A300A55D30 /* MapViewController.swift */,
 				844F06CA1C497A77001CFB15 /* PhotoViewController.swift */,
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB4D3EC71C4D94390038EAAF /* LocationData.swift in Sources */,
 				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				844F06CB1C497A77001CFB15 /* PhotoViewController.swift in Sources */,
