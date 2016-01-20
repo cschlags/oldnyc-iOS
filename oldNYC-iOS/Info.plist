@@ -30,8 +30,6 @@
 	<string>pk.eyJ1Ijoib2JyZWF1eDEiLCJhIjoiY2lqaGh0ZnBqMDJ0NHR5bHRscWFzOGVrYSJ9.LbIpIpgRN_FJM8CitHRyTA</string>
 	<key>MGLMapboxMetricsEnabledSettingShownInApp</key>
 	<string>YES</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
