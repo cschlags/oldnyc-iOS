@@ -1,14 +1,15 @@
 //
-//  PhotoViewController.swift
+//  MenuVC.swift
 //  oldNYC-iOS
 //
-//  Created by Christina Leuci on 1/15/16.
+//  Created by Christina Leuci on 1/19/16.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class PhotoViewController: UICollectionViewController{
+class MenuVC: UICollectionViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
