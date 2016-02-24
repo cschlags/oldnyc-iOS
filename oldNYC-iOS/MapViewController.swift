@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 import Mapbox
 
 class MapViewController: UIViewController,
@@ -41,7 +42,7 @@ class MapViewController: UIViewController,
         mapView.delegate = self
         
         // Configure map settings.
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation = false // Make true
         //mapView.userTrackingMode = .Follow
         
         mapView.logoView.hidden = true
@@ -51,7 +52,7 @@ class MapViewController: UIViewController,
         mapView.pitchEnabled = false
         
         // Place marker annotations on map.
-        generateMarkers()
+        //generateMarkers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +62,7 @@ class MapViewController: UIViewController,
 
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
+    /*
     func generateMarkers() {
         for (markerLatLon, _) in markerLocations {
             let coordinates = getLatLongValues(markerLatLon)
@@ -72,6 +74,7 @@ class MapViewController: UIViewController,
             mapView.addAnnotation(marker)
         }
     }
+    */
 
     // takes String of format "lat,long" and returns Double lat and lon values
     func getLatLongValues(coordinates : String) -> (lat : Double, lon : Double) {
@@ -83,7 +86,7 @@ class MapViewController: UIViewController,
         return(lat!, lon!)
     }
     
-    func isUserInNewYorkCity() {
+    //func isUserInNewYorkCity() {
         //add code here
-    }
+    //}
 }

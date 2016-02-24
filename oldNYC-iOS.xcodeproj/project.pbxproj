@@ -11,8 +11,10 @@
 		844F06CB1C497A77001CFB15 /* PhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F06CA1C497A77001CFB15 /* PhotoVC.swift */; };
 		84DC33541C4F44DE00680BBA /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC33531C4F44DE00680BBA /* MenuVC.swift */; };
 		CB3CDBC61C4AD7070022F21E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E51C41A1A300A55D30 /* Main.storyboard */; };
-		CB4D3EC71C4D94390038EAAF /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D3EC61C4D94390038EAAF /* LocationData.swift */; };
 		CB4DD3201C56AA2E00BD4729 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB4DD31E1C56AA2E00BD4729 /* DataModel.xcdatamodeld */; };
+		CB4DD3431C56C5B600BD4729 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4DD3421C56C5B600BD4729 /* Marker.swift */; };
+		CB4DD3451C56DE0300BD4729 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
+		CB4DD3471C56E53400BD4729 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4DD3461C56E53400BD4729 /* DataManager.swift */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* MapViewController.swift */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
@@ -23,8 +25,10 @@
 		844F06CA1C497A77001CFB15 /* PhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVC.swift; sourceTree = "<group>"; };
 		84DC33531C4F44DE00680BBA /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		CA40795768A8792741752C60 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		CB4D3EC61C4D94390038EAAF /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		CB4DD31F1C56AA2E00BD4729 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		CB4DD3421C56C5B600BD4729 /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		CB4DD3441C56DE0300BD4729 /* markers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markers.json; sourceTree = "<group>"; };
+		CB4DD3461C56E53400BD4729 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5783E11C41A1A300A55D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5783E31C41A1A300A55D30 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +70,8 @@
 		CB5783D51C41A1A300A55D30 = {
 			isa = PBXGroup;
 			children = (
-				CB5783E01C41A1A300A55D30 /* oldNYC-iOS */,
+				CB4DD31E1C56AA2E00BD4729 /* DataModel.xcdatamodeld */,
+				CB5783E01C41A1A300A55D30 /* OldNYC */,
 				CB5783DF1C41A1A300A55D30 /* Products */,
 				0EBE23D231B17969F7F68F50 /* Pods */,
 				BF827DC7F9FEB53DFD4E2B38 /* Frameworks */,
@@ -81,19 +86,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CB5783E01C41A1A300A55D30 /* oldNYC-iOS */ = {
+		CB5783E01C41A1A300A55D30 /* OldNYC */ = {
 			isa = PBXGroup;
 			children = (
-				CB4D3EC61C4D94390038EAAF /* LocationData.swift */,
+				CB4DD3441C56DE0300BD4729 /* markers.json */,
+				CB4DD3421C56C5B600BD4729 /* Marker.swift */,
+				CB4DD3461C56E53400BD4729 /* DataManager.swift */,
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
 				CB5783E31C41A1A300A55D30 /* MapViewController.swift */,
 				84DC33531C4F44DE00680BBA /* MenuVC.swift */,
 				844F06CA1C497A77001CFB15 /* PhotoVC.swift */,
-				CB4DD31E1C56AA2E00BD4729 /* DataModel.xcdatamodeld */,
 				CB5783E51C41A1A300A55D30 /* Main.storyboard */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
 			);
+			name = OldNYC;
 			path = "oldNYC-iOS";
 			sourceTree = "<group>";
 		};
@@ -132,7 +139,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LRAK7WQC9P;
+						DevelopmentTeam = 397HLL8JUB;
 					};
 				};
 			};
@@ -160,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB3CDBC61C4AD7070022F21E /* Main.storyboard in Resources */,
+				CB4DD3451C56DE0300BD4729 /* markers.json in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,12 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB4D3EC71C4D94390038EAAF /* LocationData.swift in Sources */,
+				CB4DD3471C56E53400BD4729 /* DataManager.swift in Sources */,
 				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				CB4DD3201C56AA2E00BD4729 /* DataModel.xcdatamodeld in Sources */,
 				844F06CB1C497A77001CFB15 /* PhotoVC.swift in Sources */,
 				84DC33541C4F44DE00680BBA /* MenuVC.swift in Sources */,
+				CB4DD3431C56C5B600BD4729 /* Marker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,10 +347,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -357,9 +367,10 @@
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -393,7 +404,8 @@
 				CB4DD31F1C56AA2E00BD4729 /* DataModel.xcdatamodel */,
 			);
 			currentVersion = CB4DD31F1C56AA2E00BD4729 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
+			name = DataModel.xcdatamodeld;
+			path = "oldNYC-iOS/DataModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
