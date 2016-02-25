@@ -69,7 +69,7 @@
                         <viewControllerLayoutGuide type="top" id="Wpu-t4-hvh"/>
                         <viewControllerLayoutGuide type="bottom" id="Y4p-99-OS3"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tkv-Jg-v7T">
+                    <view key="view" contentMode="scaleToFill" id="Tkv-Jg-v7T" customClass="MGLMapView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -269,6 +269,6 @@
         <image name="reveal-icon" width="22" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="m02-IR-J07"/>
+        <segue reference="ADE-gW-Pks"/>
     </inferredMetricsTieBreakers>
 </document>

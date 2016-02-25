@@ -18,31 +18,20 @@ class MapViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    /*
-    TARGET FLOW:
-    - load map centered in NYC (around default coordinates / zoom level)
-    - check if user is in NYC
-    - if yes, enable location tracking. display blue dot, enable center-on-current-location button.
-    - if no, do not enable location tracking. do not display blue dot and center-on-current-location button.
-    - clicking on center-on-current location button will recent map on user, then put into .Follow tracking mode
-    */
-    override func viewDidAppear(animated: Bool) {
-
+        
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
         mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
-        // Set the map's center coordinate, over NYC.
+        // Set the map's center coordinate over NYC.
         let userLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:true)
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:false)
         
         view.addSubview(mapView)
         
         mapView.delegate = self
         
         // Configure map settings.
-        mapView.showsUserLocation = false // Make true
+        mapView.showsUserLocation = false // Make true later
         //mapView.userTrackingMode = .Follow
         
         mapView.logoView.hidden = true
@@ -53,9 +42,10 @@ class MapViewController: UIViewController,
         
         // Place marker annotations on map.
         generateMarkersFromJSON()
-        
-        
-        mapView(<#T##mapView: MGLMapView##MGLMapView#>, didSelectAnnotation: <#T##MGLAnnotation#>)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,7 +55,7 @@ class MapViewController: UIViewController,
 
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
-    // Reads markers.json and generates markers for each coordinate.
+    // Read markers.json and generate markers for each coordinate.
     func generateMarkersFromJSON() {
         if let path = NSBundle.mainBundle().pathForResource("markers", ofType: "json") {
             do {
@@ -111,6 +101,10 @@ class MapViewController: UIViewController,
         
         return annotationImage
     }
+    
+    //func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
+    //    print("user selected annotation")
+    //}
     
     
     //func isUserInNewYorkCity() {
