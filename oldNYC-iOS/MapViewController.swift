@@ -8,8 +8,8 @@
 
 import UIKit
 import CoreLocation
-import CoreData
 import Mapbox
+import SwiftyJSON
 
 class MapViewController: UIViewController,
                          MGLMapViewDelegate {
@@ -52,7 +52,10 @@ class MapViewController: UIViewController,
         mapView.pitchEnabled = false
         
         // Place marker annotations on map.
-        //generateMarkers()
+        generateMarkersFromJSON()
+        
+        
+        mapView(<#T##mapView: MGLMapView##MGLMapView#>, didSelectAnnotation: <#T##MGLAnnotation#>)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,29 +65,53 @@ class MapViewController: UIViewController,
 
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
-    /*
-    func generateMarkers() {
-        for (markerLatLon, _) in markerLocations {
-            let coordinates = getLatLongValues(markerLatLon)
-            
-            let marker = MGLPointAnnotation()
-            marker.coordinate = CLLocationCoordinate2D(latitude: coordinates.lat, longitude: coordinates.lon)
-            marker.title = markerLatLon
-            
-            mapView.addAnnotation(marker)
+    // Reads markers.json and generates markers for each coordinate.
+    func generateMarkersFromJSON() {
+        if let path = NSBundle.mainBundle().pathForResource("markers", ofType: "json") {
+            do {
+                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                let jsonObj = JSON(data: data)
+                if jsonObj != JSON.null {
+
+                    // Create markers for each item.
+                    for item in jsonObj["markers"].arrayValue {
+                        let lat = item["lat"].double
+                        let lon = item["lon"].double
+                        placeMarker(lat!, lon: lon!)
+                    }
+                    
+                } else {
+                    print("could not get json from file")
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("Invalid filename/path.")
         }
     }
-    */
-
-    // takes String of format "lat,long" and returns Double lat and lon values
-    func getLatLongValues(coordinates : String) -> (lat : Double, lon : Double) {
-        let coordinatesArr = coordinates.componentsSeparatedByString(",")
     
-        let lat = Double(coordinatesArr[0])
-        let lon = Double(coordinatesArr[1])
+    // Creates a marker annotation for the given lat and lon.
+    func placeMarker(lat: Double, lon: Double) {
+        let marker = MGLPointAnnotation()
+        marker.coordinate = CLLocationCoordinate2DMake(lat, lon)
+        //marker.title = "marker title here"
         
-        return(lat!, lon!)
+        mapView.addAnnotation(marker)
     }
+    
+    // Define and use custom marker style
+    func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        var annotationImage = mapView.dequeueReusableAnnotationImageWithIdentifier("LocationMarker")
+        
+        if annotationImage == nil {
+            let image = UIImage(named: "LocationMarker")
+            annotationImage = MGLAnnotationImage(image: image!, reuseIdentifier: "LocationMarker")
+        }
+        
+        return annotationImage
+    }
+    
     
     //func isUserInNewYorkCity() {
         //add code here
