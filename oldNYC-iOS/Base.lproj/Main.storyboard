@@ -1,46 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AaK-L6-5XH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AaK-L6-5XH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--PhotoVC-->
-        <scene sceneID="APo-rM-GZL">
-            <objects>
-                <collectionViewController id="gYQ-wg-ROE" customClass="PhotoVC" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hKm-dH-t7Y">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69000000000000006" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZsH-3C-XPd">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="urY-Or-lLd">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="gYQ-wg-ROE" id="zB4-NO-j0Q"/>
-                            <outlet property="delegate" destination="gYQ-wg-ROE" id="49u-bU-mYf"/>
-                        </connections>
-                    </collectionView>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NPF-VN-RQr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="71" y="-1385"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
@@ -75,14 +39,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Explore Popular Photos" width="251" id="cSR-b1-hY8">
+                        <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8">
                             <connections>
-                                <segue destination="gYQ-wg-ROE" kind="show" id="v5v-5M-dDa"/>
+                                <segue destination="tqg-Ag-9TD" kind="show" id="ByO-o7-8TY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="reveal-icon" id="WJ1-ge-nwX">
+                        <barButtonItem title="Title" id="QZ1-IE-mBK">
                             <connections>
-                                <segue destination="q0d-FL-fWK" kind="show" id="9UK-Vs-rPP"/>
+                                <segue destination="q0d-FL-fWK" kind="show" id="x8n-s0-SBX"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -92,6 +56,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-658" y="-1385"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="hHo-TO-jSq">
+            <objects>
+                <collectionViewController id="4m1-AQ-v0X" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="E2b-xn-3vZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MOT-Yg-SMN">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="4m1-AQ-v0X" id="1z4-v0-z0V"/>
+                            <outlet property="delegate" destination="4m1-AQ-v0X" id="zUU-63-gyj"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="HOO-cd-rn4"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="855" y="-1385"/>
         </scene>
         <!--MenuVC-->
         <scene sceneID="5sh-qy-qFi">
@@ -116,13 +116,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="old_compass" translatesAutoresizingMaskIntoConstraints="NO" id="QG1-e4-Pb8">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LocationMarker" translatesAutoresizingMaskIntoConstraints="NO" id="QG1-e4-Pb8">
                                                     <rect key="frame" x="255" y="5" width="85" height="85"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Old NYC App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAI-6w-wBa">
                                                     <rect key="frame" x="250" y="95" width="101" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -248,7 +248,7 @@
                                     <navigationItem id="iYY-DN-igG">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="vYU-ug-qNR">
                                             <connections>
-                                                <segue destination="7hd-rf-b07" kind="show" id="m02-IR-J07"/>
+                                                <segue destination="7hd-rf-b07" kind="show" id="SE6-Qi-lQi"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -263,12 +263,29 @@
             </objects>
             <point key="canvasLocation" x="-658" y="-643"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PGu-Vq-99D">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tqg-Ag-9TD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CYm-8g-ETU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4m1-AQ-v0X" kind="relationship" relationship="rootViewController" id="V8T-Be-ita"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7p1-cN-okx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="43" y="-1385"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="old_compass" width="1000" height="990"/>
-        <image name="reveal-icon" width="22" height="17"/>
+        <image name="LocationMarker" width="17" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ADE-gW-Pks"/>
+        <segue reference="SE6-Qi-lQi"/>
     </inferredMetricsTieBreakers>
 </document>
