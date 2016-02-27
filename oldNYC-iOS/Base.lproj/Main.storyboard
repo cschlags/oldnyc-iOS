@@ -44,15 +44,11 @@
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
-                <navigationController navigationBarHidden="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="AaK-L6-5XH" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDU-nk-laL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mJ6-vh-7SN">
-                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="7hd-rf-b07" kind="relationship" relationship="rootViewController" id="ADE-gW-Pks"/>
                     </connections>
@@ -74,18 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Explore Popular Photos" width="251" id="cSR-b1-hY8">
-                            <connections>
-                                <segue destination="gYQ-wg-ROE" kind="show" id="v5v-5M-dDa"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem image="reveal-icon" id="WJ1-ge-nwX">
-                            <connections>
-                                <segue destination="q0d-FL-fWK" kind="show" id="9UK-Vs-rPP"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -266,7 +251,6 @@
     </scenes>
     <resources>
         <image name="old_compass" width="1000" height="990"/>
-        <image name="reveal-icon" width="22" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ADE-gW-Pks"/>

@@ -15,6 +15,7 @@ class MapViewController: UIViewController,
                          MGLMapViewDelegate {
 
     var mapView : MGLMapView!
+    var lastTappedLocationData = [[String : Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +66,10 @@ class MapViewController: UIViewController,
 
                     // Create markers for each item.
                     for item in jsonObj["markers"].arrayValue {
-                        let lat = item["lat"].double
-                        let lon = item["lon"].double
-                        placeMarker(lat!, lon: lon!)
+                        let lat = item["latitude"].double
+                        let lon = item["longitude"].double
+                        let title = item["marker_title"].stringValue
+                        placeMarker(lat!, lon: lon!, title: title)
                     }
                     
                 } else {
@@ -82,10 +84,10 @@ class MapViewController: UIViewController,
     }
     
     // Creates a marker annotation for the given lat and lon.
-    func placeMarker(lat: Double, lon: Double) {
+    func placeMarker(lat: Double, lon: Double, title: String) {
         let marker = MGLPointAnnotation()
         marker.coordinate = CLLocationCoordinate2DMake(lat, lon)
-        //marker.title = "marker title here"
+        marker.title = title
         
         mapView.addAnnotation(marker)
     }
@@ -102,9 +104,64 @@ class MapViewController: UIViewController,
         return annotationImage
     }
     
-    //func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
-    //    print("user selected annotation")
-    //}
+    // When user taps on marker annotation, retrieve image information for given location.
+    func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
+        let tappedLat = String(format:"%2.6f", annotation.coordinate.latitude)
+        let tappedLon = String(format:"%2.6f", annotation.coordinate.longitude)
+        
+        print(annotation.title)
+        
+        let urlPath = "https://oldnyc.org/by-location/" + tappedLat + tappedLon + ".json"
+        
+        enum JSONError: String, ErrorType {
+            case NoData = "ERROR: no data"
+            case ConversionFailed = "ERROR: conversion from JSON failed"
+        }
+        
+        // Get JSON data from /by-location directory on oldnyc.org
+        guard let endpoint = NSURL(string: urlPath) else {print("Error creating endpoint");return}
+        let request = NSMutableURLRequest(URL: endpoint)
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data,response,error) -> Void in
+            do {
+                guard let dat = data else { throw JSONError.NoData }
+                let jsonObj = JSON(data: dat)
+                
+                self.setLastTappedLocationData(jsonObj)
+                
+            } catch let error as JSONError {
+                print(error.rawValue)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getLastTappedLocationData() -> [[String : Any]] {
+        return lastTappedLocationData
+    }
+    
+    
+    func setLastTappedLocationData(jsonObj : JSON) {
+        self.lastTappedLocationData.removeAll()
+        
+        // For each image in location's JSON data, save attributes into dictionary.
+        for (key,subJson):(String,JSON) in jsonObj {
+            var dict = [String : Any]()
+            
+            dict["photoID"] = key
+            dict["width"] = subJson["width"].double
+            dict["height"] = subJson["width"].double
+            dict["image_url"] = subJson["image_url"].stringValue
+            dict["thumb_url"] = subJson["thumb_url"].stringValue
+            dict["title"] = subJson["title"].stringValue
+            dict["date"] = subJson["date"].stringValue
+            dict["folder"] = subJson["folder"].stringValue
+            dict["description"] = subJson["text"].stringValue
+            dict["rotation"] = subJson["rotation"].double
+            
+            self.lastTappedLocationData.append(dict)
+        }
+    }
     
     
     //func isUserInNewYorkCity() {
