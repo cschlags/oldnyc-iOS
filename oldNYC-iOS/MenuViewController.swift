@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MenuViewController: UITableViewController{
-    var items = ["Send Your Feedback", "Privacy Policy", "Subscribe to Updates", "Share with Friends", "Like OldNYC", "Review on App Store"]
+    var items = ["Send Your Feedback", "Privacy Policy", "Subscribe to Updates", "Share with Friends", "Like OldNYC", "Review on App Store", "Data Attributions"]
     override func viewDidLoad() {
         super.viewDidLoad()
     }
