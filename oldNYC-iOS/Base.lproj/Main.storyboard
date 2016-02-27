@@ -8,6 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YNe-9a-Fhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDU-nk-laL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -21,7 +22,6 @@
                         <segue destination="7hd-rf-b07" kind="relationship" relationship="rootViewController" id="ADE-gW-Pks"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YNe-9a-Fhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1342" y="-1385"/>
         </scene>
@@ -100,7 +100,7 @@
                     <navigationItem key="navigationItem" title="Old NYC" id="AKN-wr-3zk">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="mhz-kS-atO">
                             <connections>
-                                <segue destination="7hd-rf-b07" kind="show" id="INk-TJ-hWg"/>
+                                <segue destination="AaK-L6-5XH" kind="show" id="eLg-dt-mb4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -125,7 +125,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -169,6 +169,7 @@
         <!--Navigation Controller-->
         <scene sceneID="SnB-VM-Se6">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1f-Wa-iq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="edf-xI-r4Z" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dFv-7S-kKG">
@@ -180,12 +181,8 @@
                         <segue destination="iPX-1u-HNJ" kind="relationship" relationship="rootViewController" id="kWs-yz-IkK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S1f-Wa-iq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-658" y="-594"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="INk-TJ-hWg"/>
-    </inferredMetricsTieBreakers>
 </document>
