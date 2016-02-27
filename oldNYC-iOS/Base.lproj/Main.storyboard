@@ -47,7 +47,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G7Q-rD-7yP"/>
                         <barButtonItem title="Title" id="QZ1-IE-mBK">
                             <connections>
-                                <segue destination="iPX-1u-HNJ" kind="show" id="kMb-AO-Hae"/>
+                                <segue destination="edf-xI-r4Z" kind="show" id="kMb-AO-Hae"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="dyk-Rx-Qv7"/>
@@ -59,7 +59,7 @@
             </objects>
             <point key="canvasLocation" x="-658" y="-1385"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Old NYC-->
         <scene sceneID="oGg-IA-LEx">
             <objects>
                 <tableViewController id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,22 +67,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="0Wh-ak-jwd">
-                            <rect key="frame" x="0.0" y="88" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Old NYC" id="Mxq-b5-kgS">
-                                    <barButtonItem key="rightBarButtonItem" title="Done" id="59L-hA-lHl">
-                                        <connections>
-                                            <segue destination="7hd-rf-b07" kind="show" id="ntU-bS-7xh"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="60" id="7aG-ND-C0t">
-                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" rowHeight="60" id="7aG-ND-C0t" customClass="MenuTableViewCell" customModule="oldNYC_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7aG-ND-C0t" id="K8p-Lz-QeJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -99,6 +86,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="menuItemImage" destination="Pux-Q8-x2z" id="aT1-S7-YWe"/>
+                                    <outlet property="menuItemLabel" destination="ch3-20-RsR" id="tMo-aa-aGJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -106,10 +97,17 @@
                             <outlet property="delegate" destination="iPX-1u-HNJ" id="sRI-va-Ugj"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Old NYC" id="AKN-wr-3zk">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="mhz-kS-atO">
+                            <connections>
+                                <segue destination="7hd-rf-b07" kind="show" id="INk-TJ-hWg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O91-hG-fgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-658" y="-594"/>
+            <point key="canvasLocation" x="154" y="-594"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="hHo-TO-jSq">
@@ -168,8 +166,26 @@
             </objects>
             <point key="canvasLocation" x="43" y="-1385"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SnB-VM-Se6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="edf-xI-r4Z" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dFv-7S-kKG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iPX-1u-HNJ" kind="relationship" relationship="rootViewController" id="kWs-yz-IkK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1f-Wa-iq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-658" y="-594"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ntU-bS-7xh"/>
+        <segue reference="INk-TJ-hWg"/>
     </inferredMetricsTieBreakers>
 </document>

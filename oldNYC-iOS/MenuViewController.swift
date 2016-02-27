@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MenuViewController: UITableViewController{
-    
+    var items = ["Send Your Feedback", "Privacy Policy", "Subscribe to Updates", "Share with Friends", "Like OldNYC", "Review on App Store"]
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,4 +20,21 @@ class MenuViewController: UITableViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "MenuTableViewCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MenuTableViewCell
+        let item = items[indexPath.row]
+        // Configure the cell...
+        cell.menuItemLabel.text = item
+        return cell
+    }
 }
