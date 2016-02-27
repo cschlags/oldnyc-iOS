@@ -109,7 +109,7 @@
             </objects>
             <point key="canvasLocation" x="154" y="-594"/>
         </scene>
-        <!--Photo View Controller-->
+        <!--Location Title-->
         <scene sceneID="hHo-TO-jSq">
             <objects>
                 <collectionViewController id="4m1-AQ-v0X" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -140,8 +140,12 @@
                             <outlet property="delegate" destination="4m1-AQ-v0X" id="zUU-63-gyj"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="vCh-xr-Us7">
-                        <barButtonItem key="backBarButtonItem" title="Map" id="BBV-hc-q0a"/>
+                    <navigationItem key="navigationItem" title="Location Title" id="AaO-SL-tcd">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="29C-he-uLB">
+                            <connections>
+                                <segue destination="AaK-L6-5XH" kind="show" id="vTD-8h-mQC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,4 +189,7 @@
             <point key="canvasLocation" x="-658" y="-594"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vTD-8h-mQC"/>
+    </inferredMetricsTieBreakers>
 </document>
