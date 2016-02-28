@@ -1,5 +1,5 @@
 //
-//  MenuTableViewController.swift
+//  DataAttributionViewController.swift
 //  oldNYC-iOS
 //
 //  Created by Orian Breaux and Christina Leuci.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuTableViewController: UITableViewController {
+class DataAttributionViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,63 +30,35 @@ class MenuTableViewController: UITableViewController {
         self.navigationController?.navigationBar.translucent = true
     }
 
-    
     // MARK: - Table view data source
 
-    var sectionTitles = [""]
-    var sectionContent = [["Send Your Feedback", "Data Attribution"]]
-
-    // Define how many sections in table.
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
-    // Define how many rows in each section.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        } else {
-            return 0
-        }
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
-    }
-    
-    // Generate table sections and cells.
+
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
-        // Configure the cell:
-        cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row]
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
-    
-    // Define where each cell takes the user.
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
-            
-        // Section 1
-        case 0:
-            
-            // After tapping "Send Your Feedback", send users to Typeform in Web View.
-            if indexPath.row == 0 {
-                performSegueWithIdentifier("showWebView", sender: self)
-                }
-        default:
-            break
-        }
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    }
+    */
 
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return false
+        return true
     }
+    */
 
     /*
     // Override to support editing the table view.
