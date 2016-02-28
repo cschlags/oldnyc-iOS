@@ -16,6 +16,7 @@ class MapViewController: UIViewController,
 
     var mapView : MGLMapView!
     var lastTappedLocationData = [[String : Any]]()
+    var lastTappedLocationName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,15 @@ class MapViewController: UIViewController,
     }
     
     override func viewDidAppear(animated: Bool) {
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated:false)
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,7 +118,7 @@ class MapViewController: UIViewController,
         let tappedLat = String(format:"%2.6f", annotation.coordinate.latitude)
         let tappedLon = String(format:"%2.6f", annotation.coordinate.longitude)
         
-        print(annotation.title)
+        lastTappedLocationName = annotation.title!!
         
         let urlPath = "https://oldnyc.org/by-location/" + tappedLat + tappedLon + ".json"
         
@@ -140,7 +149,6 @@ class MapViewController: UIViewController,
         return lastTappedLocationData
     }
     
-    
     func setLastTappedLocationData(jsonObj : JSON) {
         self.lastTappedLocationData.removeAll()
         
@@ -162,7 +170,6 @@ class MapViewController: UIViewController,
             self.lastTappedLocationData.append(dict)
         }
     }
-    
     
     //func isUserInNewYorkCity() {
         //add code here

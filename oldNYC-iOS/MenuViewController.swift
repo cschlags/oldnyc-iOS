@@ -13,11 +13,19 @@ class MenuViewController: UITableViewController{
     var items = ["Send Your Feedback", "Privacy Policy", "Subscribe to Updates", "Share with Friends", "Like OldNYC", "Review on App Store", "Data Attributions"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationItem.leftBarButtonItem?.enabled = true
+        self.navigationItem.hidesBackButton = false
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        navigationItem.title = nil
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
