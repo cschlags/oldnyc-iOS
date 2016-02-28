@@ -7,22 +7,24 @@
 //
 
 import UIKit
-
-private let reuseIdentifier = "buildingCell"
+import SwiftyJSON
 
 class GalleryViewController: UICollectionViewController {
+    private let reuseIdentifier = "galleryCell"
+    private let sectionInsets = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
+    var lastTappedLocationDataPassed:[[String : Any]]!
 
     var hidingNavBarManager: HidingNavigationBarManager?
     
     @IBOutlet var gallery: UICollectionView!
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        // Commented because it's screwing with putting images in the ViewCell
+//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
@@ -84,17 +86,44 @@ class GalleryViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 100
+        return lastTappedLocationDataPassed.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.whiteColor()
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
+        cell.backgroundColor = UIColor.blackColor()
+        let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
+        let url = flickrPhoto["thumb_url"] as! String
+        let request = NSURLRequest(URL: NSURL(string: url)!)
+        
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+            
+            if error != nil {
+                print("Failed to load image for url: \(url), error: \(error?.description)")
+                return
+            }
+            
+            guard let httpResponse = response as? NSHTTPURLResponse else {
+                print("Not an NSHTTPURLResponse from loading url: \(url)")
+                return
+            }
+            
+            if httpResponse.statusCode != 200 {
+                print("Bad response statusCode: \(httpResponse.statusCode) while loading url: \(url)")
+                return
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                cell.cellImage.image = UIImage(data: data!)
+            })
+            
+            }.resume()
         return cell
     }
-
+    
+    
     // MARK: UICollectionViewDelegate
 
     /*

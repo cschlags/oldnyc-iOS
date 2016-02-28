@@ -134,7 +134,7 @@ class MapViewController: UIViewController,
         lastTappedLocationName = annotation.title!!
         
         let urlPath = "https://oldnyc.org/by-location/" + tappedLat + tappedLon + ".json"
-        
+        print(urlPath)
         enum JSONError: String, ErrorType {
             case NoData = "ERROR: no data"
             case ConversionFailed = "ERROR: conversion from JSON failed"
@@ -156,7 +156,10 @@ class MapViewController: UIViewController,
                 print(error)
             }
         }.resume()
-        
+
+        if (self.lastTappedLocationData.count > 0){
+            performSegueWithIdentifier("toGallery", sender: self)
+        }
     }
     
     func getLastTappedLocationData() -> [[String : Any]] {
@@ -188,4 +191,11 @@ class MapViewController: UIViewController,
     //func isUserInNewYorkCity() {
         //add code here
     //}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
+        if (segue.identifier == "toGallery"){
+            let svc = segue.destinationViewController as! GalleryViewController;
+            svc.lastTappedLocationDataPassed = self.lastTappedLocationData
+        }
+    }
 }

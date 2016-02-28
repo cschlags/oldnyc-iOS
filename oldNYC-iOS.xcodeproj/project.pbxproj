@@ -11,6 +11,9 @@
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */; };
+		84DC33541C4F44DE00680BBA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC33531C4F44DE00680BBA /* MenuViewController.swift */; };
+		84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */; };
+		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
 		CB4DD3451C56DE0300BD4729 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
@@ -30,6 +33,8 @@
 		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicViewFlowLayout.swift; sourceTree = "<group>"; };
+		84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3388B41C7E9DC300F61AE7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		CB4DD3441C56DE0300BD4729 /* markers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markers.json; sourceTree = "<group>"; };
@@ -105,6 +110,8 @@
 				CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */,
 				CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */,
 				845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */,
+				84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */,
+				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CBE10BC61C8397C2002BD357 /* WebViewController.swift */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
@@ -160,7 +167,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 397HLL8JUB;
+						DevelopmentTeam = LRAK7WQC9P;
 					};
 				};
 			};
@@ -251,6 +258,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
+				84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */,
+				84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */,
 				CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */,
@@ -376,7 +385,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -401,7 +410,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
