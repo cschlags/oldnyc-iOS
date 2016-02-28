@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AaK-L6-5XH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AaK-L6-5XH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -45,13 +45,6 @@
                                     <segue destination="vWL-pe-asW" kind="show" identifier="toMenu" animates="NO" id="hxT-Ab-c4e"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRz-fD-UGk">
-                                <rect key="frame" x="8" y="71" width="121" height="30"/>
-                                <state key="normal" title="temp--gallery"/>
-                                <connections>
-                                    <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" animates="NO" id="jo0-GA-fca"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -63,7 +56,6 @@
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
                     <connections>
                         <outlet property="menuButton" destination="duT-LL-IIZ" id="19I-ge-DXh"/>
-                        <outlet property="temp" destination="mRz-fD-UGk" id="sEr-z1-MTI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
