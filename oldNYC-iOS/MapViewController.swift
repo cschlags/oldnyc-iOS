@@ -19,8 +19,6 @@ class MapViewController: UIViewController,
     var lastTappedLocationName: String = ""
 
     @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var temp: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +33,6 @@ class MapViewController: UIViewController,
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
-        view.bringSubviewToFront(temp)
         
         mapView.delegate = self
         
@@ -71,10 +68,6 @@ class MapViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
 
-    
-    func buttonPressed(sender: UIButton!) {
-        print("button pressed")
-    }
     
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
