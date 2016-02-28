@@ -9,29 +9,29 @@
 import UIKit
 import SwiftyJSON
 
-class PhotoViewController: UICollectionViewController {
-    private let reuseIdentifier = "buildingCell"
-    let kColumnsiPadLandscape = 5
-    let kColumnsiPadPortrait = 4
-    let kColumnsiPhoneLandscape = 3
-    let kColumnsiPhonePortrait = 2
-    var lastTappedLocationDataPassed = [[String : Any]]()
+class GalleryViewController: UICollectionViewController {
+    private let reuseIdentifier = "galleryCell"
+    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    var lastTappedLocationDataPassed:[[String : Any]]!
+    
+    
+//    [[String : protocol<>]]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        // Commented because it's screwing with putting images in the ViewCell
+//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+       
 
     /*
     // MARK: - Navigation
@@ -53,40 +53,41 @@ class PhotoViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 100
+        return lastTappedLocationDataPassed.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.whiteColor()
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
+        let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
+        let url = flickrPhoto["thumb_url"] as! String
+        let request = NSURLRequest(URL: NSURL(string: url)!)
+        
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+            
+            if error != nil {
+                print("Failed to load image for url: \(url), error: \(error?.description)")
+                return
+            }
+            
+            guard let httpResponse = response as? NSHTTPURLResponse else {
+                print("Not an NSHTTPURLResponse from loading url: \(url)")
+                return
+            }
+            
+            if httpResponse.statusCode != 200 {
+                print("Bad response statusCode: \(httpResponse.statusCode) while loading url: \(url)")
+                return
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                cell.cellImage.image = UIImage(data: data!)
+            })
+            
+            }.resume()
         return cell
     }
-
-//    func generateMarkersFromJSON() {
-//        if let path = NSBundle.mainBundle().pathForResource("markers", ofType: "json") {
-//            do {
-//                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
-//                let jsonObj = JSON(data: data)
-//                if jsonObj != JSON.null {
-//                    
-//                    // Create markers for each item.
-//                    for item in jsonObj["markers"].arrayValue {
-////                        let lat = item["latitude"].double
-////                        let lon = item["longitude"].double
-////                        let title = item["marker_title"].stringValue
-////                        placeMarker(lat!, lon: lon!, title: title)
-//                    }
-//                    
-//                } else {
-//                    print("could not get json from file")
-//                }
-//            } catch let error as NSError {
-//                print(error.localizedDescription)
-//            }
-//        } else {
-//            print("Invalid filename/path.")
     
     
     // MARK: UICollectionViewDelegate
@@ -121,3 +122,4 @@ class PhotoViewController: UICollectionViewController {
     */
 
 }
+

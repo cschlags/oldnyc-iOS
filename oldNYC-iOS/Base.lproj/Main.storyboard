@@ -3,13 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
-                <navigationController hidesBottomBarWhenPushed="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                <navigationController hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDU-nk-laL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -40,21 +40,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8">
-                            <connections>
-                                <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" id="hSh-Op-zQ1"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G7Q-rD-7yP"/>
                         <barButtonItem title="Title" id="QZ1-IE-mBK">
                             <connections>
-                                <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" id="3Oa-KV-ahT"/>
+                                <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" animates="NO" id="3Oa-KV-ahT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="dyk-Rx-Qv7"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" id="LF4-49-5Wb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,14 +62,14 @@
         <!--Menu-->
         <scene sceneID="oGg-IA-LEx">
             <objects>
-                <tableViewController title="Menu" id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Menu" hidesBottomBarWhenPushed="YES" id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="fo1-Rk-0cE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" rowHeight="60" id="7aG-ND-C0t" customClass="MenuTableViewCell" customModule="oldNYC_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7aG-ND-C0t" id="K8p-Lz-QeJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -99,7 +98,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="OldNYC" id="y5g-Je-eBY"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O91-hG-fgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,27 +107,42 @@
         <!--Gallery-->
         <scene sceneID="hHo-TO-jSq">
             <objects>
-                <collectionViewController title="Gallery" hidesBottomBarWhenPushed="YES" id="4m1-AQ-v0X" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Gallery" hidesBottomBarWhenPushed="YES" id="4m1-AQ-v0X" customClass="GalleryViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="E2b-xn-3vZ">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MOT-Yg-SMN">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="galleryCell" id="5jj-gA-cnI" customClass="GalleryCollectionViewCell" customModule="oldNYC_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whN-8z-F0S">
+                                            <rect key="frame" x="8" y="8" width="184" height="184"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="cellImage"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="whN-8z-F0S" secondAttribute="trailing" id="GM0-S8-rim"/>
+                                    <constraint firstItem="whN-8z-F0S" firstAttribute="top" secondItem="5jj-gA-cnI" secondAttribute="topMargin" id="KAL-PU-jPC"/>
+                                    <constraint firstItem="whN-8z-F0S" firstAttribute="leading" secondItem="5jj-gA-cnI" secondAttribute="leadingMargin" id="hJT-P9-51y"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="whN-8z-F0S" secondAttribute="bottom" id="pCl-ON-FcK"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="cellImage" destination="whN-8z-F0S" id="bBT-R5-8Qu"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

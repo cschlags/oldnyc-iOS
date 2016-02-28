@@ -51,8 +51,9 @@ class MapViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated:false)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -143,6 +144,9 @@ class MapViewController: UIViewController,
                 print(error)
             }
         }.resume()
+        if (self.lastTappedLocationData.count > 0){
+            performSegueWithIdentifier("toGallery", sender: self)
+        }
     }
     
     func getLastTappedLocationData() -> [[String : Any]] {
@@ -169,7 +173,6 @@ class MapViewController: UIViewController,
             
             self.lastTappedLocationData.append(dict)
         }
-        performSegueWithIdentifier("photoSegue", sender: nil)
     }
     
     //func isUserInNewYorkCity() {
@@ -177,9 +180,10 @@ class MapViewController: UIViewController,
     //}
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
-        if (segue.identifier == "gallerySegue"){
-            let svc = segue.destinationViewController as! PhotoViewController;
+        if (segue.identifier == "toGallery"){
+            let svc = segue.destinationViewController as! GalleryViewController;
             svc.lastTappedLocationDataPassed = self.lastTappedLocationData
+            
         }
     }
 }
