@@ -41,7 +41,7 @@ class DataAttributionViewController: UITableViewController {
         ["OldNYC contains images from the New York Public Library with permission. All photos from the Millstein Collection. The Libary retains the copyright for many of these images. For details, visit http://www.nypl.org/help/about-nypl/legal-notices/website-terms-and-conditions. The creators of OldNYC did not collect or digitize any of these images. Credit for that massive undertaking belongs entirely to the Library."],
         ["OldNYC contains maps provided by ©Mapbox with permission."],
         ["OldNYC contains map data provided by ©OpenStreetMap with permission."],
-        ["Credit for launch screen photo of Flatiron Building to Library of Congress, Prints & Photographs Division, Detroit Publishing Company Collection, LC-DIG-det-4a21395 (digital file from original)"]
+        ["Credit for launch screen photo of Flatiron Building to Library of Congress, Prints & Photographs Division, Detroit Publishing Company Collection, LC-DIG-det-4a21395 (digital file from original). The photograph is in public domain."]
     ]
     
 

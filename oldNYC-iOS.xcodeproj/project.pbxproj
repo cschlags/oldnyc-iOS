@@ -11,7 +11,6 @@
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */; };
-		84DC33541C4F44DE00680BBA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC33531C4F44DE00680BBA /* MenuViewController.swift */; };
 		84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */; };
 		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
@@ -167,7 +166,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LRAK7WQC9P;
+						DevelopmentTeam = 397HLL8JUB;
 					};
 				};
 			};
@@ -385,7 +384,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -410,7 +409,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
