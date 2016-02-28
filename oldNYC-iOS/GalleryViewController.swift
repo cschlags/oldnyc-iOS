@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class GalleryViewController: UICollectionViewController {
     private let reuseIdentifier = "galleryCell"
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let sectionInsets = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
     var lastTappedLocationDataPassed:[[String : Any]]!
     
     
@@ -60,6 +60,7 @@ class GalleryViewController: UICollectionViewController {
 //        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         // Configure the cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
+        cell.backgroundColor = UIColor.blackColor()
         let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
         let url = flickrPhoto["thumb_url"] as! String
         let request = NSURLRequest(URL: NSURL(string: url)!)
@@ -122,4 +123,3 @@ class GalleryViewController: UICollectionViewController {
     */
 
 }
-
