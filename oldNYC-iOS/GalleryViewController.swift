@@ -95,7 +95,7 @@ class GalleryViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
         cell.backgroundColor = UIColor.blackColor()
         let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
-        let url = flickrPhoto["thumb_url"] as! String
+        let url = flickrPhoto["image_url"] as! String
         let request = NSURLRequest(URL: NSURL(string: url)!)
         
         NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
