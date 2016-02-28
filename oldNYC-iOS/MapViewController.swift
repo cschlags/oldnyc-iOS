@@ -33,7 +33,6 @@ class MapViewController: UIViewController,
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
-        view.bringSubviewToFront(temp)
         
         mapView.delegate = self
         
