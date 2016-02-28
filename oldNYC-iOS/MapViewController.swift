@@ -51,8 +51,9 @@ class MapViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated:false)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)

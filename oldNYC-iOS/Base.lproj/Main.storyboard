@@ -8,8 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
-                <navigationController hidesBottomBarWhenPushed="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                <navigationController hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDU-nk-laL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,13 +41,13 @@
                     <toolbarItems>
                         <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8">
                             <connections>
-                                <segue destination="4m1-AQ-v0X" kind="show" id="hSh-Op-zQ1"/>
+                                <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" animates="NO" id="hSh-Op-zQ1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G7Q-rD-7yP"/>
                         <barButtonItem title="Title" id="QZ1-IE-mBK">
                             <connections>
-                                <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" id="3Oa-KV-ahT"/>
+                                <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" animates="NO" id="3Oa-KV-ahT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="dyk-Rx-Qv7"/>
@@ -63,14 +62,14 @@
         <!--Menu-->
         <scene sceneID="oGg-IA-LEx">
             <objects>
-                <tableViewController title="Menu" id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Menu" hidesBottomBarWhenPushed="YES" id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="fo1-Rk-0cE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" rowHeight="60" id="7aG-ND-C0t" customClass="MenuTableViewCell" customModule="oldNYC_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7aG-ND-C0t" id="K8p-Lz-QeJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -99,7 +98,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="OldNYC" id="y5g-Je-eBY"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O91-hG-fgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,7 +107,7 @@
         <!--Gallery-->
         <scene sceneID="hHo-TO-jSq">
             <objects>
-                <collectionViewController title="Gallery" hidesBottomBarWhenPushed="YES" id="4m1-AQ-v0X" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Gallery" hidesBottomBarWhenPushed="YES" id="4m1-AQ-v0X" customClass="GalleryViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="E2b-xn-3vZ">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

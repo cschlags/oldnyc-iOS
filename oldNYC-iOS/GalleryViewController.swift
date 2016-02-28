@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "buildingCell"
 
-class PhotoViewController: UICollectionViewController {
+class GalleryViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +22,12 @@ class PhotoViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+       
 
     /*
     // MARK: - Navigation

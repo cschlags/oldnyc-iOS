@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D91DFC368C5370E19C79F84 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */; };
-		845117911C7FF78E00EDE9A5 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* PhotoViewController.swift */; };
+		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		848B04541C81622A00ED79E9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B04531C81622A00ED79E9 /* MenuTableViewCell.swift */; };
 		849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */; };
@@ -23,7 +23,7 @@
 /* Begin PBXFileReference section */
 		036F6162A6FC4AB348B3B3BD /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		12FA2F401ED156CA216B2749 /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		845117901C7FF78E00EDE9A5 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		848B04531C81622A00ED79E9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 				CB4DD3441C56DE0300BD4729 /* markers.json */,
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
 				CB5783E31C41A1A300A55D30 /* MapViewController.swift */,
-				845117901C7FF78E00EDE9A5 /* PhotoViewController.swift */,
+				845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */,
 				84DC33531C4F44DE00680BBA /* MenuViewController.swift */,
 				848B04531C81622A00ED79E9 /* MenuTableViewCell.swift */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
@@ -233,7 +233,7 @@
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				848B04541C81622A00ED79E9 /* MenuTableViewCell.swift in Sources */,
 				84DC33541C4F44DE00680BBA /* MenuViewController.swift in Sources */,
-				845117911C7FF78E00EDE9A5 /* PhotoViewController.swift in Sources */,
+				845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
