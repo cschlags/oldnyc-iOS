@@ -1,8 +1,8 @@
 //
-//  PhotoViewController.swift
+//  GalleryViewController.swift
 //  oldNYC-iOS
 //
-//  Created by Christina Leuci on 2/25/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
@@ -13,9 +13,11 @@ class GalleryViewController: UICollectionViewController {
     private let reuseIdentifier = "galleryCell"
     private let sectionInsets = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
     var lastTappedLocationDataPassed:[[String : Any]]!
+
+    var hidingNavBarManager: HidingNavigationBarManager?
     
-    
-//    [[String : protocol<>]]
+    @IBOutlet var gallery: UICollectionView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -25,13 +27,44 @@ class GalleryViewController: UICollectionViewController {
 //        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
     }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.translucent = true
+        hidingNavBarManager?.viewWillAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        hidingNavBarManager?.viewDidLayoutSubviews()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        hidingNavBarManager?.viewWillDisappear(animated)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-       
+    
+    override func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        hidingNavBarManager?.shouldScrollToTop()
+        
+        return true
+    }
+
+    
 
     /*
     // MARK: - Navigation

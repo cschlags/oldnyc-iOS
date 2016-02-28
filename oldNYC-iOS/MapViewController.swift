@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  oldNYC-iOS
 //
-//  Created by Orian Breaux and Christina Leuci on 1/9/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
@@ -17,9 +17,14 @@ class MapViewController: UIViewController,
     var mapView : MGLMapView!
     var lastTappedLocationData = [[String : Any]]()
     var lastTappedLocationName: String = ""
+
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var temp: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
         mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -29,6 +34,8 @@ class MapViewController: UIViewController,
         mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:false)
         
         view.addSubview(mapView)
+        view.bringSubviewToFront(menuButton)
+        view.bringSubviewToFront(temp)
         
         mapView.delegate = self
         
@@ -64,6 +71,11 @@ class MapViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
 
+    
+    func buttonPressed(sender: UIButton!) {
+        print("button pressed")
+    }
+    
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
     // Read markers.json and generate markers for each coordinate.
