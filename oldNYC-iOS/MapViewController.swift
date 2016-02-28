@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  oldNYC-iOS
 //
-//  Created by Orian Breaux and Christina Leuci on 1/9/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
@@ -36,16 +36,6 @@ class MapViewController: UIViewController,
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
         view.bringSubviewToFront(temp)
-        
-        
-//        let buttonSettings = UIButton()
-//        buttonSettings.setTitle("Settings", forState: UIControlState.Normal)
-//        buttonSettings.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-//        buttonSettings.frame = CGRectMake(50, 50 ,200, 100)
-//        buttonSettings.addTarget(self, action: "buttonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-//        self.view.addSubview(buttonSettings)
-//        
-//        view.bringSubviewToFront(buttonSettings)
         
         mapView.delegate = self
         

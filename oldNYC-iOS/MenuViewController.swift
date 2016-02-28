@@ -1,22 +1,23 @@
 //
-//  MenuVC.swift
+//  MenuViewController.swift
 //  oldNYC-iOS
 //
-//  Created by Christina Leuci on 1/19/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class MenuViewController: UITableViewController{
-    var items = ["Send Your Feedback", "Privacy Policy", "Subscribe to Updates", "Share with Friends", "Like OldNYC", "Review on App Store", "Data Attributions"]
-    
+class MenuViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
-       
+
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.translucent = false
     }
     
@@ -25,25 +26,12 @@ class MenuViewController: UITableViewController{
         // Dispose of any resources that can be recreated.
     }
     
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        navigationItem.title = nil
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = "MenuTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MenuTableViewCell
-        let item = items[indexPath.row]
-        // Configure the cell...
-        cell.menuItemLabel.text = item
-        return cell
-    }
+
 }

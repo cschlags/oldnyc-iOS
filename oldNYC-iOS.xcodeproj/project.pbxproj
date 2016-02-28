@@ -12,7 +12,6 @@
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		848B04541C81622A00ED79E9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B04531C81622A00ED79E9 /* MenuTableViewCell.swift */; };
 		849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */; };
-		84DC33541C4F44DE00680BBA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC33531C4F44DE00680BBA /* MenuViewController.swift */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
 		CB4DD3451C56DE0300BD4729 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
@@ -21,6 +20,7 @@
 		CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BB81C82BB5E002BD357 /* HidingNavigationBarManager.swift */; };
 		CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BBA1C82BB89002BD357 /* HidingViewController.swift */; };
 		CBE10BBF1C82BBE1002BD357 /* HidingNavigationBar.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBE10BBE1C82BBE1002BD357 /* HidingNavigationBar.txt */; };
+		CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,6 @@
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		848B04531C81622A00ED79E9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		84DC33531C4F44DE00680BBA /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3388B41C7E9DC300F61AE7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		CB4DD3441C56DE0300BD4729 /* markers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markers.json; sourceTree = "<group>"; };
@@ -42,6 +41,7 @@
 		CBE10BB81C82BB5E002BD357 /* HidingNavigationBarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HidingNavigationBarManager.swift; sourceTree = "<group>"; };
 		CBE10BBA1C82BB89002BD357 /* HidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HidingViewController.swift; sourceTree = "<group>"; };
 		CBE10BBE1C82BBE1002BD357 /* HidingNavigationBar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HidingNavigationBar.txt; sourceTree = "<group>"; };
+		CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +100,8 @@
 				CB4DD3441C56DE0300BD4729 /* markers.json */,
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
 				CB5783E31C41A1A300A55D30 /* MapViewController.swift */,
+				CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */,
 				845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */,
-				84DC33531C4F44DE00680BBA /* MenuViewController.swift */,
 				848B04531C81622A00ED79E9 /* MenuTableViewCell.swift */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
@@ -248,11 +248,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
+				CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */,
 				848B04541C81622A00ED79E9 /* MenuTableViewCell.swift in Sources */,
 				CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */,
-				84DC33541C4F44DE00680BBA /* MenuViewController.swift in Sources */,
 				845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
