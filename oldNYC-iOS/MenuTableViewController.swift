@@ -56,7 +56,7 @@ class MenuTableViewController: UITableViewController {
     
     // Generate table sections and cells.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath)
         
         // Configure the cell:
         cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row]
@@ -73,8 +73,11 @@ class MenuTableViewController: UITableViewController {
             
             // After tapping "Send Your Feedback", send users to Typeform in Web View.
             if indexPath.row == 0 {
-                performSegueWithIdentifier("showWebView", sender: self)
+                performSegueWithIdentifier("toWebView", sender: self)
                 }
+            if indexPath.row == 1 {
+                performSegueWithIdentifier("toDataAttribution", sender: self)
+            }
         default:
             break
         }

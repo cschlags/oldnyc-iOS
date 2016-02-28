@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="DNf-jd-LfF" style="IBUITableViewCellStyleDefault" id="WQI-RL-ghd">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MenuCell" textLabel="DNf-jd-LfF" style="IBUITableViewCellStyleDefault" id="WQI-RL-ghd">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQI-RL-ghd" id="CS3-Sg-V1T">
@@ -106,7 +106,8 @@
                     <navigationItem key="navigationItem" title="Menu" id="kdp-RU-aZy"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <segue destination="ZZS-cw-eTm" kind="show" identifier="showWebView" id="Vem-am-mvq"/>
+                        <segue destination="ZZS-cw-eTm" kind="show" identifier="toWebView" id="Vem-am-mvq"/>
+                        <segue destination="agI-6b-jwI" kind="show" identifier="toDataAttribution" id="D5G-Mt-iSc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGf-bW-Csb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,18 +117,30 @@
         <!--Data Attribution-->
         <scene sceneID="9ok-7e-gcu">
             <objects>
-                <tableViewController title="Data Attribution" id="agI-6b-jwI" sceneMemberID="viewController">
+                <tableViewController title="Data Attribution" id="agI-6b-jwI" customClass="DataAttributionViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CU7-mw-MSW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttibutionCell" id="YrF-RG-6gT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributionCell" id="YrF-RG-6gT">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YrF-RG-6gT" id="TJX-j6-5R7">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smr-qD-cTb">
+                                            <rect key="frame" x="15" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="smr-qD-cTb" firstAttribute="centerY" secondItem="TJX-j6-5R7" secondAttribute="centerY" id="C3G-za-YC6"/>
+                                        <constraint firstItem="smr-qD-cTb" firstAttribute="leading" secondItem="TJX-j6-5R7" secondAttribute="leadingMargin" constant="7" id="a3s-PY-0If"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

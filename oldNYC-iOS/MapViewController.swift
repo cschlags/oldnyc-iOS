@@ -156,6 +156,7 @@ class MapViewController: UIViewController,
                 print(error)
             }
         }.resume()
+        
     }
     
     func getLastTappedLocationData() -> [[String : Any]] {

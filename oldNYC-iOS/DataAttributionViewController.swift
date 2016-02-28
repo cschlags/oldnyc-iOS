@@ -18,6 +18,10 @@ class DataAttributionViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.estimatedRowHeight = 88.0
+        tableView.rowHeight  = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,27 +34,42 @@ class DataAttributionViewController: UITableViewController {
         self.navigationController?.navigationBar.translucent = true
     }
 
+    
     // MARK: - Table view data source
+    var sectionTitles = ["New York Public Library", "Mapbox", "OpenStreetMap", "Library of Congress"]
+    var sectionContent = [
+        ["OldNYC contains images from the New York Public Library with permission. All photos from the Millstein Collection. The Libary retains the copyright for many of these images. For details, visit http://www.nypl.org/help/about-nypl/legal-notices/website-terms-and-conditions. The creators of OldNYC did not collect or digitize any of these images. Credit for that massive undertaking belongs entirely to the Library."],
+        ["OldNYC contains maps provided by ©Mapbox with permission."],
+        ["OldNYC contains map data provided by ©OpenStreetMap with permission."],
+        ["Credit for launch screen photo of Flatiron Building to Library of Congress, Prints & Photographs Division, Detroit Publishing Company Collection, LC-DIG-det-4a21395 (digital file from original)"]
+    ]
+    
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sectionTitles.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
-
-    /*
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
+    }
+    
+    // Generate table sections and cells.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("AttributionCell", forIndexPath: indexPath)
+        
+        // Configure the cell:
+        cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row]
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        cell.textLabel?.sizeToFit()
+        
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
