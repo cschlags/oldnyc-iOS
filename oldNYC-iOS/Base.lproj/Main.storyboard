@@ -8,7 +8,8 @@
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
-                <navigationController navigationBarHidden="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
+                <navigationController hidesBottomBarWhenPushed="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDU-nk-laL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,12 +24,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNe-9a-Fhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1342" y="-1385"/>
+            <point key="canvasLocation" x="-1342" y="-1371"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="DaW-b1-0Ld">
             <objects>
-                <viewController id="7hd-rf-b07" customClass="MapViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="7hd-rf-b07" customClass="MapViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wpu-t4-hvh"/>
                         <viewControllerLayoutGuide type="bottom" id="Y4p-99-OS3"/>
@@ -41,13 +42,13 @@
                     <toolbarItems>
                         <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8">
                             <connections>
-                                <segue destination="4m1-AQ-v0X" kind="show" identifier="photoSegue" id="bKv-du-Wbe"/>
+                                <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" id="hSh-Op-zQ1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G7Q-rD-7yP"/>
                         <barButtonItem title="Title" id="QZ1-IE-mBK">
                             <connections>
-                                <segue destination="edf-xI-r4Z" kind="show" id="kMb-AO-Hae"/>
+                                <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" id="3Oa-KV-ahT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="dyk-Rx-Qv7"/>
@@ -57,12 +58,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-658" y="-1385"/>
+            <point key="canvasLocation" x="-1342" y="-643"/>
         </scene>
-        <!--Old NYC-->
+        <!--Menu-->
         <scene sceneID="oGg-IA-LEx">
             <objects>
-                <tableViewController id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Menu" id="iPX-1u-HNJ" customClass="MenuViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="fo1-Rk-0cE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,24 +98,19 @@
                             <outlet property="delegate" destination="iPX-1u-HNJ" id="sRI-va-Ugj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Old NYC" id="AKN-wr-3zk">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="mhz-kS-atO">
-                            <connections>
-                                <segue destination="AaK-L6-5XH" kind="show" id="eLg-dt-mb4"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="OldNYC" id="y5g-Je-eBY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O91-hG-fgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="962" y="-608"/>
+            <point key="canvasLocation" x="-625" y="-643"/>
         </scene>
-        <!--Location Title-->
+        <!--Gallery-->
         <scene sceneID="hHo-TO-jSq">
             <objects>
-                <collectionViewController id="4m1-AQ-v0X" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Gallery" hidesBottomBarWhenPushed="YES" id="4m1-AQ-v0X" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="E2b-xn-3vZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MOT-Yg-SMN">
@@ -124,7 +120,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI" customClass="PhotoCollectionViewCell" customModule="oldNYC_iOS" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -140,38 +136,13 @@
                             <outlet property="delegate" destination="4m1-AQ-v0X" id="zUU-63-gyj"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Location Title" id="AaO-SL-tcd">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="29C-he-uLB">
-                            <connections>
-                                <segue destination="AaK-L6-5XH" kind="show" id="vTD-8h-mQC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Location Title" id="AaO-SL-tcd"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101" y="-1385"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="SnB-VM-Se6">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S1f-Wa-iq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="edf-xI-r4Z" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dFv-7S-kKG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="iPX-1u-HNJ" kind="relationship" relationship="rootViewController" id="kWs-yz-IkK"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="-658" y="-594"/>
+            <point key="canvasLocation" x="-625" y="-1371"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="vTD-8h-mQC"/>
-    </inferredMetricsTieBreakers>
 </document>

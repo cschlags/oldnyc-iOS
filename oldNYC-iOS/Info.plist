@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppTransportSecurity</key>  
-     <dict>  
-          <key>NSAllowsArbitraryLoads</key><true/>  
-     </dict>  
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -34,6 +30,11 @@
 	<string>pk.eyJ1Ijoib2JyZWF1eDEiLCJhIjoiY2lqaGh0ZnBqMDJ0NHR5bHRscWFzOGVrYSJ9.LbIpIpgRN_FJM8CitHRyTA</string>
 	<key>MGLMapboxMetricsEnabledSettingShownInApp</key>
 	<string>YES</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Set location message for user in plist</string>
 	<key>UIMainStoryboardFile</key>
