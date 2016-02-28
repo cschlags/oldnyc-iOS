@@ -11,11 +11,16 @@ import UIKit
 
 class MenuViewController: UITableViewController{
     var items = ["Send Your Feedback", "Privacy Policy", "Subscribe to Updates", "Share with Friends", "Like OldNYC", "Review on App Store", "Data Attributions"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+       
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.translucent = false
+    }
     
-        override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

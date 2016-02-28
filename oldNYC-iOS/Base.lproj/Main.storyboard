@@ -3,17 +3,19 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="d5z-Oh-eLy">
             <objects>
-                <navigationController hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" toolbarHidden="NO" id="AaK-L6-5XH" sceneMemberID="viewController">
+                <navigationController hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" id="AaK-L6-5XH" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDU-nk-laL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ifP-Po-sdl">
+                    <toolbar key="toolbar" clearsContextBeforeDrawing="NO" contentMode="bottomRight" id="ifP-Po-sdl">
                         <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
@@ -28,7 +30,7 @@
         <!--Map-->
         <scene sceneID="DaW-b1-0Ld">
             <objects>
-                <viewController title="Map" id="7hd-rf-b07" customClass="MapViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="7hd-rf-b07" customClass="MapViewController" customModule="oldNYC_iOS" customModuleProvider="target" propertyAccessControl="none" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wpu-t4-hvh"/>
                         <viewControllerLayoutGuide type="bottom" id="Y4p-99-OS3"/>
@@ -36,24 +38,33 @@
                     <view key="view" contentMode="scaleToFill" id="Tkv-Jg-v7T" customClass="MGLMapView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duT-LL-IIZ" userLabel="MenuButton">
+                                <rect key="frame" x="20" y="32" width="22" height="22"/>
+                                <connections>
+                                    <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" animates="NO" id="d98-rT-IbB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRz-fD-UGk">
+                                <rect key="frame" x="8" y="71" width="121" height="30"/>
+                                <state key="normal" title="temp--gallery"/>
+                                <connections>
+                                    <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" animates="NO" id="jo0-GA-fca"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="duT-LL-IIZ" firstAttribute="top" secondItem="Wpu-t4-hvh" secondAttribute="bottom" constant="12" id="05T-JV-kVW"/>
+                            <constraint firstItem="duT-LL-IIZ" firstAttribute="leading" secondItem="Tkv-Jg-v7T" secondAttribute="leadingMargin" id="Huc-vb-I5D"/>
+                        </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8">
-                            <connections>
-                                <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" animates="NO" id="hSh-Op-zQ1"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="G7Q-rD-7yP"/>
-                        <barButtonItem title="Title" id="QZ1-IE-mBK">
-                            <connections>
-                                <segue destination="iPX-1u-HNJ" kind="show" identifier="toMenu" animates="NO" id="3Oa-KV-ahT"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="dyk-Rx-Qv7"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="menuButton" destination="duT-LL-IIZ" id="19I-ge-DXh"/>
+                        <outlet property="temp" destination="mRz-fD-UGk" id="sEr-z1-MTI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

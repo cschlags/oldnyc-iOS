@@ -17,9 +17,14 @@ class MapViewController: UIViewController,
     var mapView : MGLMapView!
     var lastTappedLocationData = [[String : Any]]()
     var lastTappedLocationName: String = ""
+
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var temp: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
         mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -29,6 +34,18 @@ class MapViewController: UIViewController,
         mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:false)
         
         view.addSubview(mapView)
+        view.bringSubviewToFront(menuButton)
+        view.bringSubviewToFront(temp)
+        
+        
+//        let buttonSettings = UIButton()
+//        buttonSettings.setTitle("Settings", forState: UIControlState.Normal)
+//        buttonSettings.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+//        buttonSettings.frame = CGRectMake(50, 50 ,200, 100)
+//        buttonSettings.addTarget(self, action: "buttonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+//        self.view.addSubview(buttonSettings)
+//        
+//        view.bringSubviewToFront(buttonSettings)
         
         mapView.delegate = self
         
@@ -64,6 +81,11 @@ class MapViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
 
+    
+    func buttonPressed(sender: UIButton!) {
+        print("button pressed")
+    }
+    
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
     // Read markers.json and generate markers for each coordinate.
