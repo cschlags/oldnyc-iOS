@@ -18,6 +18,9 @@
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* MapViewController.swift */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
+		CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BB81C82BB5E002BD357 /* HidingNavigationBarManager.swift */; };
+		CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BBA1C82BB89002BD357 /* HidingViewController.swift */; };
+		CBE10BBF1C82BBE1002BD357 /* HidingNavigationBar.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBE10BBE1C82BBE1002BD357 /* HidingNavigationBar.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		CB5783E31C41A1A300A55D30 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB5783E81C41A1A300A55D30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5783ED1C41A1A300A55D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBE10BB81C82BB5E002BD357 /* HidingNavigationBarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HidingNavigationBarManager.swift; sourceTree = "<group>"; };
+		CBE10BBA1C82BB89002BD357 /* HidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HidingViewController.swift; sourceTree = "<group>"; };
+		CBE10BBE1C82BBE1002BD357 /* HidingNavigationBar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HidingNavigationBar.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +106,20 @@
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
+				CBE10BBD1C82BBC2002BD357 /* HidingNavigationBar */,
 			);
 			name = OldNYC;
 			path = "oldNYC-iOS";
+			sourceTree = "<group>";
+		};
+		CBE10BBD1C82BBC2002BD357 /* HidingNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				CBE10BB81C82BB5E002BD357 /* HidingNavigationBarManager.swift */,
+				CBE10BBA1C82BB89002BD357 /* HidingViewController.swift */,
+				CBE10BBE1C82BBE1002BD357 /* HidingNavigationBar.txt */,
+			);
+			name = HidingNavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +188,7 @@
 				CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
 				848B04521C815D7400ED79E9 /* Main.storyboard in Resources */,
+				CBE10BBF1C82BBE1002BD357 /* HidingNavigationBar.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +249,9 @@
 			files = (
 				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
+				CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */,
 				848B04541C81622A00ED79E9 /* MenuTableViewCell.swift in Sources */,
+				CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */,
 				84DC33541C4F44DE00680BBA /* MenuViewController.swift in Sources */,
 				845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */,
 			);

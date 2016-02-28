@@ -149,6 +149,9 @@
                     <navigationItem key="navigationItem" title="Location Title" id="AaO-SL-tcd"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="gallery" destination="E2b-xn-3vZ" id="Gzd-iC-OK9"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

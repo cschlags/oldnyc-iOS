@@ -12,6 +12,10 @@ private let reuseIdentifier = "buildingCell"
 
 class GalleryViewController: UICollectionViewController {
 
+    var hidingNavBarManager: HidingNavigationBarManager?
+    
+    @IBOutlet var gallery: UICollectionView!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -21,21 +25,44 @@ class GalleryViewController: UICollectionViewController {
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.translucent = true
+        hidingNavBarManager?.viewWillAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        hidingNavBarManager?.viewDidLayoutSubviews()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        hidingNavBarManager?.viewWillDisappear(animated)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.translucent = true
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-       
+    
+    override func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        hidingNavBarManager?.shouldScrollToTop()
+        
+        return true
+    }
+
+    
 
     /*
     // MARK: - Navigation
