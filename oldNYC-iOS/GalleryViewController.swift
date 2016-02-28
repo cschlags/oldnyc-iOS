@@ -11,7 +11,6 @@ import SwiftyJSON
 
 class GalleryViewController: UICollectionViewController {
     private let reuseIdentifier = "galleryCell"
-    private let sectionInsets = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
     var lastTappedLocationDataPassed:[[String : Any]]!
 
     var hidingNavBarManager: HidingNavigationBarManager?
@@ -22,7 +21,8 @@ class GalleryViewController: UICollectionViewController {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        let location = lastTappedLocationDataPassed[0]["folder"] as! String
+        self.navigationItem.title = "\(location.componentsSeparatedByString(",")[0])";
         // Commented because it's screwing with putting images in the ViewCell
 //        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 

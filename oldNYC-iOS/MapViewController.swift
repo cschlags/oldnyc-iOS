@@ -134,7 +134,6 @@ class MapViewController: UIViewController,
         lastTappedLocationName = annotation.title!!
         
         let urlPath = "https://oldnyc.org/by-location/" + tappedLat + tappedLon + ".json"
-        print(urlPath)
         enum JSONError: String, ErrorType {
             case NoData = "ERROR: no data"
             case ConversionFailed = "ERROR: conversion from JSON failed"
