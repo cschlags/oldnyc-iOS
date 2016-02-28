@@ -161,10 +161,18 @@ class MapViewController: UIViewController,
             
             self.lastTappedLocationData.append(dict)
         }
+        performSegueWithIdentifier("photoSegue", sender: nil)
     }
     
     
     //func isUserInNewYorkCity() {
         //add code here
     //}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
+        if (segue.identifier == "photoSegue"){
+            let svc = segue.destinationViewController as! PhotoViewController;
+            svc.lastTappedLocationDataPassed = self.lastTappedLocationData
+        }
+    }
 }

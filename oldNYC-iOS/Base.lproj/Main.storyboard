@@ -41,7 +41,7 @@
                     <toolbarItems>
                         <barButtonItem title="Explore Popular Photos" id="cSR-b1-hY8">
                             <connections>
-                                <segue destination="tqg-Ag-9TD" kind="show" id="ByO-o7-8TY"/>
+                                <segue destination="4m1-AQ-v0X" kind="show" identifier="photoSegue" id="bKv-du-Wbe"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G7Q-rD-7yP"/>
@@ -107,7 +107,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O91-hG-fgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="154" y="-594"/>
+            <point key="canvasLocation" x="962" y="-608"/>
         </scene>
         <!--Location Title-->
         <scene sceneID="hHo-TO-jSq">
@@ -124,8 +124,8 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI">
-                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="buildingCell" id="5jj-gA-cnI" customClass="PhotoCollectionViewCell" customModule="oldNYC_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -141,7 +141,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Location Title" id="AaO-SL-tcd">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="29C-he-uLB">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="29C-he-uLB">
                             <connections>
                                 <segue destination="AaK-L6-5XH" kind="show" id="vTD-8h-mQC"/>
                             </connections>
@@ -150,29 +150,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="-1385"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="PGu-Vq-99D">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tqg-Ag-9TD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CYm-8g-ETU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="4m1-AQ-v0X" kind="relationship" relationship="rootViewController" id="V8T-Be-ita"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7p1-cN-okx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="43" y="-1385"/>
+            <point key="canvasLocation" x="101" y="-1385"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SnB-VM-Se6">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1f-Wa-iq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="edf-xI-r4Z" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dFv-7S-kKG">
@@ -184,7 +167,6 @@
                         <segue destination="iPX-1u-HNJ" kind="relationship" relationship="rootViewController" id="kWs-yz-IkK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S1f-Wa-iq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-658" y="-594"/>
         </scene>

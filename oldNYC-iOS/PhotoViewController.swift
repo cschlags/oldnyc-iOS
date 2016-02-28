@@ -7,15 +7,20 @@
 //
 
 import UIKit
-
-private let reuseIdentifier = "buildingCell"
+import SwiftyJSON
 
 class PhotoViewController: UICollectionViewController {
-
+    private let reuseIdentifier = "buildingCell"
+    let kColumnsiPadLandscape = 5
+    let kColumnsiPadPortrait = 4
+    let kColumnsiPhoneLandscape = 3
+    let kColumnsiPhonePortrait = 2
+    var lastTappedLocationDataPassed = [[String : Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+
 
         // Register cell classes
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -59,6 +64,31 @@ class PhotoViewController: UICollectionViewController {
         return cell
     }
 
+//    func generateMarkersFromJSON() {
+//        if let path = NSBundle.mainBundle().pathForResource("markers", ofType: "json") {
+//            do {
+//                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+//                let jsonObj = JSON(data: data)
+//                if jsonObj != JSON.null {
+//                    
+//                    // Create markers for each item.
+//                    for item in jsonObj["markers"].arrayValue {
+////                        let lat = item["latitude"].double
+////                        let lon = item["longitude"].double
+////                        let title = item["marker_title"].stringValue
+////                        placeMarker(lat!, lon: lon!, title: title)
+//                    }
+//                    
+//                } else {
+//                    print("could not get json from file")
+//                }
+//            } catch let error as NSError {
+//                print(error.localizedDescription)
+//            }
+//        } else {
+//            print("Invalid filename/path.")
+    
+    
     // MARK: UICollectionViewDelegate
 
     /*
