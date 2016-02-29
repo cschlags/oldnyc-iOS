@@ -125,7 +125,7 @@ class MapViewController: UIViewController,
         let tappedLon = String(format:"%2.6f", annotation.coordinate.longitude)
         
         lastTappedLocationName = annotation.title!!
-        
+
         let jsonPath = "by-location/" + tappedLat + tappedLon
         
         if let path = NSBundle.mainBundle().pathForResource(jsonPath, ofType: "json") {
