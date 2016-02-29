@@ -165,13 +165,22 @@ class MapViewController: UIViewController,
             dict["image_url"] = subJson["image_url"].stringValue
             dict["thumb_url"] = subJson["thumb_url"].stringValue
             dict["title"] = subJson["title"].stringValue
-            dict["date"] = subJson["date"].stringValue
+            
+            if(subJson["date"].stringValue == ""){
+                dict["date"] = "No Date"
+            } else {
+                dict["date"] = subJson["date"].stringValue
+            }
+            
             dict["folder"] = subJson["folder"].stringValue
             dict["description"] = subJson["text"].stringValue
             dict["rotation"] = subJson["rotation"].double
             
             self.lastTappedLocationData.append(dict)
         }
+        
+        // Sort "image" elements in lastTappedLocationData by year
+        lastTappedLocationData.sortInPlace{ ($0["date"] as? String) < ($1["date"] as? String) }
     }
     
     //func isUserInNewYorkCity() {
