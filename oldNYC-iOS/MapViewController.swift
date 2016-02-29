@@ -30,6 +30,8 @@ class MapViewController: UIViewController,
         // Set the map's center coordinate over NYC.
         let userLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
         mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:false)
+        mapView.minimumZoomLevel = 10
+        mapView.maximumZoomLevel = 18
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
@@ -127,6 +129,7 @@ class MapViewController: UIViewController,
         lastTappedLocationName = annotation.title!!
 
         let jsonPath = "by-location/" + tappedLat + tappedLon
+        print("selected")
         
         if let path = NSBundle.mainBundle().pathForResource(jsonPath, ofType: "json") {
             do {
@@ -146,6 +149,12 @@ class MapViewController: UIViewController,
         } else {
             print("Invalid filename/path.")
         }
+        
+        mapView.deselectAnnotation(annotation, animated: false)
+    }
+    
+    func mapView(mapView: MGLMapView, didDeselectAnnotation annotation: MGLAnnotation) {
+        print("deselected")
     }
     
     func getLastTappedLocationData() -> [[String : Any]] {
