@@ -24,6 +24,7 @@
 		CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */; };
 		CBE10BC51C8381BE002BD357 /* DataAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */; };
 		CBE10BC71C8397C2002BD357 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC61C8397C2002BD357 /* WebViewController.swift */; };
+		CBE6AA2E1C83CAD00097699A /* by-location in Resources */ = {isa = PBXBuildFile; fileRef = CBE6AA2D1C83CAD00097699A /* by-location */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAttributionViewController.swift; sourceTree = "<group>"; };
 		CBE10BC61C8397C2002BD357 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		CBE6AA2D1C83CAD00097699A /* by-location */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "by-location"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		CB5783E01C41A1A300A55D30 /* OldNYC */ = {
 			isa = PBXGroup;
 			children = (
+				CBE6AA2D1C83CAD00097699A /* by-location */,
 				CB3388B41C7E9DC300F61AE7 /* README.txt */,
 				CB4DD3441C56DE0300BD4729 /* markers.json */,
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
@@ -166,7 +169,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LRAK7WQC9P;
+						DevelopmentTeam = 397HLL8JUB;
 					};
 				};
 			};
@@ -197,6 +200,7 @@
 				CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
 				848B04521C815D7400ED79E9 /* Main.storyboard in Resources */,
+				CBE6AA2E1C83CAD00097699A /* by-location in Resources */,
 				CBE10BBF1C82BBE1002BD357 /* HidingNavigationBar.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,7 +388,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -409,7 +413,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

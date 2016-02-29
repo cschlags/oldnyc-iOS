@@ -13,6 +13,7 @@ class GalleryViewController: UICollectionViewController {
     private let reuseIdentifier = "galleryCell"
     private let sectionInsets = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
     var lastTappedLocationDataPassed:[[String : Any]]!
+    var lastTappedLocationName : String?
 
     var hidingNavBarManager: HidingNavigationBarManager?
     

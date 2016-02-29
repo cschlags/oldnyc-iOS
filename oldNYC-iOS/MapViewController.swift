@@ -126,32 +126,25 @@ class MapViewController: UIViewController,
         
         lastTappedLocationName = annotation.title!!
         
-        let urlPath = "https://oldnyc.org/by-location/" + tappedLat + tappedLon + ".json"
-        print(urlPath)
-        enum JSONError: String, ErrorType {
-            case NoData = "ERROR: no data"
-            case ConversionFailed = "ERROR: conversion from JSON failed"
-        }
+        let jsonPath = "by-location/" + tappedLat + tappedLon
         
-        // Get JSON data from /by-location directory on oldnyc.org
-        guard let endpoint = NSURL(string: urlPath) else {print("Error creating endpoint");return}
-        let request = NSMutableURLRequest(URL: endpoint)
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data,response,error) -> Void in
+        if let path = NSBundle.mainBundle().pathForResource(jsonPath, ofType: "json") {
             do {
-                guard let dat = data else { throw JSONError.NoData }
-                let jsonObj = JSON(data: dat)
-                
-                self.setLastTappedLocationData(jsonObj)
-                
-            } catch let error as JSONError {
-                print(error.rawValue)
-            } catch {
-                print(error)
+                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                let jsonObj = JSON(data: data)
+                if jsonObj != JSON.null {
+                    
+                    self.setLastTappedLocationData(jsonObj)
+                    self.performSegueWithIdentifier("toGallery", sender: self)
+                    
+                } else {
+                    print("could not get json from file")
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
             }
-        }.resume()
-
-        if (self.lastTappedLocationData.count > 0){
-            performSegueWithIdentifier("toGallery", sender: self)
+        } else {
+            print("Invalid filename/path.")
         }
     }
     
@@ -189,6 +182,7 @@ class MapViewController: UIViewController,
         if (segue.identifier == "toGallery"){
             let svc = segue.destinationViewController as! GalleryViewController;
             svc.lastTappedLocationDataPassed = self.lastTappedLocationData
+            svc.lastTappedLocationName = self.lastTappedLocationName
         }
     }
 }

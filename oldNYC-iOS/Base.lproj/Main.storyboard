@@ -56,6 +56,7 @@
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
                     <connections>
                         <outlet property="menuButton" destination="duT-LL-IIZ" id="19I-ge-DXh"/>
+                        <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" id="LvC-48-aIT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hb-Zn-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,7 +247,7 @@
                             <outlet property="delegate" destination="4m1-AQ-v0X" id="zUU-63-gyj"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Location Title" id="AaO-SL-tcd"/>
+                    <navigationItem key="navigationItem" title="LocationName" id="AaO-SL-tcd"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
