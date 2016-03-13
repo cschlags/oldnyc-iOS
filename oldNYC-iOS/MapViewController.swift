@@ -129,7 +129,6 @@ class MapViewController: UIViewController,
         lastTappedLocationName = annotation.title!!
 
         let jsonPath = "by-location/" + tappedLat + tappedLon
-        print("selected")
         
         if let path = NSBundle.mainBundle().pathForResource(jsonPath, ofType: "json") {
             do {
@@ -154,7 +153,6 @@ class MapViewController: UIViewController,
     }
     
     func mapView(mapView: MGLMapView, didDeselectAnnotation annotation: MGLAnnotation) {
-        print("deselected")
     }
     
     func getLastTappedLocationData() -> [[String : Any]] {

@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D91DFC368C5370E19C79F84 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */; };
+		78C9B6241C961C4F004F2558 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C9B6231C961C4F004F2558 /* SwiftyJSON.framework */; };
+		78C9B6261C961C5E004F2558 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C9B6251C961C5E004F2558 /* Pods_oldNYC_iOS.framework */; };
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
-		849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */; };
 		84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */; };
 		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
@@ -30,6 +30,8 @@
 /* Begin PBXFileReference section */
 		036F6162A6FC4AB348B3B3BD /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		12FA2F401ED156CA216B2749 /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		78C9B6231C961C4F004F2558 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Release-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		78C9B6251C961C5E004F2558 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_oldNYC_iOS.framework; path = "Pods/../build/Release-iphoneos/Pods_oldNYC_iOS.framework"; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -57,8 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */,
-				6D91DFC368C5370E19C79F84 /* Pods_oldNYC_iOS.framework in Frameworks */,
+				78C9B6261C961C5E004F2558 /* Pods_oldNYC_iOS.framework in Frameworks */,
+				78C9B6241C961C4F004F2558 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +79,8 @@
 		BF827DC7F9FEB53DFD4E2B38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78C9B6251C961C5E004F2558 /* Pods_oldNYC_iOS.framework */,
+				78C9B6231C961C4F004F2558 /* SwiftyJSON.framework */,
 				849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */,
 				8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */,
 			);
@@ -235,7 +239,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		F29A5C5BF807DD01C07675C6 /* Copy Pods Resources */ = {
@@ -325,7 +329,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -364,6 +368,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -382,6 +387,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -408,11 +414,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
