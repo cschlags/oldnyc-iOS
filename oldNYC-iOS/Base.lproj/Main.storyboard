@@ -265,6 +265,24 @@
             </objects>
             <point key="canvasLocation" x="-637" y="-643"/>
         </scene>
+        <!--Photo-->
+        <scene sceneID="ppg-5g-E1G">
+            <objects>
+                <viewController title="Photo" id="tak-b8-d6k" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Oa7-Hq-Z8r"/>
+                        <viewControllerLayoutGuide type="bottom" id="ORw-Sl-wCV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YQy-v4-OFC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hT1-e3-F18" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="38" y="-643"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Cog" width="22" height="22"/>

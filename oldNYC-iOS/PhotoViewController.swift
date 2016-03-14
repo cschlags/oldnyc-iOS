@@ -7,14 +7,40 @@
 //
 
 import UIKit
-
+import NYTPhotoViewer
 
 class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
 
+    @IBOutlet weak var imageButton: UIButton?
+    private let photos = PhotosProvider().photos
+    
+    @IBAction func buttonTapped(sender: UIButton) {
+        let photosViewController = NYTPhotosViewController(photos: self.photos)
+        photosViewController.delegate = self
+        presentViewController(photosViewController, animated: true, completion: nil)
+        
+        updateImagesOnPhotosViewController(photosViewController, afterDelayWithPhotos: photos)
+    }
+    
+    func updateImagesOnPhotosViewController(photosViewController: NYTPhotosViewController, afterDelayWithPhotos: [Photo]) {
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, 5 * Int64(NSEC_PER_SEC))
+        
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            for photo in self.photos {
+                if photo.image == nil {
+                    photo.image = UIImage(named: PrimaryImageName)
+                    photosViewController.updateImageForPhoto(photo)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let buttonImage = UIImage(named: PrimaryImageName)
+        imageButton?.setBackgroundImage(buttonImage, forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,15 +48,69 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: - NYTPhotosViewControllerDelegate
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func photosViewController(photosViewController: NYTPhotosViewController, handleActionButtonTappedForPhoto photo: NYTPhoto) -> Bool {
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            
+            guard let photoImage = photo.image else { return false }
+            
+            let shareActivityViewController = UIActivityViewController(activityItems: [photoImage], applicationActivities: nil)
+            
+            shareActivityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) in
+                if completed {
+                    photosViewController.delegate?.photosViewController!(photosViewController, actionCompletedWithActivityType: activityType!)
+                }
+            }
+            
+            shareActivityViewController.popoverPresentationController?.barButtonItem = photosViewController.rightBarButtonItem
+            photosViewController.presentViewController(shareActivityViewController, animated: true, completion: nil)
+            
+            return true
+        }
+        
+        return false
     }
-    */
-
+    
+    func photosViewController(photosViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
+        if photo as? Photo == photos[NoReferenceViewPhotoIndex] {
+            return nil
+        }
+        return imageButton
+    }
+    
+    func photosViewController(photosViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
+        if photo as! Photo == photos[CustomEverythingPhotoIndex] {
+            let label = UILabel()
+            label.text = "Custom Loading..."
+            label.textColor = UIColor.greenColor()
+            return label
+        }
+        return nil
+    }
+    
+    func photosViewController(photosViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
+        if photo as! Photo == photos[CustomEverythingPhotoIndex] {
+            let label = UILabel()
+            label.text = "Custom Caption View"
+            label.textColor = UIColor.whiteColor()
+            label.backgroundColor = UIColor.redColor()
+            return label
+        }
+        return nil
+    }
+    
+    func photosViewController(photosViewController: NYTPhotosViewController, didNavigateToPhoto photo: NYTPhoto, atIndex photoIndex: UInt) {
+        print("Did Navigate To Photo: \(photo) identifier: \(photoIndex)")
+    }
+    
+    func photosViewController(photosViewController: NYTPhotosViewController, actionCompletedWithActivityType activityType: String?) {
+        print("Action Completed With Activity Type: \(activityType)")
+    }
+    
+    func photosViewControllerDidDismiss(photosViewController: NYTPhotosViewController) {
+        print("Did dismiss Photo Viewer: \(photosViewController)")
+    }
 }
