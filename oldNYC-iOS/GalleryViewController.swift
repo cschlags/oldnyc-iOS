@@ -17,9 +17,9 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     var hidingNavBarManager: HidingNavigationBarManager?
     
     @IBOutlet var gallery: UICollectionView!
-
+    
     override func viewDidLoad() {
-        var mosaicLayout : FMMosaicLayout = FMMosaicLayout()
+        let mosaicLayout : FMMosaicLayout = FMMosaicLayout()
         self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -29,12 +29,16 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
 
         // Do any additional setup after loading the view.
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
+        dispatch_async(dispatch_get_main_queue(),{
+            self.collectionView?.reloadData()
+         })
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.translucent = true
         hidingNavBarManager?.viewWillAppear(animated)
+        collectionView?.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,6 +122,8 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
             
             }.resume()
         cell.cellImage.bounds.size = cell.bounds.size
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         return cell
     }
     

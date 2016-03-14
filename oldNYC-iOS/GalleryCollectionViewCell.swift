@@ -2,7 +2,7 @@
 //  GalleryCollectionViewCell.swift
 //  oldNYC-iOS
 //
-//  Created by Christina Leuci on 2/27/16.
+//  Created by Orian Breaux and Christina Leuci.
 //  Copyright © 2016 OldNYC. All rights reserved.
 //
 

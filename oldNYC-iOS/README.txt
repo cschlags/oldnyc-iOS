@@ -5,7 +5,9 @@ NOTES
     a) Use an online CSV -> JSON converter to help generate JSON.
     b) Numformatter in code will ensure lat and lon values have 6 decimal places, as needed by oldnyc.org/by-location directory.
 
-2) In MapViewController, when downloading JSON data from oldnyc.org, I bypassed Application Transport Security's default behavior of not downloading from HTTP connections. https://forums.developer.apple.com/thread/3544
+2) /by-location is up-to-date as of 3/13.
+
+3) In MapViewController, when downloading JSON data from oldnyc.org, I bypassed Application Transport Security's default behavior of not downloading from HTTP connections. https://forums.developer.apple.com/thread/3544
 
 
 /*
