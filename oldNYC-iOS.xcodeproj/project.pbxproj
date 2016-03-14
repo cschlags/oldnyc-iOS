@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D91DFC368C5370E19C79F84 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */; };
+		06A6EF48929D1D6F5CBF5BAD /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6957F4ADA10EC4F4B04A55 /* Pods_oldNYC_iOS.framework */; };
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
-		849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */; };
-		84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */; };
+		84C17B4A1C963E5B00D491AF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 84C17B491C963E5A00D491AF /* Podfile */; };
 		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
 		CB4DD3451C56DE0300BD4729 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
@@ -28,14 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		036F6162A6FC4AB348B3B3BD /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		12FA2F401ED156CA216B2749 /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0E6957F4ADA10EC4F4B04A55 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		145A7428D3A28A996C3E7FBC /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		3CA4F8A610C44893B9EAB28C /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicViewFlowLayout.swift; sourceTree = "<group>"; };
+		84C17B491C963E5A00D491AF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; };
 		84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3388B41C7E9DC300F61AE7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		CB4DD3441C56DE0300BD4729 /* markers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markers.json; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,30 +55,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849B6A0A1C7ECDBA00677C4A /* SwiftyJSON.framework in Frameworks */,
-				6D91DFC368C5370E19C79F84 /* Pods_oldNYC_iOS.framework in Frameworks */,
+				06A6EF48929D1D6F5CBF5BAD /* Pods_oldNYC_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AFA80B3761C8A9A0BE383C8A /* Pods */ = {
+		A609A1C7887A133861CA23A2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				12FA2F401ED156CA216B2749 /* Pods-oldNYC-iOS.debug.xcconfig */,
-				036F6162A6FC4AB348B3B3BD /* Pods-oldNYC-iOS.release.xcconfig */,
+				3CA4F8A610C44893B9EAB28C /* Pods-oldNYC-iOS.debug.xcconfig */,
+				145A7428D3A28A996C3E7FBC /* Pods-oldNYC-iOS.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		BF827DC7F9FEB53DFD4E2B38 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */,
-				8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CB5783D51C41A1A300A55D30 = {
@@ -88,8 +76,8 @@
 			children = (
 				CB5783E01C41A1A300A55D30 /* OldNYC */,
 				CB5783DF1C41A1A300A55D30 /* Products */,
-				BF827DC7F9FEB53DFD4E2B38 /* Frameworks */,
-				AFA80B3761C8A9A0BE383C8A /* Pods */,
+				A609A1C7887A133861CA23A2 /* Pods */,
+				F4E384AE11774F19C1CAACA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,12 +95,12 @@
 				CBE6AA2D1C83CAD00097699A /* by-location */,
 				CB3388B41C7E9DC300F61AE7 /* README.txt */,
 				CB4DD3441C56DE0300BD4729 /* markers.json */,
+				84C17B491C963E5A00D491AF /* Podfile */,
 				CB5783E11C41A1A300A55D30 /* AppDelegate.swift */,
 				CB5783E31C41A1A300A55D30 /* MapViewController.swift */,
 				CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */,
 				CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */,
 				845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */,
-				84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */,
 				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CBE10BC61C8397C2002BD357 /* WebViewController.swift */,
@@ -134,6 +122,14 @@
 			name = HidingNavigationBar;
 			sourceTree = "<group>";
 		};
+		F4E384AE11774F19C1CAACA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E6957F4ADA10EC4F4B04A55 /* Pods_oldNYC_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,12 +137,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB5783F01C41A1A300A55D30 /* Build configuration list for PBXNativeTarget "oldNYC-iOS" */;
 			buildPhases = (
-				35FFEC5455DF278E791ED685 /* Check Pods Manifest.lock */,
+				C408E0DFFC075B90C550DAD9 /* Check Pods Manifest.lock */,
 				CB5783DA1C41A1A300A55D30 /* Sources */,
 				CB5783DB1C41A1A300A55D30 /* Frameworks */,
 				CB5783DC1C41A1A300A55D30 /* Resources */,
-				9CE95E662A11A8F5002CE525 /* Embed Pods Frameworks */,
-				F29A5C5BF807DD01C07675C6 /* Copy Pods Resources */,
+				8620FA378A1EE878A280353C /* Embed Pods Frameworks */,
+				7479982EA54D7C5E4A780AAC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,7 +165,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 397HLL8JUB;
+						DevelopmentTeam = LRAK7WQC9P;
 					};
 				};
 			};
@@ -202,43 +198,14 @@
 				848B04521C815D7400ED79E9 /* Main.storyboard in Resources */,
 				CBE6AA2E1C83CAD00097699A /* by-location in Resources */,
 				CBE10BBF1C82BBE1002BD357 /* HidingNavigationBar.txt in Resources */,
+				84C17B4A1C963E5B00D491AF /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		35FFEC5455DF278E791ED685 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9CE95E662A11A8F5002CE525 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F29A5C5BF807DD01C07675C6 /* Copy Pods Resources */ = {
+		7479982EA54D7C5E4A780AAC /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,6 +220,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8620FA378A1EE878A280353C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C408E0DFFC075B90C550DAD9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -262,7 +259,6 @@
 			files = (
 				CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */,
 				84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */,
-				84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */,
 				CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */,
@@ -309,6 +305,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -323,12 +320,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Debug;
 		};
@@ -354,6 +354,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -362,35 +363,38 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		CB5783F11C41A1A300A55D30 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12FA2F401ED156CA216B2749 /* Pods-oldNYC-iOS.debug.xcconfig */;
+			baseConfigurationReference = 3CA4F8A610C44893B9EAB28C /* Pods-oldNYC-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
+				HEADER_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -398,24 +402,24 @@
 		};
 		CB5783F21C41A1A300A55D30 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 036F6162A6FC4AB348B3B3BD /* Pods-oldNYC-iOS.release.xcconfig */;
+			baseConfigurationReference = 145A7428D3A28A996C3E7FBC /* Pods-oldNYC-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
+				HEADER_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

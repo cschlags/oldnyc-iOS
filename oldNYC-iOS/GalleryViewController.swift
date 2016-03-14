@@ -8,24 +8,24 @@
 
 import UIKit
 import SwiftyJSON
+import FMMosaicLayout
 
-class GalleryViewController: UICollectionViewController {
+class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     private let reuseIdentifier = "galleryCell"
     var lastTappedLocationDataPassed:[[String : Any]]!
     var lastTappedLocationName : String?
-
     var hidingNavBarManager: HidingNavigationBarManager?
     
     @IBOutlet var gallery: UICollectionView!
 
     override func viewDidLoad() {
+        var mosaicLayout : FMMosaicLayout = FMMosaicLayout()
+        self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         let location = lastTappedLocationDataPassed[0]["folder"] as! String
         self.navigationItem.title = "\(location.componentsSeparatedByString(",")[0])";
-        // Commented because it's screwing with putting images in the ViewCell
-//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
@@ -65,8 +65,6 @@ class GalleryViewController: UICollectionViewController {
         return true
     }
 
-    
-
     /*
     // MARK: - Navigation
 
@@ -91,8 +89,6 @@ class GalleryViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        // Configure the cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
         cell.backgroundColor = UIColor.blackColor()
         let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
@@ -121,10 +117,25 @@ class GalleryViewController: UICollectionViewController {
             })
             
             }.resume()
+        cell.cellImage.bounds.size = cell.bounds.size
         return cell
     }
     
+//    stops the flickering
+    override func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
+    }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, numberOfColumnsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    }
+    
+    func collectionView(collectionview: UICollectionView, layout collectionViewLayout: FMMosaicLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat{
+        return 2.0
+    }
     // MARK: UICollectionViewDelegate
 
     /*
