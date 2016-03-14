@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78C9B6241C961C4F004F2558 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C9B6231C961C4F004F2558 /* SwiftyJSON.framework */; };
-		78C9B6261C961C5E004F2558 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C9B6251C961C5E004F2558 /* Pods_oldNYC_iOS.framework */; };
+		7855206E1C9625E000A9A232 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7855206D1C9625E000A9A232 /* PhotoViewController.swift */; };
+		7EF2C0FB188FF32554B81217 /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC7A50455F7153D6164A5A8 /* Pods_oldNYC_iOS.framework */; };
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		84E7CFCA1C83947400967557 /* MosaicViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */; };
@@ -30,14 +30,16 @@
 /* Begin PBXFileReference section */
 		036F6162A6FC4AB348B3B3BD /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		12FA2F401ED156CA216B2749 /* Pods-oldNYC-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		78C9B6231C961C4F004F2558 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Release-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		78C9B6251C961C5E004F2558 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_oldNYC_iOS.framework; path = "Pods/../build/Release-iphoneos/Pods_oldNYC_iOS.framework"; sourceTree = "<group>"; };
+		2AC7A50455F7153D6164A5A8 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		781D28BE1C96405E0027E947 /* FLAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAnimatedImage.framework; path = "Pods/../build/Debug-iphoneos/FLAnimatedImage.framework"; sourceTree = "<group>"; };
+		781D28C01C9640620027E947 /* NYTPhotoViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NYTPhotoViewer.framework; path = "Pods/../build/Debug-iphoneos/NYTPhotoViewer.framework"; sourceTree = "<group>"; };
+		781D28C21C9641ED0027E947 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		781EB35E1C96347800AE93C9 /* oldNYC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oldNYC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		7855206D1C9625E000A9A232 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicViewFlowLayout.swift; sourceTree = "<group>"; };
 		84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3388B41C7E9DC300F61AE7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		CB4DD3441C56DE0300BD4729 /* markers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markers.json; sourceTree = "<group>"; };
 		CB5783DE1C41A1A300A55D30 /* oldNYC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oldNYC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,14 +61,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78C9B6261C961C5E004F2558 /* Pods_oldNYC_iOS.framework in Frameworks */,
-				78C9B6241C961C4F004F2558 /* SwiftyJSON.framework in Frameworks */,
+				7EF2C0FB188FF32554B81217 /* Pods_oldNYC_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81C6FF60D0D4AA816D84C3B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				781D28C21C9641ED0027E947 /* SwiftyJSON.framework */,
+				781D28C01C9640620027E947 /* NYTPhotoViewer.framework */,
+				781D28BE1C96405E0027E947 /* FLAnimatedImage.framework */,
+				2AC7A50455F7153D6164A5A8 /* Pods_oldNYC_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AFA80B3761C8A9A0BE383C8A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,24 +88,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		BF827DC7F9FEB53DFD4E2B38 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				78C9B6251C961C5E004F2558 /* Pods_oldNYC_iOS.framework */,
-				78C9B6231C961C4F004F2558 /* SwiftyJSON.framework */,
-				849B6A091C7ECDBA00677C4A /* SwiftyJSON.framework */,
-				8ED5C22A1B6B7A9B3449CD62 /* Pods_oldNYC_iOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		CB5783D51C41A1A300A55D30 = {
 			isa = PBXGroup;
 			children = (
 				CB5783E01C41A1A300A55D30 /* OldNYC */,
 				CB5783DF1C41A1A300A55D30 /* Products */,
-				BF827DC7F9FEB53DFD4E2B38 /* Frameworks */,
 				AFA80B3761C8A9A0BE383C8A /* Pods */,
+				81C6FF60D0D4AA816D84C3B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,11 +119,13 @@
 				845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */,
 				84E7CFC91C83947400967557 /* MosaicViewFlowLayout.swift */,
 				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
+				7855206D1C9625E000A9A232 /* PhotoViewController.swift */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CBE10BC61C8397C2002BD357 /* WebViewController.swift */,
-				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
+				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CBE10BBD1C82BBC2002BD357 /* HidingNavigationBar */,
+				781EB35E1C96347800AE93C9 /* oldNYC-iOS-Bridging-Header.h */,
 			);
 			name = OldNYC;
 			path = "oldNYC-iOS";
@@ -239,7 +242,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F29A5C5BF807DD01C07675C6 /* Copy Pods Resources */ = {
@@ -274,6 +277,7 @@
 				CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */,
 				845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */,
 				CBE10BC71C8397C2002BD357 /* WebViewController.swift in Sources */,
+				7855206E1C9625E000A9A232 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +298,8 @@
 		CB5783EE1C41A1A300A55D30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -311,8 +316,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -327,19 +335,23 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "NYTPhotoViewer-Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Debug;
 		};
 		CB5783EF1C41A1A300A55D30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -356,8 +368,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -366,11 +381,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "NYTPhotoViewer-Swift-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -384,11 +402,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/build/Release-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
+				HEADER_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -397,8 +412,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "oldNYC-iOS/oldNYC-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)/**";
 			};
 			name = Debug;
 		};
@@ -411,11 +428,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/build/Release-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
+				HEADER_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = "oldNYC-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -424,7 +438,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.orian";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "oldNYC-iOS/oldNYC-iOS-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)/**";
 			};
 			name = Release;
 		};
