@@ -49,7 +49,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        lastTappedLocationDataPassed = nil;
         hidingNavBarManager?.viewWillDisappear(animated)
     }
     
@@ -97,6 +97,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
         cell.backgroundColor = UIColor.blackColor()
         let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
         let url = flickrPhoto["image_url"] as! String
+        cell.cellImage.image = nil;
         let request = NSURLRequest(URL: NSURL(string: url)!)
         
         NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
