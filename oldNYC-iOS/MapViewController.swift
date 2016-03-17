@@ -201,4 +201,13 @@ class MapViewController: UIViewController,
             svc.lastTappedLocationName = self.lastTappedLocationName
         }
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        if identifier == "toGallery"{
+            if (self.lastTappedLocationData.isEmpty == true){
+                return false
+            }
+        }
+        return true
+    }
 }

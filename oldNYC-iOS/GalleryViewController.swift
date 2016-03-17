@@ -47,7 +47,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        lastTappedLocationDataPassed.removeAll(keepCapacity: true)
+        lastTappedLocationDataPassed.removeAll()
         hidingNavBarManager?.viewWillDisappear(animated)
     }
     
@@ -63,10 +63,9 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     
     override func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
         hidingNavBarManager?.shouldScrollToTop()
-        
         return true
     }
-
+    
     /*
     // MARK: - Navigation
 
