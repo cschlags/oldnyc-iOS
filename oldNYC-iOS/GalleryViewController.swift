@@ -15,7 +15,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     var lastTappedLocationDataPassed:[[String : Any]]!
     var lastTappedLocationName : String?
     var hidingNavBarManager: HidingNavigationBarManager?
-    
     @IBOutlet var gallery: UICollectionView!
     
     override func viewDidLoad() {
@@ -29,16 +28,15 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
 
         // Do any additional setup after loading the view.
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
-        dispatch_async(dispatch_get_main_queue(),{
-            self.collectionView?.reloadData()
-         })
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.translucent = true
         hidingNavBarManager?.viewWillAppear(animated)
-        collectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue(),{
+            self.collectionView?.reloadData()
+        })
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,7 +47,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        lastTappedLocationDataPassed = nil;
+        lastTappedLocationDataPassed.removeAll(keepCapacity: true)
         hidingNavBarManager?.viewWillDisappear(animated)
     }
     
@@ -120,7 +118,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.cellImage.image = UIImage(data: data!)
             })
-            
+        
             }.resume()
         cell.cellImage.bounds.size = cell.bounds.size
         cell.setNeedsLayout()

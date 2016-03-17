@@ -80,14 +80,14 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MenuCell" textLabel="DNf-jd-LfF" style="IBUITableViewCellStyleDefault" id="WQI-RL-ghd">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQI-RL-ghd" id="CS3-Sg-V1T">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DNf-jd-LfF">
-                                            <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YrF-RG-6gT" id="TJX-j6-5R7">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smr-qD-cTb">
@@ -207,7 +207,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="173" height="169"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whN-8z-F0S">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whN-8z-F0S">
                                             <rect key="frame" x="0.0" y="0.0" width="178" height="169"/>
                                             <accessibility key="accessibilityConfiguration" identifier="cellImage"/>
                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
@@ -217,9 +217,9 @@
                                 </view>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="whN-8z-F0S" firstAttribute="centerX" secondItem="5jj-gA-cnI" secondAttribute="centerX" id="3aY-4k-RGH"/>
+                                    <constraint firstItem="whN-8z-F0S" firstAttribute="centerX" secondItem="5jj-gA-cnI" secondAttribute="centerX" constant="2.5" id="3aY-4k-RGH"/>
                                     <constraint firstItem="whN-8z-F0S" firstAttribute="leading" secondItem="5jj-gA-cnI" secondAttribute="leadingMargin" id="6Fj-kC-EtJ"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="whN-8z-F0S" secondAttribute="trailing" id="aKQ-Z3-Fkb"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="whN-8z-F0S" secondAttribute="trailing" constant="-5" id="aKQ-Z3-Fkb"/>
                                     <constraint firstItem="whN-8z-F0S" firstAttribute="top" secondItem="5jj-gA-cnI" secondAttribute="topMargin" id="gfz-bg-eEM"/>
                                     <constraint firstItem="whN-8z-F0S" firstAttribute="centerY" secondItem="5jj-gA-cnI" secondAttribute="centerY" id="hPs-Fp-kj2"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="whN-8z-F0S" secondAttribute="bottom" id="yI9-M1-kAT"/>
