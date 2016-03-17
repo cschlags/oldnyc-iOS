@@ -47,7 +47,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        lastTappedLocationDataPassed.removeAll()
         hidingNavBarManager?.viewWillDisappear(animated)
     }
     
@@ -116,9 +115,21 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.cellImage.image = UIImage(data: data!)
+                print(data!.dynamicType)
             })
         
             }.resume()
+        
+//        for that sext fade
+        cell.alpha = 0.0
+        let millisecondsDelay = UInt64((arc4random() % 600) / 1000)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(millisecondsDelay * NSEC_PER_SEC)), dispatch_get_main_queue(),
+            ({ () -> Void in
+                UIView.animateWithDuration(0.3, animations: ({
+                    cell.alpha = 1.0
+            }))
+        }))
         cell.cellImage.bounds.size = cell.bounds.size
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
@@ -140,6 +151,10 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     func collectionView(collectionview: UICollectionView, layout collectionViewLayout: FMMosaicLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat{
         return 2.0
     }
+    
+//    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
+//        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
+//    }
     // MARK: UICollectionViewDelegate
 
     /*
@@ -149,12 +164,9 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     }
     */
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
+//    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        return true
+//    }
 
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
