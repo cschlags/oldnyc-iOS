@@ -12,7 +12,7 @@ import NYTPhotoViewer
 class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
     var locationPhotosArrayPassed:[NSData]?
     @IBOutlet weak var imageButton: UIButton?
-    var photos = PhotosProvider(array: locationPhotosArrayPassed).photos
+    var photos:[Photo] = []
     
     @IBAction func buttonTapped(sender: UIButton) {
         
@@ -37,7 +37,7 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        photos = PhotosProvider(array: locationPhotosArrayPassed!).photos
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,30 +71,14 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
     }
     
     func photosViewController(photosViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
-        if photo as? Photo == photos[NoReferenceViewPhotoIndex] {
-            return nil
-        }
         return imageButton
     }
 
     func photosViewController(photosViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
-        if photo as! Photo == photos[CustomEverythingPhotoIndex]{
-            let label = UILabel()
-            label.text = "Custom Loading..."
-            label.textColor = UIColor.greenColor()
-            return label
-        }
         return nil
     }
 
     func photosViewController(photosViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
-        if photo as! Photo == photos[CustomEverythingPhotoIndex] {
-            let label = UILabel()
-            label.text = "Custom Caption View"
-            label.textColor = UIColor.whiteColor()
-            label.backgroundColor = UIColor.redColor()
-            return label
-        }
         return nil
     }
     
