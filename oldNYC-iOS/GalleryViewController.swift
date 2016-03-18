@@ -120,7 +120,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.cellImage.image = UIImage(data: data!)
                 self.locationPhotoArray.append(data!)
-                print(self.locationPhotoArray.count)
             })
         
             }.resume()

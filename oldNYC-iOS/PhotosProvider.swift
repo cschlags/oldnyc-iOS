@@ -14,12 +14,13 @@ var photoDataArray:[NSData]!
 class PhotosProvider: NSObject {
     
     init(array: [NSData]){
+        print(array)
         photoDataArray = array
     }
     
     let photos: [Photo] = {
         var mutablePhotos: [Photo] = []
-        let NumberOfPhotos = photoDataArray.count
+        let NumberOfPhotos = photoDataArray.count/2
         
         for photoIndex in 0 ..< NumberOfPhotos {
             let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])

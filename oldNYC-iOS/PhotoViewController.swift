@@ -10,17 +10,9 @@ import UIKit
 import NYTPhotoViewer
 
 class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
-    var locationPhotosArrayPassed:[NSData]?
+    var locationPhotosArrayPassed:[NSData]!
     @IBOutlet weak var imageButton: UIButton?
-    var photos:[Photo] = []
-    
-    @IBAction func buttonTapped(sender: UIButton) {
-        
-        var photosViewController: NYTPhotosViewController = NYTPhotosViewController(photos: photos)
-        self.presentViewController(photosViewController, animated: true, completion: { _ in })
-        
-        updateImagesOnPhotosViewController(photosViewController, afterDelayWithPhotos: photos)
-    }
+    var photos: [Photo!] = []
     
     func updateImagesOnPhotosViewController(photosViewController: NYTPhotosViewController, afterDelayWithPhotos: [Photo]) {
         
@@ -28,7 +20,7 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
         
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             for photo in self.photos {
-                if photo.image == nil {
+                if photo!.image == nil {
                     photosViewController.updateImageForPhoto(photo)
                 }
             }
@@ -37,9 +29,35 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photos = PhotosProvider(array: locationPhotosArrayPassed!).photos
+        
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        self.setPhotos()
+    }
+    
+    func callPhoto() -> Array<Photo>{
+        var mutablePhotos: [Photo] = []
+        let NumberOfPhotos = locationPhotosArrayPassed.count/2
+        
+        for photoIndex in 0 ..< NumberOfPhotos {
+            let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            
+            let image = UIImage(data: locationPhotosArrayPassed[photoIndex])
+            
+            let photo = Photo(image: image, attributedCaptionTitle: title)
+            mutablePhotos.append(photo)
+        }
+        return mutablePhotos
+    }
+    
+    func setPhotos(){
+        let photosViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.callPhoto())
+        self.presentViewController(photosViewController, animated: true, completion: { _ in })
+        
+        updateImagesOnPhotosViewController(photosViewController, afterDelayWithPhotos: self.callPhoto())
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
