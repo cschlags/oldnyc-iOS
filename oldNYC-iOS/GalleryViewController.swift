@@ -14,10 +14,12 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     private let reuseIdentifier = "galleryCell"
     var lastTappedLocationDataPassed:[[String : Any]]!
     var lastTappedLocationName : String?
+    var locationPhotoArray:[NSData] = []
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
     
     override func viewDidLoad() {
+//        print("gallery load: ", lastTappedLocationDataPassed.count)
         let mosaicLayout : FMMosaicLayout = FMMosaicLayout()
         self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
@@ -95,6 +97,8 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
         let url = flickrPhoto["image_url"] as! String
         cell.cellImage.image = nil;
         let request = NSURLRequest(URL: NSURL(string: url)!)
+        let tap = UITapGestureRecognizer(target: self, action: "singleTapped")
+        tap.numberOfTapsRequired = 1
         
         NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
             
@@ -115,12 +119,13 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.cellImage.image = UIImage(data: data!)
-                print(data!.dynamicType)
+                self.locationPhotoArray.append(data!)
+                print(self.locationPhotoArray.count)
             })
         
             }.resume()
         
-//        for that sext fade
+//        for that sexy fade
         cell.alpha = 0.0
         let millisecondsDelay = UInt64((arc4random() % 600) / 1000)
         
@@ -133,6 +138,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
         cell.cellImage.bounds.size = cell.bounds.size
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
+        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -152,6 +158,16 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
         return 2.0
     }
     
+    func singleTapped(){
+        performSegueWithIdentifier("toPhoto", sender: NSObject.self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toPhoto"){
+            let svc = segue.destinationViewController as! PhotoViewController;
+            svc.locationPhotosArrayPassed = self.locationPhotoArray
+        }
+    }
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
 //    }

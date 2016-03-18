@@ -9,15 +9,15 @@
 import UIKit
 import NYTPhotoViewer
 
-class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
-
+class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
+    var locationPhotosArrayPassed:[NSData]?
     @IBOutlet weak var imageButton: UIButton?
-    private let photos = PhotosProvider().photos
+    var photos = PhotosProvider(array: locationPhotosArrayPassed).photos
     
     @IBAction func buttonTapped(sender: UIButton) {
-        let photosViewController = NYTPhotosViewController(photos: self.photos)
-        photosViewController.delegate = self
-        presentViewController(photosViewController, animated: true, completion: nil)
+        
+        var photosViewController: NYTPhotosViewController = NYTPhotosViewController(photos: photos)
+        self.presentViewController(photosViewController, animated: true, completion: { _ in })
         
         updateImagesOnPhotosViewController(photosViewController, afterDelayWithPhotos: photos)
     }
@@ -29,7 +29,6 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             for photo in self.photos {
                 if photo.image == nil {
-                    photo.image = UIImage(named: PrimaryImageName)
                     photosViewController.updateImageForPhoto(photo)
                 }
             }
@@ -39,15 +38,12 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let buttonImage = UIImage(named: PrimaryImageName)
-        imageButton?.setBackgroundImage(buttonImage, forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     // MARK: - NYTPhotosViewControllerDelegate
 
@@ -80,9 +76,9 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
         }
         return imageButton
     }
-    
+
     func photosViewController(photosViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
-        if photo as! Photo == photos[CustomEverythingPhotoIndex] {
+        if photo as! Photo == photos[CustomEverythingPhotoIndex]{
             let label = UILabel()
             label.text = "Custom Loading..."
             label.textColor = UIColor.greenColor()
@@ -90,7 +86,7 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate {
         }
         return nil
     }
-    
+
     func photosViewController(photosViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
         if photo as! Photo == photos[CustomEverythingPhotoIndex] {
             let label = UILabel()

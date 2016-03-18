@@ -40,7 +40,7 @@ class MapViewController: UIViewController,
         
         // Configure map settings.
         mapView.showsUserLocation = false // Make true later
-        //mapView.userTrackingMode = .Follow
+        mapView.userTrackingMode = .Follow
         
         mapView.logoView.hidden = true
         mapView.attributionButton.hidden = true

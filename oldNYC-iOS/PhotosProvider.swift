@@ -9,31 +9,24 @@
 import UIKit
 import NYTPhotoViewer
 
-let CustomEverythingPhotoIndex = 1, DefaultLoadingSpinnerPhotoIndex = 3, NoReferenceViewPhotoIndex = 4
-let PrimaryImageName = "ImageName"
-let PlaceholderImageName = "PlaceholderImageName"
+var photoDataArray:[NSData]!
 
 class PhotosProvider: NSObject {
     
+    init(array: [NSData]){
+        photoDataArray = array
+    }
+    
     let photos: [Photo] = {
-        
         var mutablePhotos: [Photo] = []
-        var image = UIImage(named: PrimaryImageName)
-        let NumberOfPhotos = 5
-        
-        func shouldSetImageOnIndex(photoIndex: Int) -> Bool {
-            return photoIndex != CustomEverythingPhotoIndex && photoIndex != DefaultLoadingSpinnerPhotoIndex
-        }
+        let NumberOfPhotos = photoDataArray.count
         
         for photoIndex in 0 ..< NumberOfPhotos {
             let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
             
-            let photo = shouldSetImageOnIndex(photoIndex) ? Photo(image: image, attributedCaptionTitle: title) : Photo(attributedCaptionTitle: title)
+            let image = UIImage(data: photoDataArray[photoIndex])
             
-            if photoIndex == CustomEverythingPhotoIndex {
-                photo.placeholderImage = UIImage(named: PlaceholderImageName)
-            }
-            
+            let photo = Photo(image: image, attributedCaptionTitle: title)
             mutablePhotos.append(photo)
         }
         
