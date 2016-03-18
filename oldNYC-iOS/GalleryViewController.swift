@@ -9,12 +9,14 @@
 import UIKit
 import SwiftyJSON
 import FMMosaicLayout
+import NYTPhotoViewer
 
-class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
+class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate, NYTPhotosViewControllerDelegate{
     private let reuseIdentifier = "galleryCell"
     var lastTappedLocationDataPassed:[[String : Any]]!
     var lastTappedLocationName : String?
     var locationPhotoArray:[NSData] = []
+    var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
     
@@ -119,7 +121,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.cellImage.image = UIImage(data: data!)
-                self.locationPhotoArray.append(data!)
             })
         
             }.resume()
@@ -141,10 +142,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
         return cell
     }
     
-//    stops the flickering
-    override func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
-    }
-    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, numberOfColumnsInSection section: Int) -> Int {
         return 1
     }
@@ -164,7 +161,20 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toPhoto"){
             let svc = segue.destinationViewController as! PhotoViewController;
-            svc.locationPhotosArrayPassed = self.locationPhotoArray
+            var urlStringArray:[String] = []
+            for (index,value) in lastTappedLocationDataPassed.enumerate(){
+                urlStringArray.append(lastTappedLocationDataPassed[index]["image_url"] as! String)
+            }
+            svc.locationPhotosArrayPassed = urlStringArray
+            svc.locationPhotoIndexPassed = locationPhotoIndex
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
+            performSegueWithIdentifier("toPhoto", sender: cell)
+        } else {
+            // Error indexPath is not on screen: this should never happen.
         }
     }
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {

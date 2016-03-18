@@ -10,7 +10,8 @@ import UIKit
 import NYTPhotoViewer
 
 class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
-    var locationPhotosArrayPassed:[NSData]!
+    var locationPhotosArrayPassed:[String]!
+    var locationPhotoIndexPassed:Int!
     @IBOutlet weak var imageButton: UIButton?
     var photos: [Photo!] = []
     
@@ -38,12 +39,16 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
     
     func callPhoto() -> Array<Photo>{
         var mutablePhotos: [Photo] = []
-        let NumberOfPhotos = locationPhotosArrayPassed.count/2
-        
+        let NumberOfPhotos = locationPhotosArrayPassed.count
+        if locationPhotoIndexPassed != 0{
+            swap(&locationPhotosArrayPassed[0], &locationPhotosArrayPassed[locationPhotoIndexPassed])
+        }
         for photoIndex in 0 ..< NumberOfPhotos {
             let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
             
-            let image = UIImage(data: locationPhotosArrayPassed[photoIndex])
+            let request = NSURL(string: locationPhotosArrayPassed[photoIndex])!
+                
+            let image = UIImage(data: NSData(contentsOfURL: request)!)
             
             let photo = Photo(image: image, attributedCaptionTitle: title)
             mutablePhotos.append(photo)
@@ -57,7 +62,6 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
         
         updateImagesOnPhotosViewController(photosViewController, afterDelayWithPhotos: self.callPhoto())
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -110,5 +114,6 @@ class PhotoViewController: UIViewController, NYTPhotosViewControllerDelegate{
     
     func photosViewControllerDidDismiss(photosViewController: NYTPhotosViewController) {
         print("Did dismiss Photo Viewer: \(photosViewController)")
+        photos.removeAll()
     }
 }
