@@ -8,6 +8,7 @@
 
 import UIKit
 import NYTPhotoViewer
+import SDWebImage
 
 class Photo: NSObject, NYTPhoto {
 

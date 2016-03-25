@@ -19,13 +19,13 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
-    var photos: [Photo!] = []
+    var photos: [NYTPhoto] = []
     
     override func viewDidLoad() {
-//        print("gallery load: ", lastTappedLocationDataPassed.count)
         let mosaicLayout : FMMosaicLayout = FMMosaicLayout()
         self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         let location = lastTappedLocationDataPassed[0]["folder"] as! String
@@ -95,6 +95,8 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
+        cell.layer.shouldRasterize = true;
+        cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         cell.backgroundColor = UIColor.blackColor()
         let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
         let url = flickrPhoto["image_url"] as! String
@@ -102,7 +104,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         let request = NSURL(string: url)!
         cell.cellImage.sd_setImageWithURL(request)
         
-//        for that sexy fade
         cell.alpha = 0.0
         let millisecondsDelay = UInt64((arc4random() % 600) / 1000)
         
@@ -129,68 +130,16 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     func collectionView(collectionview: UICollectionView, layout collectionViewLayout: FMMosaicLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat{
         return 2.0
     }
-//    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == "toPhoto"){
-//            let svc = segue.destinationViewController as! PhotoViewController;
-//            var urlStringArray:[String] = []
-//            for (index,value) in lastTappedLocationDataPassed.enumerate(){
-//                urlStringArray.append(lastTappedLocationDataPassed[index]["image_url"] as! String)
-//            }
-//            svc.locationPhotosArrayPassed = urlStringArray
-//            svc.locationPhotoIndexPassed = locationPhotoIndex
-//        }
-//    }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        locationPhotoIndex = indexPath.row
         self.setPhotos()
     }
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
 //    }
-    // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-//    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return true
-//    }
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-    
-//    photo view controller code
-    func updateImagesOnGalleryViewController(galleryViewController: NYTPhotosViewController, afterDelayWithPhotos: [Photo]) {
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, 5 * Int64(NSEC_PER_SEC))
-        
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            for photo in self.photos {
-                if photo!.image == nil {
-                    galleryViewController.updateImageForPhoto(photo)
-                }
-            }
-        }
-    }
-    
-    func callPhoto() -> Array<Photo>{
+    func callPhoto() {
         var mutablePhotos: [Photo] = []
         let NumberOfPhotos = lastTappedLocationDataPassed.count
         
@@ -198,21 +147,19 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
             let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
             
             let request = NSURL(string: lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!
-            
-            let image = UIImage(data: NSData(contentsOfURL: request)!)
+            let image = UIImageView.sd_setImageWithURL(request)
+//            let image = UIImage(data: NSData(contentsOfURL: request)!)
             
             let photo = Photo(image: image, attributedCaptionTitle: title)
             mutablePhotos.append(photo)
         }
-        print(mutablePhotos)
-        return mutablePhotos
+        photos = mutablePhotos
     }
     
     func setPhotos(){
-        let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.callPhoto())
+        callPhoto()
+        let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos[locationPhotoIndex])
         self.presentViewController(galleryViewController, animated: true, completion: { _ in })
-        
-        updateImagesOnGalleryViewController(galleryViewController, afterDelayWithPhotos: self.callPhoto())
     }
     
     // MARK: - NYTPhotosViewControllerDelegate
@@ -237,6 +184,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         }
         return false
     }
+    
     func galleryViewController(galleryViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
         return nil
     }
