@@ -143,11 +143,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
 //    }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let _ = collectionView.cellForItemAtIndexPath(indexPath) {
-            self.setPhotos()
-        } else {
-            // Error indexPath is not on screen: this should never happen.
-        }
+        self.setPhotos()
     }
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
@@ -208,6 +204,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
             let photo = Photo(image: image, attributedCaptionTitle: title)
             mutablePhotos.append(photo)
         }
+        print(mutablePhotos)
         return mutablePhotos
     }
     

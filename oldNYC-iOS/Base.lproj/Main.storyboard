@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AaK-L6-5XH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AaK-L6-5XH">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -228,7 +228,6 @@
                                 <size key="customSize" width="173" height="169"/>
                                 <connections>
                                     <outlet property="cellImage" destination="whN-8z-F0S" id="bBT-R5-8Qu"/>
-                                    <segue destination="tak-b8-d6k" kind="show" identifier="toPhoto" id="i8b-mA-pA3"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -247,39 +246,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-637" y="-643"/>
-        </scene>
-        <!--Photo-->
-        <scene sceneID="ppg-5g-E1G">
-            <objects>
-                <viewController title="Photo" id="tak-b8-d6k" customClass="PhotoViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Oa7-Hq-Z8r"/>
-                        <viewControllerLayoutGuide type="bottom" id="ORw-Sl-wCV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YQy-v4-OFC">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esl-ws-XHn">
-                                <rect key="frame" x="275" y="243" width="50" height="50"/>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="tak-b8-d6k" eventType="touchUpInside" id="bfX-Ng-FaG"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Esl-ws-XHn" firstAttribute="centerY" secondItem="YQy-v4-OFC" secondAttribute="centerY" id="0Jn-eu-Wlk"/>
-                            <constraint firstItem="Esl-ws-XHn" firstAttribute="centerX" secondItem="YQy-v4-OFC" secondAttribute="centerX" id="Rmn-ag-Amg"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="imageButton" destination="Esl-ws-XHn" id="BSr-Hv-Bgr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hT1-e3-F18" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="38" y="-643"/>
         </scene>
     </scenes>
     <resources>
