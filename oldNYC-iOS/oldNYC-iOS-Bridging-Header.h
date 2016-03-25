@@ -8,6 +8,7 @@
 #import "FLAnimatedImage/FLAnimatedImage.h"
 #import "FLAnimatedImage/FLAnimatedImageView.h"
 #import "FMMosaicLayout/FMMosaicLayout.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 // For Unit Tests
 #import "NYTPhotoViewer/NYTPhotoViewController.h"

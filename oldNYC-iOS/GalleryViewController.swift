@@ -10,15 +10,16 @@ import UIKit
 import SwiftyJSON
 import FMMosaicLayout
 import NYTPhotoViewer
+import SDWebImage
 
 class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate, NYTPhotosViewControllerDelegate{
     private let reuseIdentifier = "galleryCell"
     var lastTappedLocationDataPassed:[[String : Any]]!
     var lastTappedLocationName : String?
-    var locationPhotoArray:[NSData] = []
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
+    var photos: [Photo!] = []
     
     override func viewDidLoad() {
 //        print("gallery load: ", lastTappedLocationDataPassed.count)
@@ -98,32 +99,8 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
         let url = flickrPhoto["image_url"] as! String
         cell.cellImage.image = nil;
-        let request = NSURLRequest(URL: NSURL(string: url)!)
-        let tap = UITapGestureRecognizer(target: self, action: "singleTapped")
-        tap.numberOfTapsRequired = 1
-        
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            
-            if error != nil {
-                print("Failed to load image for url: \(url), error: \(error?.description)")
-                return
-            }
-            
-            guard let httpResponse = response as? NSHTTPURLResponse else {
-                print("Not an NSHTTPURLResponse from loading url: \(url)")
-                return
-            }
-            
-            if httpResponse.statusCode != 200 {
-                print("Bad response statusCode: \(httpResponse.statusCode) while loading url: \(url)")
-                return
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                cell.cellImage.image = UIImage(data: data!)
-            })
-        
-            }.resume()
+        let request = NSURL(string: url)!
+        cell.cellImage.sd_setImageWithURL(request)
         
 //        for that sexy fade
         cell.alpha = 0.0
@@ -138,7 +115,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         cell.cellImage.bounds.size = cell.bounds.size
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
-        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -153,26 +129,22 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     func collectionView(collectionview: UICollectionView, layout collectionViewLayout: FMMosaicLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat{
         return 2.0
     }
-    
-    func singleTapped(){
-        performSegueWithIdentifier("toPhoto", sender: NSObject.self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "toPhoto"){
-            let svc = segue.destinationViewController as! PhotoViewController;
-            var urlStringArray:[String] = []
-            for (index,value) in lastTappedLocationDataPassed.enumerate(){
-                urlStringArray.append(lastTappedLocationDataPassed[index]["image_url"] as! String)
-            }
-            svc.locationPhotosArrayPassed = urlStringArray
-            svc.locationPhotoIndexPassed = locationPhotoIndex
-        }
-    }
+//    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if (segue.identifier == "toPhoto"){
+//            let svc = segue.destinationViewController as! PhotoViewController;
+//            var urlStringArray:[String] = []
+//            for (index,value) in lastTappedLocationDataPassed.enumerate(){
+//                urlStringArray.append(lastTappedLocationDataPassed[index]["image_url"] as! String)
+//            }
+//            svc.locationPhotosArrayPassed = urlStringArray
+//            svc.locationPhotoIndexPassed = locationPhotoIndex
+//        }
+//    }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
-            performSegueWithIdentifier("toPhoto", sender: cell)
+        if let _ = collectionView.cellForItemAtIndexPath(indexPath) {
+            self.setPhotos()
         } else {
             // Error indexPath is not on screen: this should never happen.
         }
@@ -207,5 +179,88 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     
     }
     */
-
+    
+//    photo view controller code
+    func updateImagesOnGalleryViewController(galleryViewController: NYTPhotosViewController, afterDelayWithPhotos: [Photo]) {
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, 5 * Int64(NSEC_PER_SEC))
+        
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            for photo in self.photos {
+                if photo!.image == nil {
+                    galleryViewController.updateImageForPhoto(photo)
+                }
+            }
+        }
+    }
+    
+    func callPhoto() -> Array<Photo>{
+        var mutablePhotos: [Photo] = []
+        let NumberOfPhotos = lastTappedLocationDataPassed.count
+        
+        for photoIndex in 0 ..< NumberOfPhotos {
+            let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            
+            let request = NSURL(string: lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!
+            
+            let image = UIImage(data: NSData(contentsOfURL: request)!)
+            
+            let photo = Photo(image: image, attributedCaptionTitle: title)
+            mutablePhotos.append(photo)
+        }
+        return mutablePhotos
+    }
+    
+    func setPhotos(){
+        let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.callPhoto())
+        self.presentViewController(galleryViewController, animated: true, completion: { _ in })
+        
+        updateImagesOnGalleryViewController(galleryViewController, afterDelayWithPhotos: self.callPhoto())
+    }
+    
+    // MARK: - NYTPhotosViewControllerDelegate
+    func galleryViewController(galleryViewController: NYTPhotosViewController, handleActionButtonTappedForPhoto photo: NYTPhoto) -> Bool {
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            
+            guard let photoImage = photo.image else { return false }
+            
+            let shareActivityViewController = UIActivityViewController(activityItems: [photoImage], applicationActivities: nil)
+            
+            shareActivityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) in
+                if completed {
+                    galleryViewController.delegate?.photosViewController!(galleryViewController, actionCompletedWithActivityType: activityType)
+                }
+            }
+            
+            shareActivityViewController.popoverPresentationController?.barButtonItem = galleryViewController.rightBarButtonItem
+            galleryViewController.presentViewController(shareActivityViewController, animated: true, completion: nil)
+            
+            return true
+        }
+        return false
+    }
+    func galleryViewController(galleryViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
+        return nil
+    }
+    
+    func galleryViewController(galleryViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
+        return nil
+    }
+    
+    func galleryViewController(galleryViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
+        return nil
+    }
+    
+    func galleryViewController(galleryViewController: NYTPhotosViewController, didNavigateToPhoto photo: NYTPhoto, atIndex photoIndex: UInt) {
+        print("Did Navigate To Photo: \(photo) identifier: \(photoIndex)")
+    }
+    
+    func galleryViewController(galleryViewController: NYTPhotosViewController, actionCompletedWithActivityType activityType: String?) {
+        print("Action Completed With Activity Type: \(activityType)")
+    }
+    
+    func photosViewControllerDidDismiss(galleryViewController: NYTPhotosViewController) {
+        print("Did dismiss Photo Viewer: \(galleryViewController)")
+    }
 }

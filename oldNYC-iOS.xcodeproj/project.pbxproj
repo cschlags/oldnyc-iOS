@@ -10,7 +10,6 @@
 		06A6EF48929D1D6F5CBF5BAD /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		781680381C96482900FB1D26 /* PhotosProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781680371C96482900FB1D26 /* PhotosProvider.swift */; };
 		7816803A1C9648D100FB1D26 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781680391C9648D100FB1D26 /* Photo.swift */; };
-		7855206E1C9625E000A9A232 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7855206D1C9625E000A9A232 /* PhotoViewController.swift */; };
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		84C17B4A1C963E5B00D491AF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 84C17B491C963E5A00D491AF /* Podfile */; };
@@ -34,7 +33,6 @@
 		32022ED5BD1ACBC3CC4C1B92 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		781680371C96482900FB1D26 /* PhotosProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosProvider.swift; sourceTree = "<group>"; };
 		781680391C9648D100FB1D26 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		7855206D1C9625E000A9A232 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oldNYC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */,
 				845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */,
 				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
-				7855206D1C9625E000A9A232 /* PhotoViewController.swift */,
 				84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */,
 				781680371C96482900FB1D26 /* PhotosProvider.swift */,
 				781680391C9648D100FB1D26 /* Photo.swift */,
@@ -280,7 +277,6 @@
 				CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */,
 				845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */,
 				CBE10BC71C8397C2002BD357 /* WebViewController.swift in Sources */,
-				7855206E1C9625E000A9A232 /* PhotoViewController.swift in Sources */,
 				781680381C96482900FB1D26 /* PhotosProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
