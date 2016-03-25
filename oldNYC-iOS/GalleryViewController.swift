@@ -146,9 +146,8 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         for photoIndex in 0 ..< NumberOfPhotos {
             let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
             
-            let request = NSURL(string: lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!
-            let image = UIImageView.sd_setImageWithURL(request)
-//            let image = UIImage(data: NSData(contentsOfURL: request)!)
+            let request = NSData(contentsOfURL: NSURL(string: lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
+            let image = UIImage.sd_imageWithData(request)
             
             let photo = Photo(image: image, attributedCaptionTitle: title)
             mutablePhotos.append(photo)
