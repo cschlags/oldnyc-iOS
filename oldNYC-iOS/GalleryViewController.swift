@@ -203,7 +203,4 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
 //    func photosViewControllerDidDismiss(galleryViewController: NYTPhotosViewController) {
 //        print("Did dismiss Photo Viewer: \(galleryViewController)")
 //    }
-//    override func prefersStatusBarHidden() -> Bool {
-//        return true;
-//    }
 }

@@ -115,7 +115,4 @@ class DataAttributionViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    override func prefersStatusBarHidden() -> Bool {
-        return true;
-    }
 }
