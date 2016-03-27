@@ -14,14 +14,29 @@ import SDWebImage
 
 class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate, NYTPhotosViewControllerDelegate{
     private let reuseIdentifier = "galleryCell"
-    var lastTappedLocationDataPassed:[[String : Any]]!
+    var lastTappedLocationDataPassed = [[String : Any]]()
     var lastTappedLocationName : String?
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
-    var photos: [NYTPhoto] = []
+    var photos : [NYTPhoto]?
     
     override func viewDidLoad() {
+        let photoInt:Int = self.lastTappedLocationDataPassed.count
+        self.photos = [NYTPhoto](count: photoInt, repeatedValue: Photo(image: nil, attributedCaptionTitle: NSAttributedString(string: "")))
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
+            let NumberOfPhotos = self.lastTappedLocationDataPassed.count
+            for photoIndex in 0 ..< NumberOfPhotos {
+                let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+                let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
+                let image = UIImage.sd_imageWithData(request)
+                
+                let photo = Photo(image: image, attributedCaptionTitle: title)
+                dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                    self.photos![photoIndex] = photo
+                })
+            }
+        })
         let mosaicLayout : FMMosaicLayout = FMMosaicLayout()
         self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
@@ -98,12 +113,11 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         cell.layer.shouldRasterize = true;
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         cell.backgroundColor = UIColor.blackColor()
-        let flickrPhoto =  lastTappedLocationDataPassed![indexPath.row]
+        let flickrPhoto =  lastTappedLocationDataPassed[indexPath.row]
         let url = flickrPhoto["image_url"] as! String
         cell.cellImage.image = nil;
         let request = NSURL(string: url)!
         cell.cellImage.sd_setImageWithURL(request)
-        
         cell.alpha = 0.0
         let millisecondsDelay = UInt64((arc4random() % 600) / 1000)
         
@@ -138,32 +152,14 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
 //    }
-
-    func callPhoto() {
-        var mutablePhotos: [Photo] = []
-        let NumberOfPhotos = lastTappedLocationDataPassed.count
-        
-        for photoIndex in 0 ..< NumberOfPhotos {
-            let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-            
-            let request = NSData(contentsOfURL: NSURL(string: lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
-            let image = UIImage.sd_imageWithData(request)
-            
-            let photo = Photo(image: image, attributedCaptionTitle: title)
-            mutablePhotos.append(photo)
-        }
-        photos = mutablePhotos
-    }
     
     func setPhotos(){
-        callPhoto()
-        let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos[locationPhotoIndex])
+        let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos![self.locationPhotoIndex])
         self.presentViewController(galleryViewController, animated: true, completion: { _ in })
     }
     
     // MARK: - NYTPhotosViewControllerDelegate
     func galleryViewController(galleryViewController: NYTPhotosViewController, handleActionButtonTappedForPhoto photo: NYTPhoto) -> Bool {
-        
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             
             guard let photoImage = photo.image else { return false }
@@ -183,31 +179,31 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         }
         return false
     }
-    
-    func galleryViewController(galleryViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
-        return nil
-    }
-    
-    func galleryViewController(galleryViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
-        return nil
-    }
-    
-    func galleryViewController(galleryViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
-        return nil
-    }
-    
-    func galleryViewController(galleryViewController: NYTPhotosViewController, didNavigateToPhoto photo: NYTPhoto, atIndex photoIndex: UInt) {
-        print("Did Navigate To Photo: \(photo) identifier: \(photoIndex)")
-    }
-    
-    func galleryViewController(galleryViewController: NYTPhotosViewController, actionCompletedWithActivityType activityType: String?) {
-        print("Action Completed With Activity Type: \(activityType)")
-    }
-    
-    func photosViewControllerDidDismiss(galleryViewController: NYTPhotosViewController) {
-        print("Did dismiss Photo Viewer: \(galleryViewController)")
-    }
-    override func prefersStatusBarHidden() -> Bool {
-        return true;
-    }
+//    
+//    func galleryViewController(galleryViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
+//        return nil
+//    }
+//    
+//    func galleryViewController(galleryViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
+//        return nil
+//    }
+//    
+//    func galleryViewController(galleryViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
+//        return nil
+//    }
+//    
+//    func galleryViewController(galleryViewController: NYTPhotosViewController, didNavigateToPhoto photo: NYTPhoto, atIndex photoIndex: UInt) {
+//        print("Did Navigate To Photo: \(photo) identifier: \(photoIndex)")
+//    }
+//    
+//    func galleryViewController(galleryViewController: NYTPhotosViewController, actionCompletedWithActivityType activityType: String?) {
+//        print("Action Completed With Activity Type: \(activityType)")
+//    }
+//    
+//    func photosViewControllerDidDismiss(galleryViewController: NYTPhotosViewController) {
+//        print("Did dismiss Photo Viewer: \(galleryViewController)")
+//    }
+//    override func prefersStatusBarHidden() -> Bool {
+//        return true;
+//    }
 }
