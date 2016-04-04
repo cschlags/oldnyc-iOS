@@ -186,7 +186,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     
     func appendBarButtonItem(view: NYTPhotosViewController){
         let btn2 = UIButton()
-        btn2.setImage(UIImage(named: "LocationMarker"), forState: .Normal)
+        btn2.setImage(UIImage(named: "MoreDetails"), forState: .Normal)
         btn2.frame = CGRectMake(0, 0, 30, 30)
         btn2.addTarget(self, action: #selector(GalleryViewController.details), forControlEvents: .TouchUpInside)
         let item2 = UIBarButtonItem()
