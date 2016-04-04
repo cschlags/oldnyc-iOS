@@ -52,16 +52,26 @@
                                     <segue destination="vWL-pe-asW" kind="show" identifier="toMenu" animates="NO" id="hxT-Ab-c4e"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGV-Jw-Lkd" userLabel="CenterOnUserButton">
+                                <rect key="frame" x="515" y="520" width="60" height="60"/>
+                                <state key="normal" image="CenterNav"/>
+                                <connections>
+                                    <action selector="tappedCenterOnUserbutton:" destination="7hd-rf-b07" eventType="touchUpInside" id="v9x-Ww-nXB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="duT-LL-IIZ" firstAttribute="top" secondItem="Wpu-t4-hvh" secondAttribute="bottom" constant="20" id="05T-JV-kVW"/>
+                            <constraint firstItem="Y4p-99-OS3" firstAttribute="top" secondItem="NGV-Jw-Lkd" secondAttribute="bottom" constant="20" id="GxU-ZW-f9g"/>
                             <constraint firstItem="duT-LL-IIZ" firstAttribute="leading" secondItem="Tkv-Jg-v7T" secondAttribute="leadingMargin" id="Huc-vb-I5D"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NGV-Jw-Lkd" secondAttribute="trailing" constant="5" id="OR6-XN-O17"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
                     <connections>
+                        <outlet property="centerOnUserButton" destination="NGV-Jw-Lkd" id="D7h-KG-C6Z"/>
                         <outlet property="menuButton" destination="duT-LL-IIZ" id="19I-ge-DXh"/>
                         <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" id="LvC-48-aIT"/>
                     </connections>
@@ -249,6 +259,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CenterNav" width="60" height="60"/>
         <image name="Cog" width="22" height="22"/>
     </resources>
 </document>

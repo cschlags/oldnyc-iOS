@@ -21,6 +21,18 @@ class MapViewController: UIViewController,
     let locationManager = CLLocationManager()
 
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var centerOnUserButton: UIButton!
+    @IBAction func tappedCenterOnUserbutton(sender: UIButton) {
+        mapView.setUserTrackingMode(.Follow, animated: true)
+//        let currentCoordinates : CLLocationCoordinate2D = locationManager.location!.coordinate
+//        //mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: true)
+//        
+//        let camera = MGLMapCamera(lookingAtCenterCoordinate: <#T##CLLocationCoordinate2D#>, fromEyeCoordinate: <#T##CLLocationCoordinate2D#>, eyeAltitude: <#T##CLLocationDistance#>)
+//        
+//        mapView.setCamera(<#T##camera: MGLMapCamera##MGLMapCamera#>, withDuration: <#T##NSTimeInterval#>, animationTimingFunction: <#T##CAMediaTimingFunction?#>, completionHandler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +49,7 @@ class MapViewController: UIViewController,
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
+        view.bringSubviewToFront(centerOnUserButton)
         
         mapView.delegate = self
         
@@ -77,6 +90,8 @@ class MapViewController: UIViewController,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
