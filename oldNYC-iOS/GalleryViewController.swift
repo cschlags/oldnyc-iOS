@@ -218,14 +218,14 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     }
     
     func details(){
-        let detailsActivityViewController = UIAlertController(title: "Would you like to open this image in the NYPL Photo Collection?", message: "", preferredStyle: .ActionSheet)
+        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
             // ...
         }
         detailsActivityViewController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { UIAlertAction in
+        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .Default) { UIAlertAction in
             self.performSegueWithIdentifier("detail.alert", sender: self)
             UIApplication.sharedApplication().sendAction((self.galleryView.leftBarButtonItem?.action)!, to: self.galleryView.leftBarButtonItem?.target, from: self, forEvent: nil)
         }
@@ -240,7 +240,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
             let svc = segue.destinationViewController as! DetailWebViewController;
             let string:String = (galleryView.currentlyDisplayedPhoto?.cellIndex?.string)!
             locationPhotoIndex = Int(string)!
-            svc.photoIDPassed = galleryView.currentlyDisplayedPhoto?.number?.string
+            svc.photoIDPassed = galleryView.currentlyDisplayedPhoto?.number?.string.componentsSeparatedByString("-").first
         }
     }
 }
