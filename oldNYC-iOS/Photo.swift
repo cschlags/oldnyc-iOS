@@ -17,13 +17,19 @@ class Photo: NSObject, NYTPhoto {
     var placeholderImage: UIImage?
     
     let attributedCaptionTitle: NSAttributedString?
-    let attributedCaptionSummary: NSAttributedString? = NSAttributedString(string: "summary string", attributes: [NSForegroundColorAttributeName: UIColor.grayColor()])
+    let attributedCaptionSummary: NSAttributedString?
+    let number: NSAttributedString?
+    let cellIndex: NSAttributedString?
+//    let attributedCaptionSummary: NSAttributedString? = NSAttributedString(string: "summary string", attributes: [NSForegroundColorAttributeName: UIColor.grayColor()])
     let attributedCaptionCredit: NSAttributedString? = NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
     
-    init(image: UIImage? = nil, imageData: NSData? = nil, attributedCaptionTitle: NSAttributedString) {
+    init(image: UIImage? = nil, imageData: NSData? = nil, attributedCaptionTitle: NSAttributedString, attributedCaptionSummary: NSAttributedString, number: NSAttributedString, cellIndex: NSAttributedString) {
         self.image = image
         self.imageData = imageData
         self.attributedCaptionTitle = attributedCaptionTitle
+        self.attributedCaptionSummary = attributedCaptionSummary
+        self.number = number
+        self.cellIndex = cellIndex
         super.init()
     }
 }
