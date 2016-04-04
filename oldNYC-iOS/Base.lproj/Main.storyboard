@@ -52,16 +52,26 @@
                                     <segue destination="vWL-pe-asW" kind="show" identifier="toMenu" animates="NO" id="hxT-Ab-c4e"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGV-Jw-Lkd" userLabel="CenterOnUserButton">
+                                <rect key="frame" x="515" y="520" width="60" height="60"/>
+                                <state key="normal" image="CenterNav"/>
+                                <connections>
+                                    <action selector="tappedCenterOnUserbutton:" destination="7hd-rf-b07" eventType="touchUpInside" id="v9x-Ww-nXB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="duT-LL-IIZ" firstAttribute="top" secondItem="Wpu-t4-hvh" secondAttribute="bottom" constant="20" id="05T-JV-kVW"/>
+                            <constraint firstItem="Y4p-99-OS3" firstAttribute="top" secondItem="NGV-Jw-Lkd" secondAttribute="bottom" constant="20" id="GxU-ZW-f9g"/>
                             <constraint firstItem="duT-LL-IIZ" firstAttribute="leading" secondItem="Tkv-Jg-v7T" secondAttribute="leadingMargin" id="Huc-vb-I5D"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NGV-Jw-Lkd" secondAttribute="trailing" constant="5" id="OR6-XN-O17"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="uus-Ug-lzc"/>
                     <connections>
+                        <outlet property="centerOnUserButton" destination="NGV-Jw-Lkd" id="D7h-KG-C6Z"/>
                         <outlet property="menuButton" destination="duT-LL-IIZ" id="19I-ge-DXh"/>
                         <segue destination="4m1-AQ-v0X" kind="show" identifier="toGallery" id="LvC-48-aIT"/>
                     </connections>
@@ -80,14 +90,14 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MenuCell" textLabel="DNf-jd-LfF" style="IBUITableViewCellStyleDefault" id="WQI-RL-ghd">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQI-RL-ghd" id="CS3-Sg-V1T">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DNf-jd-LfF">
-                                            <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -127,7 +137,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YrF-RG-6gT" id="TJX-j6-5R7">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smr-qD-cTb">
@@ -284,6 +294,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CenterNav" width="60" height="60"/>
         <image name="Cog" width="22" height="22"/>
     </resources>
 </document>

@@ -12,13 +12,27 @@ import Mapbox
 import SwiftyJSON
 
 class MapViewController: UIViewController,
-                         MGLMapViewDelegate {
+                         MGLMapViewDelegate,
+                         CLLocationManagerDelegate {
 
     var mapView : MGLMapView!
     var lastTappedLocationData = [[String : Any]]()
     var lastTappedLocationName: String = ""
+    let locationManager = CLLocationManager()
 
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var centerOnUserButton: UIButton!
+    @IBAction func tappedCenterOnUserbutton(sender: UIButton) {
+        mapView.setUserTrackingMode(.Follow, animated: true)
+//        let currentCoordinates : CLLocationCoordinate2D = locationManager.location!.coordinate
+//        //mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: true)
+//        
+//        let camera = MGLMapCamera(lookingAtCenterCoordinate: <#T##CLLocationCoordinate2D#>, fromEyeCoordinate: <#T##CLLocationCoordinate2D#>, eyeAltitude: <#T##CLLocationDistance#>)
+//        
+//        mapView.setCamera(<#T##camera: MGLMapCamera##MGLMapCamera#>, withDuration: <#T##NSTimeInterval#>, animationTimingFunction: <#T##CAMediaTimingFunction?#>, completionHandler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +49,11 @@ class MapViewController: UIViewController,
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
+        view.bringSubviewToFront(centerOnUserButton)
         
         mapView.delegate = self
         
         // Configure map settings.
-        mapView.showsUserLocation = false // Make true later
-        mapView.userTrackingMode = .Follow
-        
         mapView.logoView.hidden = true
         mapView.attributionButton.hidden = true
         mapView.scrollEnabled = true
@@ -50,6 +62,15 @@ class MapViewController: UIViewController,
         
         // Place marker annotations on map.
         generateMarkersFromJSON()
+        
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,11 +90,25 @@ class MapViewController: UIViewController,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedAlways {
+            let currentCoordinates : CLLocationCoordinate2D = manager.location!.coordinate
+            //let currentCoordinates = CLLocationCoordinate2D(latitude: 40.69830, longitude: -74.04148)
+            centerOnLocationIfUserInNYC(currentCoordinates)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //let currentUserLocation = CLLocationCoordinate2D(latitude: 40.6466, longitude: -73.7785)
+        //centerOnLocationIfUserInNYC(currentUserLocation)
+    }
     
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
-    // Read markers.json and generate markers for each coordinate.
+    // Read markers.json, and generate markers for each coordinate.
     func generateMarkersFromJSON() {
         if let path = NSBundle.mainBundle().pathForResource("markers", ofType: "json") {
             do {
@@ -190,9 +225,33 @@ class MapViewController: UIViewController,
         lastTappedLocationData.sortInPlace{ ($0["date"] as? String) < ($1["date"] as? String) }
     }
     
-    //func isUserInNewYorkCity() {
-        //add code here
-    //}
+    func centerOnLocationIfUserInNYC(currentCoordinates: CLLocationCoordinate2D) {
+        let location = CLLocation(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude)
+        let geocoder = CLGeocoder()
+        
+        print("-> Finding user address...")
+        
+        geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error)->Void in
+            var placemark:CLPlacemark!
+            
+            if error == nil && placemarks!.count > 0 {
+                placemark = placemarks![0] as CLPlacemark
+                
+                print("Locality:" + placemark.locality!)
+                print(placemark.administrativeArea)
+                print("subAdmin:" + placemark.subAdministrativeArea!)
+                print("subLocality:" + placemark.subLocality!)
+                print(placemark.ocean)
+                print(placemark.inlandWater)
+                
+                if (placemark.locality == "New York" && placemark.inlandWater != nil) {
+                    print("Will enable tracking mode and show user location")
+                    self.mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: false)
+                }
+                self.mapView.showsUserLocation = true
+            }
+        })
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
         if (segue.identifier == "toGallery"){
