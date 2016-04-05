@@ -19,19 +19,23 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
-    var photos : [NYTPhoto]?
+    var galleryView: NYTPhotosViewController!
+    var photos : [NYTPhoto]!
     
     override func viewDidLoad() {
         let photoInt:Int = self.lastTappedLocationDataPassed.count
-        self.photos = [NYTPhoto](count: photoInt, repeatedValue: Photo(image: nil, attributedCaptionTitle: NSAttributedString(string: "")))
+        self.photos = [NYTPhoto](count: photoInt, repeatedValue: Photo(image: nil, attributedCaptionTitle: NSAttributedString(string: ""), attributedCaptionSummary: NSAttributedString(string: ""), number: NSAttributedString(string: ""), cellIndex: NSAttributedString(string: "")))
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
             let NumberOfPhotos = self.lastTappedLocationDataPassed.count
             for photoIndex in 0 ..< NumberOfPhotos {
-                let title = NSAttributedString(string: "\(photoIndex + 1)", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+                let title = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["date"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+                let summary = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["description"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
                 let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
                 let image = UIImage.sd_imageWithData(request)
+                let number = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["photoID"] as! String)
                 
-                let photo = Photo(image: image, attributedCaptionTitle: title)
+                let photo = Photo(image: image, attributedCaptionTitle: title, attributedCaptionSummary: summary, number: number, cellIndex: NSAttributedString(string: String(photoIndex)))
+                
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
                     self.photos![photoIndex] = photo
                 })
@@ -52,6 +56,9 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if galleryView != nil{
+            self.setPhotos()
+        }
         self.navigationController?.navigationBar.translucent = true
         hidingNavBarManager?.viewWillAppear(animated)
         dispatch_async(dispatch_get_main_queue(),{
@@ -155,11 +162,41 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     
     func setPhotos(){
         let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos![self.locationPhotoIndex])
+        galleryView = galleryViewController
         self.presentViewController(galleryViewController, animated: true, completion: { _ in })
+        appendBarButtonItem(galleryViewController)
+        updateImagesOnPhotosViewController(galleryViewController, afterDelayWithPhotos: self.photos!)
+    }
+    
+    func updateImagesOnPhotosViewController(galleryViewController: NYTPhotosViewController, afterDelayWithPhotos: [NYTPhoto]?) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), {() -> Void in
+            var index_counter:Int=0
+            for photo: NYTPhoto in self.photos! {
+                if photo.image == nil{
+                    let imageView: UIImageView = UIImageView()
+                    let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
+                    imageView.setImageWithURL(NSURL(string: photoUrl)!)
+                    photo.image = imageView.image
+                    galleryViewController.updateImageForPhoto(photo)
+                }
+                index_counter += 1
+            }
+        })
+    }
+    
+    func appendBarButtonItem(view: NYTPhotosViewController){
+        let btn2 = UIButton()
+        btn2.setImage(UIImage(named: "MoreDetails"), forState: .Normal)
+        btn2.frame = CGRectMake(0, 0, 30, 30)
+        btn2.addTarget(self, action: #selector(GalleryViewController.details), forControlEvents: .TouchUpInside)
+        let item2 = UIBarButtonItem()
+        item2.customView = btn2
+        view.rightBarButtonItems?.append(item2)
     }
     
     // MARK: - NYTPhotosViewControllerDelegate
     func galleryViewController(galleryViewController: NYTPhotosViewController, handleActionButtonTappedForPhoto photo: NYTPhoto) -> Bool {
+        
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             
             guard let photoImage = photo.image else { return false }
@@ -179,28 +216,31 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         }
         return false
     }
-//    
-//    func galleryViewController(galleryViewController: NYTPhotosViewController, referenceViewForPhoto photo: NYTPhoto) -> UIView? {
-//        return nil
-//    }
-//    
-//    func galleryViewController(galleryViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
-//        return nil
-//    }
-//    
-//    func galleryViewController(galleryViewController: NYTPhotosViewController, captionViewForPhoto photo: NYTPhoto) -> UIView? {
-//        return nil
-//    }
-//    
-//    func galleryViewController(galleryViewController: NYTPhotosViewController, didNavigateToPhoto photo: NYTPhoto, atIndex photoIndex: UInt) {
-//        print("Did Navigate To Photo: \(photo) identifier: \(photoIndex)")
-//    }
-//    
-//    func galleryViewController(galleryViewController: NYTPhotosViewController, actionCompletedWithActivityType activityType: String?) {
-//        print("Action Completed With Activity Type: \(activityType)")
-//    }
-//    
-//    func photosViewControllerDidDismiss(galleryViewController: NYTPhotosViewController) {
-//        print("Did dismiss Photo Viewer: \(galleryViewController)")
-//    }
+    
+    func details(){
+        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            // ...
+        }
+        detailsActivityViewController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .Default) { UIAlertAction in
+            self.performSegueWithIdentifier("detail.alert", sender: self)
+            UIApplication.sharedApplication().sendAction((self.galleryView.leftBarButtonItem?.action)!, to: self.galleryView.leftBarButtonItem?.target, from: self, forEvent: nil)
+        }
+        detailsActivityViewController.addAction(OKAction)
+        
+        detailsActivityViewController.popoverPresentationController?.barButtonItem = galleryView.rightBarButtonItem
+        galleryView.presentViewController(detailsActivityViewController, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
+        if (segue.identifier == "detail.alert"){
+            let svc = segue.destinationViewController as! DetailWebViewController;
+            let string:String = (galleryView.currentlyDisplayedPhoto?.cellIndex?.string)!
+            locationPhotoIndex = Int(string)!
+            svc.photoIDPassed = galleryView.currentlyDisplayedPhoto?.number?.string.componentsSeparatedByString("-").first
+        }
+    }
 }

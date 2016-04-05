@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		06A6EF48929D1D6F5CBF5BAD /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		7816803A1C9648D100FB1D26 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781680391C9648D100FB1D26 /* Photo.swift */; };
+		8420B65A1CB0EF11003829C7 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
+		8420B65B1CB0F106003829C7 /* by-location in Resources */ = {isa = PBXBuildFile; fileRef = CBE6AA2D1C83CAD00097699A /* by-location */; };
 		845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */; };
+		8458EF531CB2273100734E6D /* DetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458EF521CB2273100734E6D /* DetailWebViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
 		84C17B4A1C963E5B00D491AF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 84C17B491C963E5A00D491AF /* Podfile */; };
 		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		AA79E665FE0937BE7571601E /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32022ED5BD1ACBC3CC4C1B92 /* Pods_oldNYC_iOS.framework */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
-		CB4DD3451C56DE0300BD4729 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
 		CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E11C41A1A300A55D30 /* AppDelegate.swift */; };
 		CB5783E41C41A1A300A55D30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5783E31C41A1A300A55D30 /* MapViewController.swift */; };
 		CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5783E81C41A1A300A55D30 /* Assets.xcassets */; };
@@ -25,13 +27,13 @@
 		CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */; };
 		CBE10BC51C8381BE002BD357 /* DataAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */; };
 		CBE10BC71C8397C2002BD357 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE10BC61C8397C2002BD357 /* WebViewController.swift */; };
-		CBE6AA2E1C83CAD00097699A /* by-location in Resources */ = {isa = PBXBuildFile; fileRef = CBE6AA2D1C83CAD00097699A /* by-location */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		32022ED5BD1ACBC3CC4C1B92 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		781680391C9648D100FB1D26 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		8458EF521CB2273100734E6D /* DetailWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWebViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oldNYC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		84C17B491C963E5A00D491AF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -119,6 +121,7 @@
 				781680391C9648D100FB1D26 /* Photo.swift */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CBE10BC61C8397C2002BD357 /* WebViewController.swift */,
+				8458EF521CB2273100734E6D /* DetailWebViewController.swift */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CBE10BBD1C82BBC2002BD357 /* HidingNavigationBar */,
@@ -172,7 +175,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 397HLL8JUB;
+						DevelopmentTeam = LRAK7WQC9P;
 					};
 				};
 			};
@@ -199,11 +202,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB4DD3451C56DE0300BD4729 /* markers.json in Resources */,
+				8420B65B1CB0F106003829C7 /* by-location in Resources */,
+				8420B65A1CB0EF11003829C7 /* markers.json in Resources */,
 				CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */,
 				CB5783E91C41A1A300A55D30 /* Assets.xcassets in Resources */,
 				848B04521C815D7400ED79E9 /* Main.storyboard in Resources */,
-				CBE6AA2E1C83CAD00097699A /* by-location in Resources */,
 				CBE10BBF1C82BBE1002BD357 /* HidingNavigationBar.txt in Resources */,
 				84C17B4A1C963E5B00D491AF /* Podfile in Resources */,
 			);
@@ -270,6 +273,7 @@
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */,
 				7816803A1C9648D100FB1D26 /* Photo.swift in Sources */,
+				8458EF531CB2273100734E6D /* DetailWebViewController.swift in Sources */,
 				CBE10BC51C8381BE002BD357 /* DataAttributionViewController.swift in Sources */,
 				CBE10BBB1C82BB89002BD357 /* HidingViewController.swift in Sources */,
 				845117911C7FF78E00EDE9A5 /* GalleryViewController.swift in Sources */,
@@ -336,7 +340,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/christinaleuci/Programming/oldNYC-iOS/oldNYC-iOS/oldNYC-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
@@ -382,7 +386,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/christinaleuci/Programming/oldNYC-iOS/oldNYC-iOS/oldNYC-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
 				VALIDATE_PRODUCT = YES;
@@ -406,11 +410,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "oldNYC-iOS/oldNYC-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)/**";
@@ -433,7 +437,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
