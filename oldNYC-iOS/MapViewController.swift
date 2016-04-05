@@ -26,7 +26,7 @@ class MapViewController: UIViewController,
         mapView.setUserTrackingMode(.Follow, animated: true)
 //        let currentCoordinates : CLLocationCoordinate2D = locationManager.location!.coordinate
 //        //mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: true)
-//        
+//        https://www.mapbox.com/ios-sdk/examples/camera-animation/
 //        let camera = MGLMapCamera(lookingAtCenterCoordinate: <#T##CLLocationCoordinate2D#>, fromEyeCoordinate: <#T##CLLocationCoordinate2D#>, eyeAltitude: <#T##CLLocationDistance#>)
 //        
 //        mapView.setCamera(<#T##camera: MGLMapCamera##MGLMapCamera#>, withDuration: <#T##NSTimeInterval#>, animationTimingFunction: <#T##CAMediaTimingFunction?#>, completionHandler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
@@ -244,7 +244,7 @@ class MapViewController: UIViewController,
                 print(placemark.ocean)
                 print(placemark.inlandWater)
                 
-                if (placemark.locality == "New York" && placemark.inlandWater != nil) {
+                if (placemark.locality == "New York" && placemark.inlandWater == nil) {
                     print("Will enable tracking mode and show user location")
                     self.mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: false)
                 }
