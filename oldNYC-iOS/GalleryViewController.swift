@@ -155,6 +155,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         locationPhotoIndex = indexPath.row
         self.setPhotos()
+        self.presentViewController(galleryView, animated: true, completion: { _ in })
     }
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
@@ -163,19 +164,18 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     func setPhotos(){
         let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos![self.locationPhotoIndex])
         galleryView = galleryViewController
-        self.presentViewController(galleryViewController, animated: true, completion: { _ in })
         appendBarButtonItem(galleryViewController)
         updateImagesOnPhotosViewController(galleryViewController, afterDelayWithPhotos: self.photos!)
     }
     
     func updateImagesOnPhotosViewController(galleryViewController: NYTPhotosViewController, afterDelayWithPhotos: [NYTPhoto]?) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), {() -> Void in
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
             var index_counter:Int=0
             for photo: NYTPhoto in self.photos! {
                 if photo.image == nil{
                     let imageView: UIImageView = UIImageView()
                     let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
-                    imageView.setImageWithURL(NSURL(string: photoUrl)!)
+                    imageView.sd_setImageWithURL(NSURL(string: photoUrl)!)
                     photo.image = imageView.image
                     galleryViewController.updateImageForPhoto(photo)
                 }
