@@ -55,8 +55,11 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGV-Jw-Lkd" userLabel="CenterOnUserButton">
                                 <rect key="frame" x="515" y="520" width="60" height="60"/>
                                 <state key="normal" image="CenterNav"/>
+                                <state key="highlighted">
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="tappedCenterOnUserbutton:" destination="7hd-rf-b07" eventType="touchUpInside" id="v9x-Ww-nXB"/>
+                                    <action selector="tappedCenterOnUserbutton:" destination="7hd-rf-b07" eventType="touchDown" id="HlE-Ax-UZb"/>
                                 </connections>
                             </button>
                         </subviews>
