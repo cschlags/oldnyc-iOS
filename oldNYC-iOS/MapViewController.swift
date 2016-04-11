@@ -23,33 +23,30 @@ class MapViewController: UIViewController,
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var centerOnUserButton: UIButton!
     @IBAction func tappedCenterOnUserbutton(sender: UIButton) {
-        mapView.setUserTrackingMode(.Follow, animated: true)
-//        let currentCoordinates : CLLocationCoordinate2D = locationManager.location!.coordinate
-//        //mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: true)
-//        https://www.mapbox.com/ios-sdk/examples/camera-animation/
-//        let camera = MGLMapCamera(lookingAtCenterCoordinate: <#T##CLLocationCoordinate2D#>, fromEyeCoordinate: <#T##CLLocationCoordinate2D#>, eyeAltitude: <#T##CLLocationDistance#>)
-//        
-//        mapView.setCamera(<#T##camera: MGLMapCamera##MGLMapCamera#>, withDuration: <#T##NSTimeInterval#>, animationTimingFunction: <#T##CAMediaTimingFunction?#>, completionHandler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+        
+        let fromCamera = mapView.camera
+        
+        let toCamera = MGLMapCamera(lookingAtCenterCoordinate: (mapView.userLocation?.coordinate)!, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
 
-
+        mapView.setCamera(toCamera, withDuration: 0.5, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in self.mapView.setUserTrackingMode(.Follow, animated:false)})
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
         mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         // Set the map's center coordinate over NYC.
-        let userLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), zoomLevel:12, animated:false)
+        let startingLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: startingLocation.coordinate.latitude, longitude: startingLocation.coordinate.longitude), zoomLevel:12, animated:false)
         mapView.minimumZoomLevel = 10
         mapView.maximumZoomLevel = 18
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
-        view.bringSubviewToFront(centerOnUserButton)
+        
         
         mapView.delegate = self
         
@@ -64,7 +61,7 @@ class MapViewController: UIViewController,
         generateMarkersFromJSON()
         
         
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -92,18 +89,15 @@ class MapViewController: UIViewController,
     }
     
     
-    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedAlways {
+        if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
             let currentCoordinates : CLLocationCoordinate2D = manager.location!.coordinate
-            //let currentCoordinates = CLLocationCoordinate2D(latitude: 40.69830, longitude: -74.04148)
+            //let currentCoordinates = CLLocationCoordinate2D(latitude: 40.761850, longitude: -73.887072)
             centerOnLocationIfUserInNYC(currentCoordinates)
         }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //let currentUserLocation = CLLocationCoordinate2D(latitude: 40.6466, longitude: -73.7785)
-        //centerOnLocationIfUserInNYC(currentUserLocation)
     }
     
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
@@ -246,11 +240,22 @@ class MapViewController: UIViewController,
                 
                 if (placemark.locality == "New York" && placemark.inlandWater == nil) {
                     print("Will enable tracking mode and show user location")
-                    self.mapView.setCenterCoordinate(currentCoordinates, zoomLevel: 16, animated: false)
+                    
+                    let fromCamera = self.mapView.camera
+                    let toCamera = MGLMapCamera(lookingAtCenterCoordinate: currentCoordinates, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
+                    
+                    self.mapView.setCamera(toCamera, withDuration: 0.75, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in
+                            self.mapView.setZoomLevel(14, animated: true)
+                        
+                            //self.mapView.setUserTrackingMode(.Follow, animated:false)
+                    })
                 }
                 self.mapView.showsUserLocation = true
             }
         })
+        
+        // Display center-on-user button when user is in NYC.
+        view.bringSubviewToFront(centerOnUserButton)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
