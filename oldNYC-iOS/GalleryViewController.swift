@@ -23,6 +23,7 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     var photos : [NYTPhoto]!
     
     override func viewDidLoad() {
+//        put this in a separate method super busy
         let photoInt:Int = self.lastTappedLocationDataPassed.count
         self.photos = [NYTPhoto](count: photoInt, repeatedValue: Photo(image: nil, attributedCaptionTitle: NSAttributedString(string: ""), attributedCaptionSummary: NSAttributedString(string: ""), number: NSAttributedString(string: ""), cellIndex: NSAttributedString(string: "")))
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
@@ -33,9 +34,8 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
                 let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
                 let image = UIImage.sd_imageWithData(request)
                 let number = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["photoID"] as! String)
-                
                 let photo = Photo(image: image, attributedCaptionTitle: title, attributedCaptionSummary: summary, number: number, cellIndex: NSAttributedString(string: String(photoIndex)))
-                
+
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
                     self.photos![photoIndex] = photo
                 })
@@ -44,7 +44,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         let mosaicLayout : FMMosaicLayout = FMMosaicLayout()
         self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         let location = lastTappedLocationDataPassed[0]["folder"] as! String
@@ -155,33 +154,54 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         locationPhotoIndex = indexPath.row
         self.setPhotos()
-        self.presentViewController(galleryView, animated: true, completion: { _ in })
     }
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
 //    }
     
     func setPhotos(){
-        let galleryViewController: NYTPhotosViewController = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos![self.locationPhotoIndex])
-        galleryView = galleryViewController
-        appendBarButtonItem(galleryViewController)
-        updateImagesOnPhotosViewController(galleryViewController, afterDelayWithPhotos: self.photos!)
+        updateImagesInPhotos()
+        galleryView = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos![self.locationPhotoIndex])
+        appendBarButtonItem(galleryView)
+        self.presentViewController(galleryView, animated: true, completion: { _ in })
     }
     
-    func updateImagesOnPhotosViewController(galleryViewController: NYTPhotosViewController, afterDelayWithPhotos: [NYTPhoto]?) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
-            var index_counter:Int=0
-            for photo: NYTPhoto in self.photos! {
-                if photo.image == nil{
-                    let imageView: UIImageView = UIImageView()
-                    let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
-                    imageView.sd_setImageWithURL(NSURL(string: photoUrl)!)
-                    photo.image = imageView.image
-                    galleryViewController.updateImageForPhoto(photo)
-                }
-                index_counter += 1
-            }
-        })
+//    func updateImagesOnPhotosViewController(galleryView: NYTPhotosViewController, afterDelayWithPhotos: [NYTPhoto]?) {
+//        var index_counter:Int=0
+//        for photo: NYTPhoto in self.photos! {
+//            let title = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["date"] as! String)
+//            let summary = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["description"] as! String)
+//            let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
+//            let request = NSData(contentsOfURL: NSURL(string: photoUrl)!)
+//            
+//            photo.image = UIImage.sd_imageWithData(request)
+//            index_counter += 1
+//        }
+//    }
+    
+    func updateImagesInPhotos(){
+        var index_counter:Int=0
+        for photo: NYTPhoto in self.photos! {
+            print(photo.attributedCaptionTitle)
+            print(photo.attributedCaptionSummary)
+            let title = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["date"] as! String)
+            let summary = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["description"] as! String)
+            let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
+            let request = NSData(contentsOfURL: NSURL(string: photoUrl)!)
+            let number = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["photoID"] as! String)
+            photo.attributedCaptionTitle = title
+            photo.attributedCaptionSummary = summary
+            photo.number = number
+            photo.cellIndex = NSAttributedString(string: String(index_counter))
+            photo.attributedCaptionCredit = NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+            photo.image = UIImage.sd_imageWithData(request)
+            print(photo.attributedCaptionTitle)
+            print(photo.attributedCaptionSummary)
+            print(photo.number)
+            print(photo.cellIndex)
+            print(photo.attributedCaptionCredit)
+            index_counter += 1
+        }
     }
     
     func appendBarButtonItem(view: NYTPhotosViewController){
