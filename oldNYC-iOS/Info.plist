@@ -36,7 +36,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>If you&apos;re in New York City, OldNYC would like to center the map on your current location so you can discover historical images closest to you.</string>
+	<string>If you're in New York City, OldNYC would like to center the map on your current location so you can discover historical images closest to you.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

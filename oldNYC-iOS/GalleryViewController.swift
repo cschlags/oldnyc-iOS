@@ -53,6 +53,14 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
     }
 
+//    @IBAction func startSpinning(sender: UIButton) {
+//        activityIndicatorView.startAnimating()
+//    }
+//    
+//    @IBAction func startSpinning(sender: UIButton) {
+//        activityIndicatorView.stopAnimating()
+//    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if galleryView != nil{
@@ -121,7 +129,6 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         cell.backgroundColor = UIColor.blackColor()
         let flickrPhoto =  lastTappedLocationDataPassed[indexPath.row]
         let url = flickrPhoto["image_url"] as! String
-        cell.cellImage.image = nil;
         let request = NSURL(string: url)!
         cell.cellImage.sd_setImageWithURL(request)
         cell.alpha = 0.0
@@ -155,54 +162,65 @@ class GalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate,
         locationPhotoIndex = indexPath.row
         self.setPhotos()
     }
+    
 //    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
 //        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
 //    }
     
     func setPhotos(){
-        updateImagesInPhotos()
-        galleryView = NYTPhotosViewController(photos: self.photos, initialPhoto: self.photos![self.locationPhotoIndex])
+        let locationArray:[NYTPhoto] = [self.photos[locationPhotoIndex]]
+        let galleryView = NYTPhotosViewController(photos: locationArray)
+        galleryView.delegate = self
         appendBarButtonItem(galleryView)
-        self.presentViewController(galleryView, animated: true, completion: { _ in })
+        presentViewController(galleryView, animated: false, completion: nil)
     }
     
-//    func updateImagesOnPhotosViewController(galleryView: NYTPhotosViewController, afterDelayWithPhotos: [NYTPhoto]?) {
-//        var index_counter:Int=0
-//        for photo: NYTPhoto in self.photos! {
-//            let title = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["date"] as! String)
-//            let summary = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["description"] as! String)
-//            let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
-//            let request = NSData(contentsOfURL: NSURL(string: photoUrl)!)
-//            
-//            photo.image = UIImage.sd_imageWithData(request)
-//            index_counter += 1
+//    func updateImagesOnPhotosViewController(photosViewController: NYTPhotosViewController, afterDelayWithPhotos photos: [NYTPhoto]) {
+//            var index_counter: Int = 0
+//            print(photos.count)
+//            for photo: NYTPhoto in photos {
+//                if (photo.image == nil) {
+//                    let title: NSAttributedString = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["date"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+//                    photo.attributedCaptionTitle = title
+//                    let summary: NSAttributedString = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["description"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+//                    photo.attributedCaptionSummary = summary
+//                    photo.attributedCaptionCredit = NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+//                    let number = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["photoID"] as! String)
+//                    photo.number = number
+//                    photo.cellIndex = NSAttributedString(string: String(index_counter))
+//                    let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
+//                    let request = NSData(contentsOfURL: NSURL(string: photoUrl)!)
+//                    photo.image = UIImage.sd_imageWithData(request)
+//                    self.galleryView.updateImageForPhoto(photo)
+//                }
+//                index_counter+=1
+//            }
+//    }
+//    
+//    func updateImagesOnPhotosViewController(photosViewController: NYTPhotosViewController, afterDelayWithPhotos: [NYTPhoto]) {
+//        
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, 5 * Int64(NSEC_PER_SEC))
+//        var index_counter: Int = 0
+//        dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue()) {
+//            for photo in self.photos {
+//                if photo.image == nil {
+//                    let title: NSAttributedString = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["date"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+//                    photo.attributedCaptionTitle = title
+//                    let summary: NSAttributedString = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["description"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+//                    photo.attributedCaptionSummary = summary
+//                    photo.attributedCaptionCredit = NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+//                    let number = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["photoID"] as! String)
+//                    photo.number = number
+//                    photo.cellIndex = NSAttributedString(string: String(index_counter))
+//                    let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
+//                    let request = NSData(contentsOfURL: NSURL(string: photoUrl)!)
+//                    photo.image = UIImage.sd_imageWithData(request)
+//                    photosViewController.updateImageForPhoto(photo)
+//                }
+//                index_counter+=1
+//            }
 //        }
 //    }
-    
-    func updateImagesInPhotos(){
-        var index_counter:Int=0
-        for photo: NYTPhoto in self.photos! {
-            print(photo.attributedCaptionTitle)
-            print(photo.attributedCaptionSummary)
-            let title = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["date"] as! String)
-            let summary = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["description"] as! String)
-            let photoUrl: String = self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String
-            let request = NSData(contentsOfURL: NSURL(string: photoUrl)!)
-            let number = NSAttributedString(string: self.lastTappedLocationDataPassed[index_counter]["photoID"] as! String)
-            photo.attributedCaptionTitle = title
-            photo.attributedCaptionSummary = summary
-            photo.number = number
-            photo.cellIndex = NSAttributedString(string: String(index_counter))
-            photo.attributedCaptionCredit = NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
-            photo.image = UIImage.sd_imageWithData(request)
-            print(photo.attributedCaptionTitle)
-            print(photo.attributedCaptionSummary)
-            print(photo.number)
-            print(photo.cellIndex)
-            print(photo.attributedCaptionCredit)
-            index_counter += 1
-        }
-    }
     
     func appendBarButtonItem(view: NYTPhotosViewController){
         let btn2 = UIButton()
