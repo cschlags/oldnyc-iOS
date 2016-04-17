@@ -13,14 +13,15 @@ class WebViewController: UIViewController {
     @IBOutlet var webView:UIWebView!
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        if let url = NSURL(string: "https://obreaux1.typeform.com/to/ed0PnY") {
+    override func viewWillAppear(animated: Bool) {
+        if let url = NSURL(string: "https://docs.google.com/forms/d/16ryWDwz6W0jKRGtF6BOcebfvWCdA_Yn-c-vB6y3WqUw/viewform") {
             let request = NSURLRequest(URL: url)
             webView.loadRequest(request)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {

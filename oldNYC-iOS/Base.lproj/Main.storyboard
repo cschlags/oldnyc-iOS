@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGV-Jw-Lkd" userLabel="CenterOnUserButton">
-                                <rect key="frame" x="508" y="488" width="72" height="72"/>
+                                <rect key="frame" x="508" y="473" width="72" height="72"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                                 <state key="normal" image="CenterNav"/>
                                 <state key="selected" image="CenterNavSelected"/>
@@ -70,7 +70,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="duT-LL-IIZ" firstAttribute="top" secondItem="Wpu-t4-hvh" secondAttribute="bottom" constant="20" id="05T-JV-kVW"/>
-                            <constraint firstItem="Y4p-99-OS3" firstAttribute="top" secondItem="NGV-Jw-Lkd" secondAttribute="bottom" constant="40" id="GxU-ZW-f9g"/>
+                            <constraint firstItem="Y4p-99-OS3" firstAttribute="top" secondItem="NGV-Jw-Lkd" secondAttribute="bottom" constant="55" id="GxU-ZW-f9g"/>
                             <constraint firstItem="duT-LL-IIZ" firstAttribute="leading" secondItem="Tkv-Jg-v7T" secondAttribute="leadingMargin" id="Huc-vb-I5D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NGV-Jw-Lkd" secondAttribute="trailing" id="OR6-XN-O17"/>
                             <constraint firstItem="gRZ-dI-Cow" firstAttribute="leading" secondItem="Tkv-Jg-v7T" secondAttribute="leadingMargin" id="Tgk-RJ-w9l"/>
