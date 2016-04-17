@@ -15,13 +15,19 @@ class MapViewController: UIViewController,
                          MGLMapViewDelegate,
                          CLLocationManagerDelegate {
 
+    private var foregroundNotification : NSObjectProtocol!
+    
     var mapView : MGLMapView!
     var lastTappedLocationData = [[String : Any]]()
-    var lastTappedLocationName: String = ""
+    var lastTappedLocationName : String = ""
     let locationManager = CLLocationManager()
 
-    @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var centerOnUserButton: UIButton!
+    @IBOutlet weak var mapBrandingLogo: UIImageView!
+    @IBOutlet weak var menuButton : UIButton!
+    @IBAction func tappedMenuButton(sender: AnyObject) {
+        performSegueWithIdentifier("toMenu", sender: nil)
+    }
+    @IBOutlet weak var centerOnUserButton : UIButton!
     @IBAction func tappedCenterOnUserbutton(sender: UIButton) {
         
         let fromCamera = mapView.camera
@@ -31,6 +37,14 @@ class MapViewController: UIViewController,
         mapView.setCamera(toCamera, withDuration: 0.5, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in self.mapView.setUserTrackingMode(.Follow, animated:false)})
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated:false)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +60,13 @@ class MapViewController: UIViewController,
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
-        
+        view.bringSubviewToFront(centerOnUserButton)
+        view.bringSubviewToFront(mapBrandingLogo)
         
         mapView.delegate = self
         
         // Configure map settings.
+        self.mapView.showsUserLocation = true
         mapView.logoView.hidden = true
         mapView.attributionButton.hidden = true
         mapView.scrollEnabled = true
@@ -60,8 +76,14 @@ class MapViewController: UIViewController,
         // Place marker annotations on map.
         generateMarkersFromJSON()
         
-        
         locationManager.requestWhenInUseAuthorization()
+        
+        foregroundNotification = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
+            [unowned self] notification in
+            
+            print("app is in foreground")
+            
+        }
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -70,19 +92,16 @@ class MapViewController: UIViewController,
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated:false)
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-
+    
+    
+    deinit {
+        // make sure to remove the observer when this view controller is dismissed/deallocated
+        NSNotificationCenter.defaultCenter().removeObserver(foregroundNotification)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -93,12 +112,24 @@ class MapViewController: UIViewController,
         if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
             let currentCoordinates : CLLocationCoordinate2D = manager.location!.coordinate
             //let currentCoordinates = CLLocationCoordinate2D(latitude: 40.761850, longitude: -73.887072)
-            centerOnLocationIfUserInNYC(currentCoordinates)
+            
+            if isUserInNYC(currentCoordinates) == true {
+                centerOnUserLocation(currentCoordinates)
+                self.view.bringSubviewToFront(self.centerOnUserButton)
+            }
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func mapView(mapView: MGLMapView, didUpdateUserLocation userLocation: MGLUserLocation?) {
+        let currentCoordinates : CLLocationCoordinate2D = self.locationManager.location!.coordinate
+        
+        if isUserInNYC(currentCoordinates) == true {
+            self.view.bringSubviewToFront(self.centerOnUserButton)
+        } else {
+            //self.view.sendSubviewToBack(self.centerOnUserButton)
+        }
     }
+    
     
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
@@ -219,11 +250,13 @@ class MapViewController: UIViewController,
         lastTappedLocationData.sortInPlace{ ($0["date"] as? String) < ($1["date"] as? String) }
     }
     
-    func centerOnLocationIfUserInNYC(currentCoordinates: CLLocationCoordinate2D) {
+    func isUserInNYC(currentCoordinates: CLLocationCoordinate2D) -> Bool {
         let location = CLLocation(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude)
         let geocoder = CLGeocoder()
         
-        print("-> Finding user address...")
+        var isUserInNYC = false
+        
+//        print("-> Finding user address...")
         
         geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error)->Void in
             var placemark:CLPlacemark!
@@ -231,33 +264,31 @@ class MapViewController: UIViewController,
             if error == nil && placemarks!.count > 0 {
                 placemark = placemarks![0] as CLPlacemark
                 
-                print("Locality:" + placemark.locality!)
-                print(placemark.administrativeArea)
-                print("subAdmin:" + placemark.subAdministrativeArea!)
-                print("subLocality:" + placemark.subLocality!)
-                print(placemark.ocean)
-                print(placemark.inlandWater)
+//                print("Locality:" + placemark.locality!)
+//                print(placemark.administrativeArea)
+//                print("subAdmin:" + placemark.subAdministrativeArea!)
+//                print("subLocality:" + placemark.subLocality!)
+//                print(placemark.ocean)
+//                print(placemark.inlandWater)
                 
                 if (placemark.locality == "New York" && placemark.inlandWater == nil) {
-                    print("Will enable tracking mode and show user location")
-                    
-                    let fromCamera = self.mapView.camera
-                    let toCamera = MGLMapCamera(lookingAtCenterCoordinate: currentCoordinates, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
-                    
-                    self.mapView.setCamera(toCamera, withDuration: 0.75, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in
-                            self.mapView.setZoomLevel(14, animated: true)
-                        
-                            //self.mapView.setUserTrackingMode(.Follow, animated:false)
-                    })
-                    
-                    // Display center-on-user button when user is in NYC.
-                    self.view.bringSubviewToFront(self.centerOnUserButton)
+                    isUserInNYC = true
                 }
-                self.mapView.showsUserLocation = true
             }
         })
         
+        return isUserInNYC
+    }
+    
+    func centerOnUserLocation(currentCoordinates: CLLocationCoordinate2D) {
+        let fromCamera = self.mapView.camera
+        let toCamera = MGLMapCamera(lookingAtCenterCoordinate: currentCoordinates, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
         
+        self.mapView.setCamera(toCamera, withDuration: 0.75, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in
+            self.mapView.setZoomLevel(14, animated: true)
+            
+            //self.mapView.setUserTrackingMode(.Follow, animated:false)
+        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
