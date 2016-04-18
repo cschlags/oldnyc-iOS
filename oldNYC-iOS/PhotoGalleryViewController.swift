@@ -19,6 +19,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
+    var galleryViewController: GalleryViewController!
     var photos : [UIImage!] = []
     var count: Int = 0
     var imageProvider: AnyObject?
@@ -233,11 +234,31 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
 //        detailsActivityViewController.popoverPresentationController?.barButtonItem = galleryView.rightBarButtonItem
 //        galleryView.presentViewController(detailsActivityViewController, animated: true, completion: nil)
 //    }
+//    func detail(){
+//        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+//            
+//        }
+//        detailsActivityViewController.addAction(cancelAction)
+//        
+//        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .Default) { UIAlertAction in
+//            self.presentingViewController?.dismissViewControllerAnimated(true, completion: {
+//                
+//            })
+//            
+//        }
+//        detailsActivityViewController.addAction(OKAction)
+//        self.presentViewController(detailsActivityViewController, animated: true, completion: nil)
+//    }
+//    func seguePerform(){
+//        self.performSegueWithIdentifier("detailAlert", sender: self)
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
         if (segue.identifier == "detail.alert"){
             let svc = segue.destinationViewController as! DetailWebViewController;
-//            let string:String = (galleryView.currentlyDisplayedPhoto?.cellIndex?.string)!
+//            let string:String = (self.lastTappedLocationDataPassed[galleryViewController.currentIndex]["image_url"])!
 //            locationPhotoIndex = Int(string)!
             svc.photoIDPassed = "this"
         }
