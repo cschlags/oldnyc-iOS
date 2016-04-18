@@ -158,7 +158,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     }
     
     func setPhotosInGallery(displacedView: UIView){
-        let imageProvider = SomeImageProvider(locationPhotos: self.photos, locationData: self.lastTappedLocationDataPassed)
+        let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos)
         
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
@@ -266,10 +266,10 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
 }
 
 class SomeImageProvider: ImageProvider{
-    var locationPhotos: [UIImage!]
+    var locationArray: [UIImage!]
     var locationData: [[String:Any]]
-    init(locationPhotos: [UIImage!], locationData: [[String:Any]]){
-        self.locationPhotos = locationPhotos
+    required init(locationData: [[String:Any]], locationArray: [UIImage!]) {
+        self.locationArray = locationArray
         self.locationData = locationData
     }
     
@@ -278,11 +278,11 @@ class SomeImageProvider: ImageProvider{
     }
     
     func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
-        if locationPhotos[index] == nil{
+        if locationArray[index] == nil{
             let request = NSData(contentsOfURL: NSURL(string: locationData[index]["image_url"] as! String)!)
             let image = UIImage.sd_imageWithData(request)
-            locationPhotos[index] = image
+            locationArray[index] = image
         }
-        completion(locationPhotos[index])
+        completion(locationArray[index])
     }
 }
