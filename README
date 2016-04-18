@@ -1,18 +1,2 @@
-Things to Do:
-
---Integrate Mapbox SDK
-    https://www.mapbox.com/ios-sdk/
-
---Design the map
-
---Create the Photos View
-    Show celled controller based on 'pop' variable or lat/lon
-
-    Create Overlay of Photo
-
-    Integrate Facebook/Email/Camera for saving/sharing
-
-    Something wrong? (Is there something wrong with this image name or description?) -- open a browser
-
---Create menu view
-    TBD
+#OldNYC iOS App
+##Open-Sourced code based off oldNYC.org
