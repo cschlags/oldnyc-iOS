@@ -42,18 +42,18 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
     private var spinnerStyle = UIActivityIndicatorViewStyle.White
     private let presentTransitionDuration = 0.25
     private let dismissTransitionDuration = 1.00
-    private let closeButtonPadding: CGFloat = 8.0
-    private let detailButtonPadding: CGFloat = 8.0
-    private let shareButtonPadding: CGFloat = 8.0
+    private let closeButtonPadding: CGFloat = 0.0
+    private let detailButtonPadding: CGFloat = 0.0
+    private let shareButtonPadding: CGFloat = 0.0
     private let headerViewMarginTop: CGFloat = 20
     private let swipeToDismissFadeOutAccelerationFactor: CGFloat = 6
     private let toggleHeaderFooterAnimationDuration = 0.15
     private let closeAnimationDuration = 0.2
     private let rotationAnimationDuration = 0.2
-    private var closeLayout = CloseButtonLayout.PinLeft(20,16)
-    private var detailLayout = DetailButtonLayout.PinRight(20, 66)
-    private var shareLayout = ShareButtonLayout.PinRight(10, 16)
-    private var headerLayout = HeaderLayout.Center(25)
+    private var closeLayout = CloseButtonLayout.PinLeft(1,1)
+    private var detailLayout = DetailButtonLayout.PinRight(1, 50)
+    private var shareLayout = ShareButtonLayout.PinRight(1, 1)
+    private var headerLayout = HeaderLayout.Center(20)
     private var footerLayout = FooterLayout.PinLeft(1, 1)
     private var statusBarHidden = true
     
@@ -101,6 +101,8 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
             case .HeaderViewLayout(let layout):             headerLayout = layout
             case .FooterViewLayout(let layout):             footerLayout = layout
             case .CloseLayout(let layout):                  closeLayout = layout
+            case .DetailLayout(let layout):                 detailLayout = layout
+            case .ShareLayout(let layout):                  shareLayout = layout
             case .StatusBarHidden(let hidden):              statusBarHidden = hidden
             case .HideDecorationViewsOnLaunch(let hidden):  isDecorationViewsHidden = hidden
             default: break
@@ -475,6 +477,7 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
             self?.footerView?.alpha = 0.0
             self?.closeButton?.alpha = 0.0
             self?.detailButton?.alpha = 0.0
+            self?.shareButton?.alpha = 0.0
             
         }) { [weak self] done in
             

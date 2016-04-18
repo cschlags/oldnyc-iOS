@@ -47,6 +47,7 @@ final class ImageViewController: UIViewController, UIScrollViewDelegate, UIGestu
     private let rotationAnimationDuration = 0.2
     private let hideCloseButtonDuration    = 0.05
     private let hideDetailButtonDuration    = 0.05
+    private let hideShareButtonDuration    = 0.05
     private let zoomDuration = 0.2
     private let itemContentSize = CGSize(width: 100, height: 100)
     private let minimumZoomScale: CGFloat = 1

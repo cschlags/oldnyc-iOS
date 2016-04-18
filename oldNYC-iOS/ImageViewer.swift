@@ -66,17 +66,19 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
     private let configuration: ImageViewerConfiguration
     private var initialCloseButtonOrigin = CGPointZero
     private var closeButtonSize = CGSize(width: 50, height: 50)
-    private let closeButtonPadding         = 8.0
+    private let closeButtonPadding         = 0.0
     private var detailButtonSize = CGSize(width: 50, height: 50)
-    private let detailButtonPadding         = 8.0
+    private let detailButtonPadding         = 0.0
     private var shareButtonSize = CGSize(width: 50, height: 50)
-    private let shareButtonPadding         = 8.0
-    private let showDuration               = 0.25
-    private let dismissDuration            = 0.25
+    private let shareButtonPadding         = 0.0
+    private let showDuration               = 2.0
+    private let dismissDuration            = 0.0
     private let showCloseButtonDuration    = 0.2
     private let hideCloseButtonDuration    = 0.05
     private let showDetailButtonDuration    = 0.2
     private let hideDetailButtonDuration    = 0.05
+    private let showShareButtonDuration    = 0.2
+    private let hideShareButtonDuration    = 0.05
     private let zoomDuration               = 0.2
     private let thresholdVelocity: CGFloat = 1000 // Based on UX experiments
     private let cutOffVelocity: CGFloat = 1000000 // we need some sufficiently large number, nobody can swipe faster then that
@@ -279,7 +281,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
     // MARK: - Animations
     
     func close(sender: AnyObject) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
     }
     func detail(sender: AnyObject) {
         let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -294,7 +296,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
             webV.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.jogendra.com")!))
             webV.tag = 69
             self.view.addSubview(webV)
-            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
+            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
             navBar.tag = 70
             self.view.addSubview(navBar);
             let navItem = UINavigationItem(title: "");
@@ -320,6 +322,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         
         UIView.animateWithDuration(hideCloseButtonDuration, animations: { self.closeButton.alpha = 0.0 })
         UIView.animateWithDuration(hideDetailButtonDuration, animations: { self.detailButton.alpha = 0.0 })
+        UIView.animateWithDuration(hideShareButtonDuration, animations: { self.shareButton.alpha = 0.0 })
         
         let aspectFitSize = aspectFitContentSize(forBoundingSize: rotationAdjustedBounds().size, contentSize: displacedView.frame.size)
         UIView.animateWithDuration(showDuration, animations: { () -> Void in
@@ -338,6 +341,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
                 self.scrollView.maximumZoomScale = maximumZoomScale(forBoundingSize: rotationAdjustedBounds().size, contentSize: self.imageView.bounds.size)
                 UIView.animateWithDuration(self.showCloseButtonDuration, animations: { self.closeButton.alpha = 1.0 })
                 UIView.animateWithDuration(self.showDetailButtonDuration, animations: { self.detailButton.alpha = 1.0 })
+                UIView.animateWithDuration(self.showShareButtonDuration, animations: { self.shareButton.alpha = 1.0 })
             }
         }
     }
@@ -379,6 +383,8 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
                 self.isAnimating = false
                 self.scrollView.maximumZoomScale = maximumZoomScale(forBoundingSize: rotationAdjustedBounds().size, contentSize: self.imageView.bounds.size)
                 UIView.animateWithDuration(self.showCloseButtonDuration, animations: { self.closeButton.alpha = 1.0 })
+                UIView.animateWithDuration(self.showDetailButtonDuration, animations: { self.detailButton.alpha = 1.0 })
+                UIView.animateWithDuration(self.showShareButtonDuration, animations: { self.shareButton.alpha = 1.0 })
                 self.configureGestureRecognizers()
                 self.showCompletionBlock?()
                 self.displacedView.hidden = false
@@ -399,6 +405,8 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
             self.scrollView.zoomScale = self.scrollView.minimumZoomScale
             self.overlayView.alpha = 0.0
             self.closeButton.alpha = 0.0
+            self.detailButton.alpha = 0.0
+            self.shareButton.alpha = 0.0
             self.view.transform = CGAffineTransformIdentity
             self.view.bounds = (self.applicationWindow?.bounds)!
             self.imageView.frame = CGRectIntegral(self.applicationWindow!.convertRect(self.displacedView.bounds, fromView: self.displacedView))
@@ -413,6 +421,8 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
                 self.isAnimating = false
                 
                 self.closeButtonActionCompletionBlock?()
+                self.detailButtonActionCompletionBlock?()
+                self.shareButtonActionCompletionBlock?()
                 self.dismissCompletionBlock?()
             }
         }
@@ -441,6 +451,8 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
                     
                     self.overlayView.alpha = 0.0
                     self.closeButton.alpha = 0.0
+                    self.detailButton.alpha = 0.0
+                    self.shareButton.alpha = 0.0
                     self.isAnimating = false
                     self.isSwipingToDismiss = false
                     self.dynamicTransparencyActive = false
