@@ -33,6 +33,7 @@
 		8420B65A1CB0EF11003829C7 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
 		8420B65B1CB0F106003829C7 /* by-location in Resources */ = {isa = PBXBuildFile; fileRef = CBE6AA2D1C83CAD00097699A /* by-location */; };
 		84339B6B1CC3BFED00063C81 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84339B6A1CC3BFED00063C81 /* CounterView.swift */; };
+		844D5BC61CC4E69000B65B83 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D5BC51CC4E69000B65B83 /* FooterView.swift */; };
 		845117911C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */; };
 		8458EF531CB2273100734E6D /* DetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458EF521CB2273100734E6D /* DetailWebViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 		8415CCA51CC45CC500B86FFC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = ../../ImageViewer/ImageViewer/Source/Extensions/UIViewController.swift; sourceTree = "<group>"; };
 		8415CCAA1CC45CD000B86FFC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../../ImageViewer/ImageViewer/Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		84339B6A1CC3BFED00063C81 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		844D5BC51CC4E69000B65B83 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		8458EF521CB2273100734E6D /* DetailWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWebViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				CBE10BC21C8378AE002BD357 /* MenuTableViewController.swift */,
 				CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */,
 				84339B6A1CC3BFED00063C81 /* CounterView.swift */,
+				844D5BC51CC4E69000B65B83 /* FooterView.swift */,
 				845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */,
 				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
 				84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */,
@@ -504,6 +507,7 @@
 				8415CC971CC45C9A00B86FFC /* ImageViewerConfiguration.swift in Sources */,
 				84339B6B1CC3BFED00063C81 /* CounterView.swift in Sources */,
 				8415CC9F1CC45CAB00B86FFC /* ImageViewerSwipeToDismissTransition.swift in Sources */,
+				844D5BC61CC4E69000B65B83 /* FooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

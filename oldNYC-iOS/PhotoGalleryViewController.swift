@@ -146,12 +146,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
             let NumberOfPhotos = self.lastTappedLocationDataPassed.count
             for photoIndex in 0 ..< NumberOfPhotos {
-//                let title = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["date"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-//                let summary = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["description"] as! String, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
                 let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
                 let image = UIImage.sd_imageWithData(request)
-//                let number = NSAttributedString(string: self.lastTappedLocationDataPassed[photoIndex]["photoID"] as! String)
-//                let photo = Photo(image: image, attributedCaptionTitle: title, attributedCaptionSummary: summary, number: number, cellIndex: NSAttributedString(string: String(photoIndex)))
                 
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
                     self.photos[photoIndex] = image
@@ -164,8 +160,9 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos)
         
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
+        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
-        let footerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
+        let footerView = FooterView(frame: footerFrame, year: self.lastTappedLocationDataPassed[locationPhotoIndex]["date"] as! String, summary: self.lastTappedLocationDataPassed[locationPhotoIndex]["description"] as! String, count: self.photos.count)
         
         let galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: displacedView, imageCount: self.photos.count, startIndex: locationPhotoIndex)
         galleryViewController.headerView = headerView
@@ -181,7 +178,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
             
             headerView.currentIndex = index
             
-            footerView.currentIndex = index
+            footerView.year = self.lastTappedLocationDataPassed[index]["date"] as! String
+            footerView.summary = self.lastTappedLocationDataPassed[index]["description"] as! String
         }
         
         self.presentImageGallery(galleryViewController)
