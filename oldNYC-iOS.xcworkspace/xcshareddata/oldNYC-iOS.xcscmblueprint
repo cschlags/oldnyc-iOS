@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8A766FEB11E58B734C80A0DAAB472A94DE06422C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8A766FEB11E58B734C80A0DAAB472A94DE06422C" : 0,
+    "F5D15382363D4C2F29B3E2CBC395BEA89BC2D352" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "565507D3-6FAE-48C0-AA03-708F7413BE8C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8A766FEB11E58B734C80A0DAAB472A94DE06422C" : "oldNYC-iOS\/",
+    "F5D15382363D4C2F29B3E2CBC395BEA89BC2D352" : "ImageViewer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "oldNYC-iOS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "oldNYC-iOS.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ChristinaLeuci\/oldnyc-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8A766FEB11E58B734C80A0DAAB472A94DE06422C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:MailOnline\/ImageViewer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F5D15382363D4C2F29B3E2CBC395BEA89BC2D352"
+    }
+  ]
+}

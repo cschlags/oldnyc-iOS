@@ -65,7 +65,7 @@ class MapViewController: UIViewController,
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
         }
     }
@@ -249,20 +249,25 @@ class MapViewController: UIViewController,
                         
                             //self.mapView.setUserTrackingMode(.Follow, animated:false)
                     })
+                    
+                    // Display center-on-user button when user is in NYC.
+                    self.view.bringSubviewToFront(self.centerOnUserButton)
                 }
                 self.mapView.showsUserLocation = true
             }
         })
         
-        // Display center-on-user button when user is in NYC.
-        view.bringSubviewToFront(centerOnUserButton)
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
         if (segue.identifier == "toGallery"){
-            let svc = segue.destinationViewController as! GalleryViewController;
+            let svc = segue.destinationViewController as! PhotoGalleryViewController;
             svc.lastTappedLocationDataPassed = self.lastTappedLocationData
             svc.lastTappedLocationName = self.lastTappedLocationName
+            let backItem = UIBarButtonItem()
+            backItem.title = "Map"
+            navigationItem.backBarButtonItem = backItem
         }
     }
     
