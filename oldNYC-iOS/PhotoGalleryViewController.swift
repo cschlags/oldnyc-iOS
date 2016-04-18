@@ -184,6 +184,10 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         
         self.presentImageGallery(galleryViewController)
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
 }
 
 class SomeImageProvider: ImageProvider{

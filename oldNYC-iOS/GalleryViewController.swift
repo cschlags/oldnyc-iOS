@@ -53,7 +53,7 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
     private var closeLayout = CloseButtonLayout.PinLeft(1,1)
     private var detailLayout = DetailButtonLayout.PinRight(1, 50)
     private var shareLayout = ShareButtonLayout.PinRight(1, 1)
-    private var headerLayout = HeaderLayout.Center(20)
+    private var headerLayout = HeaderLayout.Center(15)
     private var footerLayout = FooterLayout.PinLeft(1, 1)
     private var statusBarHidden = true
     

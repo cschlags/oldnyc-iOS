@@ -56,10 +56,10 @@ func defaultGalleryConfiguration() -> GalleryConfiguration {
     let pagingMode = GalleryConfigurationItem.PagingMode(GalleryPagingMode.Standard)
     
 //    originally 15, 16
-    let closeLayout = GalleryConfigurationItem.CloseLayout(CloseButtonLayout.PinLeft(1, 1))
-    let detailLayout = GalleryConfigurationItem.DetailLayout(DetailButtonLayout.PinRight(1, 50))
+    let closeLayout = GalleryConfigurationItem.CloseLayout(CloseButtonLayout.PinLeft(2, 1))
+    let detailLayout = GalleryConfigurationItem.DetailLayout(DetailButtonLayout.PinRight(5, 50))
     let shareLayout = GalleryConfigurationItem.ShareLayout(ShareButtonLayout.PinRight(1, 1))
-    let headerLayout = GalleryConfigurationItem.HeaderViewLayout(HeaderLayout.Center(20))
+    let headerLayout = GalleryConfigurationItem.HeaderViewLayout(HeaderLayout.Center(16))
     let footerLayout = GalleryConfigurationItem.FooterViewLayout(FooterLayout.Center(1))
     
     let statusBarHidden = GalleryConfigurationItem.StatusBarHidden(true)
