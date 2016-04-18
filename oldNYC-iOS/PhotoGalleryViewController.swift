@@ -19,7 +19,6 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
-//    var galleryView: NYTPhotosViewController!
     var photos : [UIImage!] = []
     var count: Int = 0
     var imageProvider: AnyObject?
@@ -182,25 +181,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         }
         
         self.presentImageGallery(galleryViewController)
-//        let photoArray: [NYTPhoto] = self.photos
-//        let galleryView = NYTPhotosViewController(photos: photoArray, initialPhoto: photoArray[locationPhotoIndex])
-//        appendBarButtonItem(galleryView)
-//        presentViewController(galleryView, animated: false, completion: nil)
-//        self.updateImagesOnPhotosViewController(galleryView, afterDelayWithPhotos: photoArray)
     }
-    
-//    func updateImagesOnPhotosViewController(galleryView: NYTPhotosViewController, afterDelayWithPhotos photos: [NYTPhoto]) {
-//            var index_counter: Int = 0
-//            print(photos.count)
-//            for photo: NYTPhoto in photos {
-//                if (photo.image == nil) {
-//                    let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[index_counter]["image_url"] as! String)!)
-//                    photo.image = UIImage.sd_imageWithData(request)
-//                    galleryView.updateImageForPhoto(photo)
-//                }
-//                index_counter+=1
-//            }
-//    }
     
 //    func appendBarButtonItem(view: NYTPhotosViewController){
 //        let btn2 = UIButton()
@@ -251,15 +232,6 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
 //        
 //        detailsActivityViewController.popoverPresentationController?.barButtonItem = galleryView.rightBarButtonItem
 //        galleryView.presentViewController(detailsActivityViewController, animated: true, completion: nil)
-//    }
-//    func photosViewController(photosViewController: NYTPhotosViewController, loadingViewForPhoto photo: NYTPhoto) -> UIView? {
-////        if photo.cellIndex == nil{
-////            photo.attributedCaptionSummary = self.photos[count].attributedCaptionSummary!
-////            photo.attributedCaptionTitle = self.photos[count].attributedCaptionTitle!
-////            photo.cellIndex = self.photos[count].cellIndex!
-////            photo.number = self.photos[count].number!
-////        }
-//        return nil
 //    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
