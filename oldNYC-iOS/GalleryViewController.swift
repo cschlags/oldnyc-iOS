@@ -54,7 +54,7 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
     private var detailLayout = DetailButtonLayout.PinRight(20, 66)
     private var shareLayout = ShareButtonLayout.PinRight(10, 16)
     private var headerLayout = HeaderLayout.Center(25)
-    private var footerLayout = FooterLayout.PinLeft(1, 16)
+    private var footerLayout = FooterLayout.PinLeft(1, 1)
     private var statusBarHidden = true
     
     /// TRANSITIONS
@@ -434,7 +434,7 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
             webV.loadRequest(NSURLRequest(URL: NSURL(string: webURL)!))
             webV.tag = 69
             self.view.addSubview(webV)
-            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 50))
             navBar.tag = 70
             self.view.addSubview(navBar);
             let navItem = UINavigationItem(title: "")

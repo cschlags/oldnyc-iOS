@@ -46,7 +46,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                    <color key="titleShadowColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="tappedMenuButton:" destination="7hd-rf-b07" eventType="touchDown" id="NQC-jg-3AR"/>
@@ -261,46 +261,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="gallery" destination="E2b-xn-3vZ" id="Gzd-iC-OK9"/>
-                        <segue destination="cXH-uo-aLG" kind="show" identifier="detail.alert" id="y2M-WF-mgP"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbN-gA-Yg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-637" y="-643"/>
-        </scene>
-        <!--NYPL Photo Collection-->
-        <scene sceneID="c1t-Kl-QiX">
-            <objects>
-                <viewController id="cXH-uo-aLG" customClass="DetailWebViewController" customModule="oldNYC_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Z4H-7e-xKK"/>
-                        <viewControllerLayoutGuide type="bottom" id="qE4-wy-lnX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qtg-kz-Xae">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lz-8L-1K9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="9lz-8L-1K9" firstAttribute="top" secondItem="Z4H-7e-xKK" secondAttribute="bottom" id="TLN-Kr-3uQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9lz-8L-1K9" secondAttribute="trailing" constant="-20" id="ry5-3n-Xuv"/>
-                            <constraint firstItem="qE4-wy-lnX" firstAttribute="top" secondItem="9lz-8L-1K9" secondAttribute="bottom" id="t5J-u4-MNl"/>
-                            <constraint firstItem="9lz-8L-1K9" firstAttribute="leading" secondItem="qtg-kz-Xae" secondAttribute="leadingMargin" constant="-20" id="uux-CN-QXL"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="NYPL Photo Collection" id="qhc-vy-Qsa"/>
-                    <connections>
-                        <outlet property="webView" destination="9lz-8L-1K9" id="hP5-35-SXL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0tt-tn-NvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="256" y="-643"/>
         </scene>
     </scenes>
     <resources>

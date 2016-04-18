@@ -12,7 +12,6 @@
 		84339B6B1CC3BFED00063C81 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84339B6A1CC3BFED00063C81 /* CounterView.swift */; };
 		844D5BC61CC4E69000B65B83 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D5BC51CC4E69000B65B83 /* FooterView.swift */; };
 		845117911C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */; };
-		8458EF531CB2273100734E6D /* DetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458EF521CB2273100734E6D /* DetailWebViewController.swift */; };
 		846A004E1CC53282008DDFC6 /* GalleryCloseTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A004D1CC53282008DDFC6 /* GalleryCloseTransition.swift */; };
 		846A00511CC53297008DDFC6 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A004F1CC53296008DDFC6 /* CGPoint.swift */; };
 		846A00521CC53297008DDFC6 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A00501CC53296008DDFC6 /* CGSize.swift */; };
@@ -56,7 +55,6 @@
 		84339B6A1CC3BFED00063C81 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		844D5BC51CC4E69000B65B83 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
-		8458EF521CB2273100734E6D /* DetailWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWebViewController.swift; sourceTree = "<group>"; };
 		846A004D1CC53282008DDFC6 /* GalleryCloseTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCloseTransition.swift; sourceTree = "<group>"; };
 		846A004F1CC53296008DDFC6 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		846A00501CC53296008DDFC6 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CBE10BC61C8397C2002BD357 /* WebViewController.swift */,
-				8458EF521CB2273100734E6D /* DetailWebViewController.swift */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CBE10BBD1C82BBC2002BD357 /* HidingNavigationBar */,
@@ -346,7 +343,6 @@
 				846A005D1CC532A3008DDFC6 /* GalleryViewControllerDatasource.swift in Sources */,
 				846A00711CC532B2008DDFC6 /* ImageViewerPresentTransition.swift in Sources */,
 				CBE10BB91C82BB5E002BD357 /* HidingNavigationBarManager.swift in Sources */,
-				8458EF531CB2273100734E6D /* DetailWebViewController.swift in Sources */,
 				846A00691CC532B2008DDFC6 /* ImageFadeInHandler.swift in Sources */,
 				84714C891CC534360038BF8C /* UIView.swift in Sources */,
 				CBE10BC51C8381BE002BD357 /* DataAttributionViewController.swift in Sources */,
