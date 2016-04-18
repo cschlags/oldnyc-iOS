@@ -84,7 +84,6 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -134,9 +133,13 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         self.setPhotosInGallery(cell!)
     }
     
-//    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
-//        return indexPath.item % 4 == 0 ? FMMosaicCellSize.Big : FMMosaicCellSize.Small
-//    }
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
+        if lastTappedLocationDataPassed.count < 6{
+            return FMMosaicCellSize.Big
+        }else{
+            return FMMosaicCellSize.Small
+        }
+    }
     func populatePhotoArray(){
         let photoInt:Int = self.lastTappedLocationDataPassed.count
         self.photos = [UIImage!](count: photoInt, repeatedValue: nil)
@@ -182,86 +185,6 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         }
         
         self.presentImageGallery(galleryViewController)
-    }
-    
-//    func appendBarButtonItem(view: NYTPhotosViewController){
-//        let btn2 = UIButton()
-//        btn2.setImage(UIImage(named: "MoreDetails"), forState: .Normal)
-//        btn2.frame = CGRectMake(0, 0, 30, 30)
-//        btn2.addTarget(self, action: #selector(GalleryViewController.details), forControlEvents: .TouchUpInside)
-//        let item2 = UIBarButtonItem()
-//        item2.customView = btn2
-//        view.rightBarButtonItems?.append(item2)
-//    }
-    
-    // MARK: - NYTPhotosViewControllerDelegate
-//    func galleryViewController(galleryViewController: NYTPhotosViewController, handleActionButtonTappedForPhoto photo: NYTPhoto) -> Bool {
-//        
-//        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-//            
-//            guard let photoImage = photo.image else { return false }
-//            
-//            let shareActivityViewController = UIActivityViewController(activityItems: [photoImage], applicationActivities: nil)
-//            
-//            shareActivityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) in
-//                if completed {
-//                    galleryViewController.delegate?.photosViewController!(galleryViewController, actionCompletedWithActivityType: activityType)
-//                }
-//            }
-//            
-//            shareActivityViewController.popoverPresentationController?.barButtonItem = galleryViewController.rightBarButtonItem
-//            galleryViewController.presentViewController(shareActivityViewController, animated: true, completion: nil)
-//            
-//            return true
-//        }
-//        return false
-//    }
-//    
-//    func details(){
-//        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-//            
-//        }
-//        detailsActivityViewController.addAction(cancelAction)
-//        
-//        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .Default) { UIAlertAction in
-//            self.performSegueWithIdentifier("detail.alert", sender: self)
-//            UIApplication.sharedApplication().sendAction((self.galleryView.leftBarButtonItem?.action)!, to: self.galleryView.leftBarButtonItem?.target, from: self, forEvent: nil)
-//        }
-//        detailsActivityViewController.addAction(OKAction)
-//        
-//        detailsActivityViewController.popoverPresentationController?.barButtonItem = galleryView.rightBarButtonItem
-//        galleryView.presentViewController(detailsActivityViewController, animated: true, completion: nil)
-//    }
-//    func detail(){
-//        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-//            
-//        }
-//        detailsActivityViewController.addAction(cancelAction)
-//        
-//        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .Default) { UIAlertAction in
-//            self.presentingViewController?.dismissViewControllerAnimated(true, completion: {
-//                
-//            })
-//            
-//        }
-//        detailsActivityViewController.addAction(OKAction)
-//        self.presentViewController(detailsActivityViewController, animated: true, completion: nil)
-//    }
-//    func seguePerform(){
-//        self.performSegueWithIdentifier("detailAlert", sender: self)
-//    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
-        if (segue.identifier == "detail.alert"){
-            let svc = segue.destinationViewController as! DetailWebViewController;
-//            let string:String = (self.lastTappedLocationDataPassed[galleryViewController.currentIndex]["image_url"])!
-//            locationPhotoIndex = Int(string)!
-            svc.photoIDPassed = "this"
-        }
     }
 }
 
