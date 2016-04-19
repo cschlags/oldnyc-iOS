@@ -129,9 +129,9 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         locationPhotoIndex = indexPath.row
-//        let image = self.photos[locationPhotoIndex]
-//        let imageView = UIImageView(image: image!)
-        self.setPhotosInGallery()
+        let image = self.photos[locationPhotoIndex]
+        let imageView = UIImageView(image: image!)
+        self.setPhotosInGallery(imageView)
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
@@ -157,15 +157,14 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         })
     }
     
-    func setPhotosInGallery(){
+    func setPhotosInGallery(displacedView: UIView){
         let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos)
         
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
         let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
         let footerView = FooterView(frame: footerFrame, year: self.lastTappedLocationDataPassed[locationPhotoIndex]["date"] as! String, summary: self.lastTappedLocationDataPassed[locationPhotoIndex]["description"] as! String, count: self.photos.count)
-        let controllerScreen = UIImageView(image: self.photos[locationPhotoIndex]!)
-        let galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: controllerScreen, imageCount: self.photos.count, startIndex: locationPhotoIndex)
+        let galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: displacedView, imageCount: self.photos.count, startIndex: locationPhotoIndex)
         galleryViewController.headerView = headerView
         galleryViewController.footerView = footerView
         
