@@ -482,21 +482,21 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
             
         }) { [weak self] done in
             
-            if self?.currentIndex == self?.startIndex {
-                
-                self?.view.backgroundColor = UIColor.clearColor()
-                
-                if let imageController = self?.viewControllers?.first as? ImageViewController {
-                    
-                    imageController.closeAnimation(self?.closeAnimationDuration ?? 0.2, completion: { [weak self] finished in
-                        
-                        self?.innerClose()
-                        })
-                }
-            }
-            else {
+//            if self?.currentIndex == self?.startIndex {
+//                
+//                self?.view.backgroundColor = UIColor.clearColor()
+//                
+//                if let imageController = self?.viewControllers?.first as? ImageViewController {
+//                    
+//                    imageController.closeAnimation(self?.closeAnimationDuration ?? 0.2, completion: { [weak self] finished in
+//                        
+//                        self?.innerClose()
+//                        })
+//                }
+//            }
+//            else {
                 self?.innerClose()
-            }
+//            }
             
         }
     }
