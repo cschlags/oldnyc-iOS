@@ -129,7 +129,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         locationPhotoIndex = indexPath.row
-        let image = self.photos[locationPhotoIndex]
+        let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[locationPhotoIndex]["image_url"] as! String)!)
+        let image = UIImage.sd_imageWithData(request)
         let imageView = UIImageView(image: image!)
         self.setPhotosInGallery(imageView)
     }

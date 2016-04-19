@@ -49,7 +49,7 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
     private let swipeToDismissFadeOutAccelerationFactor: CGFloat = 6
     private let toggleHeaderFooterAnimationDuration = 0.15
     private let closeAnimationDuration = 0.2
-    private let rotationAnimationDuration = 0.2
+    private let rotationAnimationDuration = 0.0
     private var closeLayout = CloseButtonLayout.PinLeft(1,1)
     private var detailLayout = DetailButtonLayout.PinRight(1, 50)
     private var shareLayout = ShareButtonLayout.PinRight(1, 1)
@@ -154,7 +154,6 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
     // MARK: - Animations
     
     func rotate() {
-        
         /// If the app supports rotation on global level, we don't need to rotate here manually because the rotation
         /// of key Window will rotate all app's content with it via affine transform and from the perspective of the
         /// gallery it is just a simple relayout. Allowing access to remaining code only makes sense if the app is 
@@ -164,10 +163,9 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
         guard UIDevice.currentDevice().orientation.isFlat == false &&
             isAnimating == false else { return }
         
-        isAnimating = true
+        isAnimating = false
         
         let overlayView = applyOverlayView()
-        footerView?.hidden = true
         
         if UIDevice.currentDevice().orientation.isLandscape{
             let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100)
@@ -175,7 +173,6 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
         }else if UIDevice.currentDevice().orientation.isPortrait{
             let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100)
             footerView?.frame = footerFrame
-//            footerView?.hidden = false
         }
         
         UIView.animateWithDuration(rotationAnimationDuration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { [weak self] () -> Void in
