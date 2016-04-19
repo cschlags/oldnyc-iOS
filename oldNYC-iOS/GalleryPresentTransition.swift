@@ -100,9 +100,9 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
                 /// Unhide gallery views
                 if self?.decorationViewsHidden == false {
                     
-                    UIView.animateWithDuration(0.2, animations: { [weak self] in
+                    UIView.animateWithDuration(0.0, animations: { [weak self] in
                         self?.headerView?.alpha = 1.0
-                        self?.footerView?.alpha = 0.0
+                        self?.footerView?.alpha = 1.0
                         self?.closeView?.alpha = 1.0
                         self?.detailView?.alpha = 1.0
                         self?.shareView?.alpha = 1.0
@@ -110,7 +110,6 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
                     
                 }
             })
-        self.footerView?.alpha = 1.0
     }
     
     func animationEnded(transitionCompleted: Bool) {
@@ -118,7 +117,6 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
         /// The expected closure here should handle unhiding whichever ImageController is selected as the first one to be shown in gallery
         if transitionCompleted {
             completion?()
-            self.footerView?.alpha = 1.0
         }
     }
 }
