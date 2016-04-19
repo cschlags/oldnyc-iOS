@@ -22,7 +22,7 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
     
     init(duration: NSTimeInterval, displacedView: UIView , decorationViewsHidden: Bool) {
         
-        self.duration = duration
+        self.duration = 0.0000000000000000001
         self.displacedView = displacedView
         self.decorationViewsHidden = decorationViewsHidden
     }
@@ -32,7 +32,6 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        
         /// Get the temporary container view that facilitates all the animations
         let transitionContainerView = transitionContext.containerView()! //Apple, Apple..
         
@@ -88,7 +87,6 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
             let aspectFitSize = aspectFitContentSize(forBoundingSize: boundingSize, contentSize: animatedImageView.bounds.size)
             
             animatedImageView.bounds.size = aspectFitSize
-            animatedImageView.center = transitionContainerView.boundsCenter
             
             /// Transition the background to full black
             toViewController.view.alpha = 1.0
@@ -97,7 +95,7 @@ final class GalleryPresentTransition: NSObject, UIViewControllerAnimatedTransiti
                 
                 animatedImageView.removeFromSuperview()
                 transitionContext.completeTransition(finished)
-                self?.displacedView.hidden = false
+//                self?.displacedView.hidden = false
                 
                 /// Unhide gallery views
                 if self?.decorationViewsHidden == false {
