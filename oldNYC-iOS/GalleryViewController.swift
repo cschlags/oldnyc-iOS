@@ -442,7 +442,8 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
             let navItem = UINavigationItem(title: "")
             let btn2 = UIButton()
             btn2.setImage(UIImage(named: "close_normal"), forState: .Normal)
-            btn2.frame = CGRectMake(-5, -5, 50, 50)
+            btn2.frame = CGRectMake(0, 0, 50, 50)
+            btn2.imageEdgeInsets = UIEdgeInsetsMake(-1.0, -30.0, 0.0, 0.0)
             btn2.addTarget(self, action: #selector(GalleryViewController.removeWebView), forControlEvents: .TouchUpInside)
             let item2 = UIBarButtonItem()
             item2.customView = btn2
