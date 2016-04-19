@@ -11,7 +11,11 @@ class FooterView: UIView {
             updateYear()
         }
     }
-    var summary: String = String()
+    var summary: String {
+        didSet {
+            updateSummary()
+        }
+    }
     
     init(frame: CGRect, year: String, summary:String, count: Int) {
         self.year = year
@@ -37,7 +41,6 @@ class FooterView: UIView {
     func updateYear() {
         attributedLabelText = NSMutableAttributedString(string: "", attributes: nil)
         attributedLabelText.appendAttributedString(NSAttributedString(string: year, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
-        updateSummary()
     }
     
     func updateSummary() {
