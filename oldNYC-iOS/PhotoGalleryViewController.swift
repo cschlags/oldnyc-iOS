@@ -162,7 +162,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos)
         
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
-        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100)
+        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 150)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
         let footerView = FooterView(frame: footerFrame, year: self.lastTappedLocationDataPassed[locationPhotoIndex]["date"] as! String, summary: self.lastTappedLocationDataPassed[locationPhotoIndex]["description"] as! String, count: self.photos.count)
         let galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: displacedView, imageCount: self.photos.count, startIndex: locationPhotoIndex)
