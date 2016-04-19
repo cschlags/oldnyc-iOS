@@ -297,7 +297,7 @@ class MapViewController: UIViewController,
             svc.lastTappedLocationDataPassed = self.lastTappedLocationData
             svc.lastTappedLocationName = self.lastTappedLocationName
             let backItem = UIBarButtonItem()
-            backItem.title = "Map"
+            backItem.title = ""
             navigationItem.backBarButtonItem = backItem
         }
     }

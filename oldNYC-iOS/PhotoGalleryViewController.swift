@@ -136,11 +136,11 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
-        if lastTappedLocationDataPassed.count < 6{
-            return FMMosaicCellSize.Big
-        }else{
+//        if lastTappedLocationDataPassed.count < 6{
+//            return FMMosaicCellSize.Big
+//        }else{
             return FMMosaicCellSize.Small
-        }
+//        }
     }
     func populatePhotoArray(){
         let photoInt:Int = self.lastTappedLocationDataPassed.count
