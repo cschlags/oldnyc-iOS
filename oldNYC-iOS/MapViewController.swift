@@ -52,6 +52,14 @@ class MapViewController: UIViewController,
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
         mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
+        // Configure map settings.
+        mapView.showsUserLocation = true
+        mapView.logoView.hidden = true
+        mapView.attributionButton.hidden = true
+        mapView.scrollEnabled = true
+        mapView.rotateEnabled = false
+        mapView.pitchEnabled = false
+        
         // Set the map's center coordinate over NYC.
         let startingLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
         mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: startingLocation.coordinate.latitude, longitude: startingLocation.coordinate.longitude), zoomLevel:12, animated:false)
@@ -60,35 +68,41 @@ class MapViewController: UIViewController,
         
         view.addSubview(mapView)
         view.bringSubviewToFront(menuButton)
-        view.bringSubviewToFront(centerOnUserButton)
         view.bringSubviewToFront(mapBrandingLogo)
         
         mapView.delegate = self
         
-        // Configure map settings.
-        self.mapView.showsUserLocation = true
-        mapView.logoView.hidden = true
-        mapView.attributionButton.hidden = true
-        mapView.scrollEnabled = true
-        mapView.rotateEnabled = false
-        mapView.pitchEnabled = false
         
         // Place marker annotations on map.
         generateMarkersFromJSON()
         
         locationManager.requestWhenInUseAuthorization()
         
-        foregroundNotification = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
-            [unowned self] notification in
-            
-            print("app is in foreground")
-            
-        }
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
+        }
+        
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+            foregroundNotification = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
+                [unowned self] notification in
+                
+                print("app is in foreground")
+                
+                
+                if let currentCoordinates : CLLocationCoordinate2D = self.locationManager.location?.coordinate {
+                    print(currentCoordinates)
+                    self.isUserInNYC(currentCoordinates, completion: { (answer) in
+                        if answer == true {
+                            print(currentCoordinates)
+                            self.centerOnUserLocation(currentCoordinates)
+                            self.view.bringSubviewToFront(self.centerOnUserButton)
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -113,20 +127,12 @@ class MapViewController: UIViewController,
             let currentCoordinates : CLLocationCoordinate2D = manager.location!.coordinate
             //let currentCoordinates = CLLocationCoordinate2D(latitude: 40.761850, longitude: -73.887072)
             
-            if isUserInNYC(currentCoordinates) == true {
-                centerOnUserLocation(currentCoordinates)
-                self.view.bringSubviewToFront(self.centerOnUserButton)
-            }
-        }
-    }
-    
-    func mapView(mapView: MGLMapView, didUpdateUserLocation userLocation: MGLUserLocation?) {
-        let currentCoordinates : CLLocationCoordinate2D = self.locationManager.location!.coordinate
-        
-        if isUserInNYC(currentCoordinates) == true {
-            self.view.bringSubviewToFront(self.centerOnUserButton)
-        } else {
-            //self.view.sendSubviewToBack(self.centerOnUserButton)
+            self.isUserInNYC(currentCoordinates, completion: { (answer) in
+                if answer == true {
+                    self.centerOnUserLocation(currentCoordinates)
+                    self.view.bringSubviewToFront(self.centerOnUserButton)
+                }
+            })
         }
     }
     
@@ -250,11 +256,9 @@ class MapViewController: UIViewController,
         lastTappedLocationData.sortInPlace{ ($0["date"] as? String) < ($1["date"] as? String) }
     }
     
-    func isUserInNYC(currentCoordinates: CLLocationCoordinate2D) -> Bool {
+    func isUserInNYC(currentCoordinates: CLLocationCoordinate2D, completion: (answer: Bool?) -> Void) {
         let location = CLLocation(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude)
         let geocoder = CLGeocoder()
-        
-        var isUserInNYC = false
         
 //        print("-> Finding user address...")
         
@@ -272,12 +276,12 @@ class MapViewController: UIViewController,
 //                print(placemark.inlandWater)
                 
                 if (placemark.locality == "New York" && placemark.inlandWater == nil) {
-                    isUserInNYC = true
+                    completion(answer: true)
+                } else {
+                    completion(answer: false)
                 }
             }
         })
-        
-        return isUserInNYC
     }
     
     func centerOnUserLocation(currentCoordinates: CLLocationCoordinate2D) {
