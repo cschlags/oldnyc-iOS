@@ -165,6 +165,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 150)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
         let footerView = FooterView(frame: footerFrame, year: self.lastTappedLocationDataPassed[locationPhotoIndex]["date"] as! String, summary: self.lastTappedLocationDataPassed[locationPhotoIndex]["description"] as! String, count: self.photos.count)
+//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PhotoGalleryViewController.handleFooterViewTap(_:)))
+//        footerView.addGestureRecognizer(gestureRecognizer)
         let galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: displacedView, imageCount: self.photos.count, startIndex: locationPhotoIndex)
         galleryViewController.headerView = headerView
         galleryViewController.footerView = footerView
@@ -186,8 +188,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         self.presentImageGallery(galleryViewController)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true;
+    func handleFooterViewTap(gestureRecognizer: UIGestureRecognizer){
+    
     }
 }
 

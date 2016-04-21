@@ -44,6 +44,7 @@ class FooterView: UIView {
     }
     
     func updateSummary() {
+//        let smallSummary = summary.substringToIndex(summary.startIndex.advancedBy(30))
         attributedLabelText.appendAttributedString(NSAttributedString(string: "\n", attributes: nil))
         attributedLabelText.appendAttributedString(NSAttributedString(string: summary, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
         updateCredit()
@@ -68,6 +69,7 @@ class FooterView: UIView {
         yearLabel = UITextView(frame: CGRectZero, textContainer: nil)
         yearLabel?.translatesAutoresizingMaskIntoConstraints = false
         yearLabel?.editable = true
+        yearLabel?.scrollEnabled = false
         yearLabel?.dataDetectorTypes = .None
         yearLabel?.backgroundColor = UIColor.clearColor()
         yearLabel?.textContainerInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)
@@ -77,6 +79,7 @@ class FooterView: UIView {
         let widthConstraint: NSLayoutConstraint = NSLayoutConstraint(item: yearLabel!, attribute: .Width, relatedBy: .Equal, toItem: yearLabel!, attribute: .Width, multiplier: 1.0, constant: 0.0)
         let horizontalPositionConstraint: NSLayoutConstraint = NSLayoutConstraint(item: yearLabel!, attribute: .CenterX, relatedBy: .Equal, toItem: yearLabel!, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
         yearLabel!.addConstraints([topConstraint, bottomConstraint, widthConstraint, horizontalPositionConstraint])
+        yearLabel?.autocorrectionType = UITextAutocorrectionType.No
         
     }
     
