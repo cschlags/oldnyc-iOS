@@ -40,6 +40,9 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         self.populatePhotoArray()
         self.navigationController?.navigationBar.translucent = true
         hidingNavBarManager?.viewWillAppear(animated)
+//        var statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
+//        statusBarSize.width = 0.0
+//        statusBarSize.height = 0.0
         dispatch_async(dispatch_get_main_queue(),{
             self.collectionView?.reloadData()
         })
@@ -171,9 +174,9 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         galleryViewController.headerView = headerView
         galleryViewController.footerView = footerView
         
-        galleryViewController.launchedCompletion = { print("LAUNCHED") }
-        galleryViewController.closedCompletion = { print("CLOSED") }
-        galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED") }
+        galleryViewController.launchedCompletion = { print("LAUNCHED")}
+        galleryViewController.closedCompletion = { print("CLOSED")}
+        galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED")}
         
         galleryViewController.landedPageAtIndexCompletion = { index in
             
@@ -190,6 +193,10 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     
     func handleFooterViewTap(gestureRecognizer: UIGestureRecognizer){
     
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
     }
 }
 

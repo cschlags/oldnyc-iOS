@@ -69,7 +69,7 @@ class FooterView: UIView {
         yearLabel = UITextView(frame: CGRectZero, textContainer: nil)
         yearLabel?.translatesAutoresizingMaskIntoConstraints = false
         yearLabel?.editable = true
-        yearLabel?.scrollEnabled = false
+//        yearLabel?.scrollEnabled = false
         yearLabel?.dataDetectorTypes = .None
         yearLabel?.backgroundColor = UIColor.clearColor()
         yearLabel?.textContainerInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)

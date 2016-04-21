@@ -559,4 +559,7 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
         self.currentIndex = controller.index
         self.landedPageAtIndexCompletion?(self.currentIndex)
     }
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 }
