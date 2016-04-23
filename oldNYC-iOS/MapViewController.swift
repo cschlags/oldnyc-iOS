@@ -91,13 +91,12 @@ class MapViewController: UIViewController,
                 
                 print("app is in foreground")
                 
-                
                 if let currentCoordinates : CLLocationCoordinate2D = self.locationManager.location?.coordinate {
                     print(currentCoordinates)
                     self.isUserInNYC(currentCoordinates, completion: { (answer) in
                         if answer == true {
                             print(currentCoordinates)
-                            self.centerOnUserLocation(currentCoordinates)
+                            //self.centerOnUserLocation(currentCoordinates)
                             self.view.bringSubviewToFront(self.centerOnUserButton)
                         } else if answer == false {
                             self.view.sendSubviewToBack(self.centerOnUserButton)
@@ -126,17 +125,17 @@ class MapViewController: UIViewController,
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
-            let currentCoordinates : CLLocationCoordinate2D = manager.location!.coordinate
-            //let currentCoordinates = CLLocationCoordinate2D(latitude: 40.761850, longitude: -73.887072)
-            
-            self.isUserInNYC(currentCoordinates, completion: { (answer) in
-                if answer == true {
-                    self.centerOnUserLocation(currentCoordinates)
-                    self.view.bringSubviewToFront(self.centerOnUserButton)
-                } else if answer == false {
-                    self.view.sendSubviewToBack(self.centerOnUserButton)
-                }
-            })
+            //if let currentCoordinates = CLLocationCoordinate2D(latitude: 40.761850, longitude: -73.887072)
+            if let currentCoordinates : CLLocationCoordinate2D = manager.location?.coordinate {
+                self.isUserInNYC(currentCoordinates, completion: { (answer) in
+                    if answer == true {
+                        self.centerOnUserLocation(currentCoordinates)
+                        self.view.bringSubviewToFront(self.centerOnUserButton)
+                    } else if answer == false {
+                        self.view.sendSubviewToBack(self.centerOnUserButton)
+                    }
+                })
+            }
         }
     }
     
