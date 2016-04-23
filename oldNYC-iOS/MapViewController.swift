@@ -99,6 +99,8 @@ class MapViewController: UIViewController,
                             print(currentCoordinates)
                             self.centerOnUserLocation(currentCoordinates)
                             self.view.bringSubviewToFront(self.centerOnUserButton)
+                        } else if answer == false {
+                            self.view.sendSubviewToBack(self.centerOnUserButton)
                         }
                     })
                 }
@@ -131,6 +133,8 @@ class MapViewController: UIViewController,
                 if answer == true {
                     self.centerOnUserLocation(currentCoordinates)
                     self.view.bringSubviewToFront(self.centerOnUserButton)
+                } else if answer == false {
+                    self.view.sendSubviewToBack(self.centerOnUserButton)
                 }
             })
         }
