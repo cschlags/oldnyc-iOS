@@ -105,5 +105,7 @@ class FooterView: UIView {
         super.layoutSubviews()
         yearLabel!.frame = self.bounds
         yearLabel!.setContentOffset(CGPointZero, animated: false)
+        yearLabel!.contentOffset.x = 0.0
+        yearLabel!.contentOffset.y = 0.0
     }
 }
