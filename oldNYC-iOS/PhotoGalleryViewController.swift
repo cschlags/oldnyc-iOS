@@ -197,6 +197,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
                 footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100.0)
             }else if UIDevice.currentDevice().orientation.isPortrait{
                 footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
+            }else if UIDevice.currentDevice().orientation.isFlat{
+                footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
             }
             
             self.galleryViewController.footerView?.frame = footerFrame
@@ -230,17 +232,23 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
                         footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 80.0)
                     }else if UIDevice.currentDevice().orientation.isPortrait{
                         footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
+                    }else if UIDevice.currentDevice().orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
                     }
                 }else if contentSize > 600{
                     if UIDevice.currentDevice().orientation.isLandscape{
                         footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 600.0)
                     }else if UIDevice.currentDevice().orientation.isPortrait{
                         footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
+                    }else if UIDevice.currentDevice().orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
                     }
                 }else {
                     if UIDevice.currentDevice().orientation.isLandscape{
                         footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: contentSize)
                     }else if UIDevice.currentDevice().orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
+                    }else if UIDevice.currentDevice().orientation.isFlat{
                         footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
                     }
                 }
@@ -251,6 +259,8 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
                 if UIDevice.currentDevice().orientation.isLandscape{
                     footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100.0)
                 }else if UIDevice.currentDevice().orientation.isPortrait{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
+                }else if UIDevice.currentDevice().orientation.isFlat{
                     footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
                 }
                 self.footerView.frame = footerFrame
