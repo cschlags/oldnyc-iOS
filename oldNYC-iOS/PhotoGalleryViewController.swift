@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import FMMosaicLayout
-//import NYTPhotoViewer
 import SDWebImage
 
 class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
@@ -23,13 +22,16 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     var photos : [UIImage!] = []
     var count: Int = 0
     var imageProvider: AnyObject?
+    var lastContentOffset: CGPoint!
+    var imageView: UIImageView!
+    var footerView: FooterView!
     
     override func viewDidLoad() {
         let mosaicLayout : FMMosaicLayout = FMMosaicLayout()
         self.collectionView!.collectionViewLayout = mosaicLayout
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+//         self.clearsSelectionOnViewWillAppear = false
         let location = lastTappedLocationDataPassed[0]["folder"] as! String
         self.navigationItem.title = "\(location.componentsSeparatedByString(",")[0])";
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
@@ -40,9 +42,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         self.populatePhotoArray()
         self.navigationController?.navigationBar.translucent = true
         hidingNavBarManager?.viewWillAppear(animated)
-//        var statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
-//        statusBarSize.width = 0.0
-//        statusBarSize.height = 0.0
+        self.collectionView?.decelerationRate = UIScrollViewDecelerationRateNormal
         dispatch_async(dispatch_get_main_queue(),{
             self.collectionView?.reloadData()
         })
@@ -73,7 +73,6 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         hidingNavBarManager?.shouldScrollToTop()
         return true
     }
-    
     /*
     // MARK: - Navigation
 
@@ -131,11 +130,22 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        locationPhotoIndex = indexPath.row
-        let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[locationPhotoIndex]["image_url"] as! String)!)
-        let image = UIImage.sd_imageWithData(request)
-        let imageView = UIImageView(image: image!)
-        self.setPhotosInGallery(imageView)
+        if Reachability.isConnectedToNetwork() == true {
+            locationPhotoIndex = indexPath.row
+            let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[locationPhotoIndex]["image_url"] as! String)!)
+            let image = UIImage.sd_imageWithData(request)
+            imageView = UIImageView(image: image!)
+            self.setPhotosInGallery(imageView)
+        } else {
+            let detailsActivityViewController = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in
+                
+            }
+            detailsActivityViewController.addAction(cancelAction)
+            self.presentViewController(detailsActivityViewController, animated: true, completion: nil)
+            NSLog("Internet connection FAILED")
+        }
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
@@ -161,16 +171,19 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         })
     }
     
-    func setPhotosInGallery(displacedView: UIView){
-        let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos)
+    func setPhotosInGallery(displacedView: UIImageView){
+        let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos, startImage: self.imageView)
         
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
-        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 150)
+        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 75)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
-        let footerView = FooterView(frame: footerFrame, year: self.lastTappedLocationDataPassed[locationPhotoIndex]["date"] as! String, summary: self.lastTappedLocationDataPassed[locationPhotoIndex]["description"] as! String, count: self.photos.count)
-//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PhotoGalleryViewController.handleFooterViewTap(_:)))
-//        footerView.addGestureRecognizer(gestureRecognizer)
-        let galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: displacedView, imageCount: self.photos.count, startIndex: locationPhotoIndex)
+        
+        footerView = FooterView(frame: footerFrame, year: "", summary: "", count: self.photos.count)
+        galleryViewController = GalleryViewController(imageProvider: imageProvider, displacedView: displacedView, imageCount: self.photos.count, startIndex: locationPhotoIndex)
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PhotoGalleryViewController.handleFooterViewTap(_:)))
+        footerView.yearLabel?.addGestureRecognizer(gestureRecognizer)
+        
         galleryViewController.headerView = headerView
         galleryViewController.footerView = footerView
         
@@ -179,20 +192,77 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED")}
         
         galleryViewController.landedPageAtIndexCompletion = { index in
-            
+            var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+            if UIDevice.currentDevice().orientation.isLandscape{
+                footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100.0)
+            }else if UIDevice.currentDevice().orientation.isPortrait{
+                footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
+            }
+            self.galleryViewController.footerView?.frame = footerFrame
             print("LANDED AT INDEX: \(index)")
             
             headerView.currentIndex = index
-            
-            footerView.year = self.lastTappedLocationDataPassed[index]["date"] as! String
-            footerView.summary = self.lastTappedLocationDataPassed[index]["description"] as! String
+            let description = self.lastTappedLocationDataPassed[index]["description"] as! String
+            var substring = ""
+            if description.characters.count > 29{
+                substring = description.substringToIndex(description.startIndex.advancedBy(30))
+            }else{
+                substring = description
+            }
+            self.footerView.year = self.lastTappedLocationDataPassed[index]["date"] as! String
+            self.footerView.summary = substring
         }
         
         self.presentImageGallery(galleryViewController)
     }
     
     func handleFooterViewTap(gestureRecognizer: UIGestureRecognizer){
-    
+        let description = self.lastTappedLocationDataPassed[galleryViewController.currentIndex]["description"] as! String
+        if !description.isEmpty && description.characters.count > 29{
+            if self.footerView.frame.height == 100.0{
+                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+                self.footerView.frame = footerFrame
+                self.footerView.summary = description
+                let contentSize: CGFloat = (self.footerView.yearLabel?.contentSize.height)! + 5
+                if contentSize < 75{
+                    if UIDevice.currentDevice().orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 80.0)
+                    }else if UIDevice.currentDevice().orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
+                    }
+                }else if contentSize > 600{
+                    if UIDevice.currentDevice().orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 600.0)
+                    }else if UIDevice.currentDevice().orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
+                    }
+                }else {
+                    if UIDevice.currentDevice().orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: contentSize)
+                    }else if UIDevice.currentDevice().orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
+                    }
+                }
+                self.footerView.frame = footerFrame
+                galleryViewController.footerView = self.footerView
+            }else{
+                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+                if UIDevice.currentDevice().orientation.isLandscape{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100.0)
+                }else if UIDevice.currentDevice().orientation.isPortrait{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
+                }
+                self.footerView.frame = footerFrame
+                var substring = ""
+                if description.characters.count > 29{
+                    substring = description.substringToIndex(description.startIndex.advancedBy(30))
+                }else{
+                    substring = description
+                }
+                self.footerView.summary = substring
+                galleryViewController.footerView = self.footerView
+            }
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -203,9 +273,11 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
 class SomeImageProvider: ImageProvider{
     var locationArray: [UIImage!]
     var locationData: [[String:Any]]
-    required init(locationData: [[String:Any]], locationArray: [UIImage!]) {
+    var startImage: UIImageView
+    required init(locationData: [[String:Any]], locationArray: [UIImage!], startImage: UIImageView) {
         self.locationArray = locationArray
         self.locationData = locationData
+        self.startImage = startImage
     }
     
     func provideImage(completion: UIImage? -> Void) {
@@ -213,10 +285,15 @@ class SomeImageProvider: ImageProvider{
     }
     
     func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
-        if locationArray[index] == nil{
-            let request = NSData(contentsOfURL: NSURL(string: locationData[index]["image_url"] as! String)!)
-            let image = UIImage.sd_imageWithData(request)
-            locationArray[index] = image
+        if index == 0 {
+            locationArray[index] = self.startImage.image!
+        }
+        if index+1 < locationArray.count{
+            if locationArray[index+1] == nil{
+                let request = NSData(contentsOfURL: NSURL(string: locationData[index]["image_url"] as! String)!)
+                let image = UIImage.sd_imageWithData(request)
+                locationArray[index] = image
+            }
         }
         completion(locationArray[index])
     }

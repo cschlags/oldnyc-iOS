@@ -12,7 +12,8 @@ import UIKit
 public protocol ImageProvider {
     var locationData: [[String:Any]] { get set }
     var locationArray: [UIImage!] { get set }
-    init(locationData: [[String:Any]], locationArray: [UIImage!])
+    var startImage: UIImageView { get set }
+    init(locationData: [[String:Any]], locationArray: [UIImage!], startImage: UIImageView)
     
     func provideImage(completion: UIImage? -> Void)
     func provideImage(atIndex index: Int, completion: UIImage? -> Void)

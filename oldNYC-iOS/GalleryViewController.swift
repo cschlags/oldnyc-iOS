@@ -170,9 +170,11 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
         if UIDevice.currentDevice().orientation.isLandscape{
             let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100)
             footerView?.frame = footerFrame
+            footerView?.layoutSubviews()
         }else if UIDevice.currentDevice().orientation.isPortrait{
             let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100)
             footerView?.frame = footerFrame
+            footerView?.layoutSubviews()
         }
         
         UIView.animateWithDuration(rotationAnimationDuration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { [weak self] () -> Void in

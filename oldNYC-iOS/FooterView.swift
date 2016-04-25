@@ -6,12 +6,12 @@ class FooterView: UIView {
     var yearLabel: UITextView? = UITextView()
     var attributedLabelText: NSMutableAttributedString = NSMutableAttributedString()
     var gradientLayer: CAGradientLayer = CAGradientLayer()
-    var year: String {
+    var year: String{
         didSet {
-            updateYear()
+//            updateYear()
         }
     }
-    var summary: String {
+    var summary: String{
         didSet {
             updateSummary()
         }
@@ -27,7 +27,6 @@ class FooterView: UIView {
         setupTextView()
         updateGradient()
         configureLabel()
-        updateYear()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,41 +37,60 @@ class FooterView: UIView {
         yearLabel!.textAlignment = .Left
     }
     
-    func updateYear() {
-        attributedLabelText = NSMutableAttributedString(string: "", attributes: nil)
-        attributedLabelText.appendAttributedString(NSAttributedString(string: year, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
-    }
-    
     func updateSummary() {
-//        let smallSummary = summary.substringToIndex(summary.startIndex.advancedBy(30))
-        attributedLabelText.appendAttributedString(NSAttributedString(string: "\n", attributes: nil))
-        attributedLabelText.appendAttributedString(NSAttributedString(string: summary, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+        var smallSummary = ""
+        if self.frame.height != 100.0{
+            attributedLabelText = NSMutableAttributedString(string: "\n", attributes: nil)
+            attributedLabelText.appendAttributedString(NSAttributedString(string: year, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(20), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+            attributedLabelText.appendAttributedString(NSAttributedString(string: "\n", attributes: nil))
+            attributedLabelText.appendAttributedString(NSAttributedString(string: summary, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+        }else{
+            if !summary.isEmpty{
+                attributedLabelText = NSMutableAttributedString(string: "\n", attributes: nil)
+                attributedLabelText.appendAttributedString(NSAttributedString(string: year, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(20), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+                attributedLabelText.appendAttributedString(NSAttributedString(string: "\n", attributes: nil))
+                if summary.characters.count > 29{
+                    smallSummary = summary.substringToIndex(summary.startIndex.advancedBy(30))
+                    if smallSummary.componentsSeparatedByString("\n").count > 1{
+                        smallSummary = smallSummary.componentsSeparatedByString("\n")[0] + smallSummary.componentsSeparatedByString("\n")[1]
+                    }
+                    attributedLabelText.appendAttributedString(NSAttributedString(string: smallSummary, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+                    attributedLabelText.appendAttributedString(NSAttributedString(string: "... See More", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.grayColor()]))
+                        if smallSummary.componentsSeparatedByString("\n").count == 1{
+                            attributedLabelText.appendAttributedString(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.grayColor()]))
+                        }else if smallSummary.componentsSeparatedByString("\n").count == 0{
+                            attributedLabelText.appendAttributedString(NSAttributedString(string: "\n\n", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.grayColor()]))
+                        }
+                }else{
+                    smallSummary = summary
+                    attributedLabelText.appendAttributedString(NSAttributedString(string: smallSummary, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+                }
+            }else{
+                attributedLabelText = NSMutableAttributedString(string: "\n\n\n", attributes: nil)
+                attributedLabelText.appendAttributedString(NSAttributedString(string: year, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(20), NSForegroundColorAttributeName: UIColor.whiteColor()]))
+            }
+        }
         updateCredit()
     }
     
     func updateCredit() {
         attributedLabelText.appendAttributedString(NSAttributedString(string: "\n", attributes: nil))
-        attributedLabelText.appendAttributedString(NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(15), NSForegroundColorAttributeName: UIColor.darkGrayColor()]))
+        attributedLabelText.appendAttributedString(NSAttributedString(string: "NYPL Irma and Paul Milstein Collection", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.grayColor()]))
         yearLabel?.attributedText = attributedLabelText
     }
     
     func updateGradient(){
-        self.gradientLayer = CAGradientLayer()
-        self.gradientLayer.frame = (yearLabel?.bounds)!
-        self.gradientLayer.colors = [(UIColor.clearColor().CGColor as AnyObject), (UIColor.blackColor().colorWithAlphaComponent(0.85).CGColor as AnyObject)]
-        yearLabel?.backgroundColor = UIColor.clearColor()
-        yearLabel?.layer.insertSublayer(self.gradientLayer, atIndex: 0)
+        yearLabel?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
     }
-    
+
     func setupTextView() {
-        
         yearLabel = UITextView(frame: CGRectZero, textContainer: nil)
         yearLabel?.translatesAutoresizingMaskIntoConstraints = false
-        yearLabel?.editable = true
-//        yearLabel?.scrollEnabled = false
+        yearLabel?.editable = false
+        yearLabel?.scrollEnabled = true
         yearLabel?.dataDetectorTypes = .None
         yearLabel?.backgroundColor = UIColor.clearColor()
-        yearLabel?.textContainerInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)
+        yearLabel?.textContainerInset = UIEdgeInsetsMake(2.0, 2.0, 0.0, 2.0)
         self.addSubview(yearLabel!)
         let topConstraint: NSLayoutConstraint = NSLayoutConstraint(item: yearLabel!, attribute: .Top, relatedBy: .Equal, toItem: yearLabel!, attribute: .Top, multiplier: 1.0, constant: 0.0)
         let bottomConstraint: NSLayoutConstraint = NSLayoutConstraint(item: yearLabel!, attribute: .Bottom, relatedBy: .Equal, toItem: yearLabel!, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
@@ -86,5 +104,6 @@ class FooterView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         yearLabel!.frame = self.bounds
+        yearLabel!.setContentOffset(CGPointZero, animated: false)
     }
 }

@@ -35,6 +35,7 @@
 		84714C891CC534360038BF8C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84714C871CC534350038BF8C /* UIView.swift */; };
 		84714C8A1CC534360038BF8C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84714C881CC534350038BF8C /* UIViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
+		84BD92FD1CCC64AB00DBD73B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BD92FC1CCC64AB00DBD73B /* Reachability.swift */; };
 		84C17B4A1C963E5B00D491AF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 84C17B491C963E5A00D491AF /* Podfile */; };
 		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		AA79E665FE0937BE7571601E /* Pods_oldNYC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32022ED5BD1ACBC3CC4C1B92 /* Pods_oldNYC_iOS.framework */; };
@@ -79,6 +80,7 @@
 		84714C881CC534350038BF8C /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oldNYC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		84BD92FC1CCC64AB00DBD73B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		84C17B491C963E5A00D491AF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A0172A22863F353E4869E659 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */,
 				84339B6A1CC3BFED00063C81 /* CounterView.swift */,
 				844D5BC51CC4E69000B65B83 /* FooterView.swift */,
+				84BD92FC1CCC64AB00DBD73B /* Reachability.swift */,
 				845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */,
 				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
 				84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */,
@@ -239,7 +242,7 @@
 				TargetAttributes = {
 					CB5783DD1C41A1A300A55D30 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 397HLL8JUB;
+						DevelopmentTeam = LRAK7WQC9P;
 					};
 				};
 			};
@@ -337,6 +340,7 @@
 				CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				846A005C1CC532A3008DDFC6 /* GalleryViewController.swift in Sources */,
+				84BD92FD1CCC64AB00DBD73B /* Reachability.swift in Sources */,
 				846A00721CC532B2008DDFC6 /* ImageViewerSwipeToDismissTransition.swift in Sources */,
 				846A006E1CC532B2008DDFC6 /* ImageViewer.swift in Sources */,
 				84714C8A1CC534360038BF8C /* UIViewController.swift in Sources */,
@@ -496,7 +500,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -523,7 +527,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS.christina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
