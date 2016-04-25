@@ -198,6 +198,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
             }else if UIDevice.currentDevice().orientation.isPortrait{
                 footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
             }
+            
             self.galleryViewController.footerView?.frame = footerFrame
             print("LANDED AT INDEX: \(index)")
             
@@ -292,7 +293,7 @@ class SomeImageProvider: ImageProvider{
             if locationArray[index+1] == nil{
                 let request = NSData(contentsOfURL: NSURL(string: locationData[index]["image_url"] as! String)!)
                 let image = UIImage.sd_imageWithData(request)
-                locationArray[index] = image
+                locationArray[index+1] = image
             }
         }
         completion(locationArray[index])

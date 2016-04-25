@@ -138,6 +138,7 @@ final class ImageViewController: UIViewController, UIScrollViewDelegate, UIGestu
         dispatch_async(backgroundQueue) {
             
             self.imageProvider.provideImage(atIndex: atIndex, completion: completion)
+            
         }
     }
     
