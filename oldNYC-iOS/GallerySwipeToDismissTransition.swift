@@ -10,8 +10,8 @@ import UIKit
 
 final class GallerySwipeToDismissTransition {
     
-    private weak var presentingViewController: UIViewController?
-    private weak var scrollView : UIScrollView?
+    fileprivate weak var presentingViewController: UIViewController?
+    fileprivate weak var scrollView : UIScrollView?
     
     init(presentingViewController: UIViewController?, scrollView: UIScrollView?) {
         
@@ -22,21 +22,21 @@ final class GallerySwipeToDismissTransition {
         scrollView?.setContentOffset(CGPoint(x:  hOffset, y: vOffset), animated: false)
     }
     
-    func finishInteractiveTransition(swipeDirection: SwipeToDismiss, touchPoint: CGFloat,  targetOffset: CGFloat, escapeVelocity: CGFloat, completion: (() -> Void)?) {
+    func finishInteractiveTransition(_ swipeDirection: SwipeToDismiss, touchPoint: CGFloat,  targetOffset: CGFloat, escapeVelocity: CGFloat, completion: (() -> Void)?) {
         
         /// In units of "vertical velocity". for example if we have a vertical velocity of 50 units (which are points really) per second
         /// and the distance to travel is 175 units, then our spring velocity is 3.5. I.e. we will travel 3.5 units in 1 second.
         let springVelocity = fabs(escapeVelocity / (targetOffset - touchPoint))
         
         /// How much time it will take to travel the remaining distance given the above speed.
-        let expectedDuration = NSTimeInterval( fabs(targetOffset - touchPoint) / fabs(escapeVelocity))
+        let expectedDuration = TimeInterval( fabs(targetOffset - touchPoint) / fabs(escapeVelocity))
 
-        UIView.animateWithDuration(expectedDuration * 0.65, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: springVelocity, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.animate(withDuration: expectedDuration * 0.65, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: springVelocity, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
             
             switch swipeDirection {
                 
-            case .Horizontal:   self.scrollView?.setContentOffset(CGPoint(x: targetOffset, y: 0), animated: false)
-            case .Vertical:     self.scrollView?.setContentOffset(CGPoint(x: 0, y: targetOffset), animated: false)
+            case .horizontal:   self.scrollView?.setContentOffset(CGPoint(x: targetOffset, y: 0), animated: false)
+            case .vertical:     self.scrollView?.setContentOffset(CGPoint(x: 0, y: targetOffset), animated: false)
         
             }
         }, completion: { (finished) -> Void in
@@ -44,11 +44,11 @@ final class GallerySwipeToDismissTransition {
         })
     }
     
-    func cancelTransition(completion: (() -> Void)? = {}) {
+    func cancelTransition(_ completion: (() -> Void)? = {}) {
         
-        UIView.animateWithDuration(0.2, delay: 0, options: .CurveLinear, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: { () -> Void in
             
-            self.scrollView?.setContentOffset(CGPointZero, animated: false)
+            self.scrollView?.setContentOffset(CGPoint.zero, animated: false)
             
             }) { finished in
                 

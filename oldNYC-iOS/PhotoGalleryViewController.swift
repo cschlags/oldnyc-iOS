@@ -12,14 +12,14 @@ import FMMosaicLayout
 import SDWebImage
 
 class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
-    private let reuseIdentifier = "galleryCell"
+    fileprivate let reuseIdentifier = "galleryCell"
     var lastTappedLocationDataPassed = [[String : Any]]()
     var lastTappedLocationName : String?
     var locationPhotoIndex:Int = 0
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet var gallery: UICollectionView!
     var galleryViewController: GalleryViewController!
-    var photos : [UIImage!] = []
+    var photos : [UIImage?] = []
     var count: Int = 0
     var imageProvider: AnyObject?
     var lastContentOffset: CGPoint!
@@ -33,17 +33,17 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         // Uncomment the following line to preserve selection between presentations
 //         self.clearsSelectionOnViewWillAppear = false
         let location = lastTappedLocationDataPassed[0]["folder"] as! String
-        self.navigationItem.title = "\(location.componentsSeparatedByString(",")[0])";
+        self.navigationItem.title = "\(location.components(separatedBy: ",")[0])";
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: gallery)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.populatePhotoArray()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
         hidingNavBarManager?.viewWillAppear(animated)
         self.collectionView?.decelerationRate = UIScrollViewDecelerationRateNormal
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
             self.collectionView?.reloadData()
         })
     }
@@ -54,12 +54,12 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         hidingNavBarManager?.viewDidLayoutSubviews()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hidingNavBarManager?.viewWillDisappear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -69,7 +69,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         // Dispose of any resources that can be recreated.
     }
     
-    override func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         hidingNavBarManager?.shouldScrollToTop()
         return true
     }
@@ -85,29 +85,29 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return lastTappedLocationDataPassed.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
-        cell.backgroundColor = UIColor.blackColor()
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GalleryCollectionViewCell
+        cell.backgroundColor = UIColor.black
         let flickrPhoto =  lastTappedLocationDataPassed[indexPath.row]
         let url = flickrPhoto["image_url"] as! String
-        let request = NSURL(string: url)!
-        cell.cellImage.sd_setImageWithURL(request)
+        let request = URL(string: url)!
+        cell.cellImage.sd_setImage(with: request)
         cell.alpha = 0.0
         let millisecondsDelay = UInt64((arc4random() % 600) / 1000)
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(millisecondsDelay * NSEC_PER_SEC)), dispatch_get_main_queue(),
-            ({ () -> Void in
-                UIView.animateWithDuration(0.3, animations: ({
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(millisecondsDelay * NSEC_PER_SEC)) / Double(NSEC_PER_SEC),
+            execute: ({ () -> Void in
+                UIView.animate(withDuration: 0.3, animations: ({
                     cell.alpha = 1.0
             }))
         }))
@@ -117,65 +117,71 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, numberOfColumnsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, numberOfColumnsInSection section: Int) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: FMMosaicLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
     
-    func collectionView(collectionview: UICollectionView, layout collectionViewLayout: FMMosaicLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat{
+    func collectionView(_ collectionview: UICollectionView, layout collectionViewLayout: FMMosaicLayout, interitemSpacingForSectionAt section: Int) -> CGFloat{
         return 2.0
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if Reachability.isConnectedToNetwork() == true {
-            locationPhotoIndex = indexPath.row
-            let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[locationPhotoIndex]["image_url"] as! String)!)
-            let image = UIImage.sd_imageWithData(request)
-            imageView = UIImageView(image: image!)
-            self.setPhotosInGallery(imageView)
-        } else {
-            let detailsActivityViewController = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .ActionSheet)
-            
-            let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in
-                
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let reachability = Reachability()!
+        
+        if reachability.isReachable {
+            DispatchQueue.main.async {
+                self.locationPhotoIndex = indexPath.row
+                let request = try? Data(contentsOf: URL(string: self.lastTappedLocationDataPassed[self.locationPhotoIndex]["image_url"] as! String)!)
+                let image = UIImage.sd_image(with: request)
+                self.imageView = UIImageView(image: image!)
+                self.setPhotosInGallery(self.imageView)
             }
-            detailsActivityViewController.addAction(cancelAction)
-            self.presentViewController(detailsActivityViewController, animated: true, completion: nil)
-            NSLog("Internet connection FAILED")
+        }else{
+            DispatchQueue.main.async {
+                let detailsActivityViewController = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .actionSheet)
+                
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                    
+                }
+                detailsActivityViewController.addAction(cancelAction)
+                self.present(detailsActivityViewController, animated: true, completion: nil)
+                NSLog("Internet connection FAILED")
+            }
         }
     }
     
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAtIndexPath indexPath: NSIndexPath!) -> FMMosaicCellSize {
+    func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAt indexPath: IndexPath!) -> FMMosaicCellSize {
 //        if lastTappedLocationDataPassed.count < 6{
 //            return FMMosaicCellSize.Big
 //        }else{
-            return FMMosaicCellSize.Small
+            return FMMosaicCellSize.small
 //        }
     }
     func populatePhotoArray(){
         let photoInt:Int = self.lastTappedLocationDataPassed.count
-        self.photos = [UIImage!](count: photoInt, repeatedValue: nil)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
+        self.photos = [UIImage!](repeating: nil, count: photoInt)
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {() -> Void in
             let NumberOfPhotos = self.lastTappedLocationDataPassed.count
             for photoIndex in 0 ..< NumberOfPhotos {
-                let request = NSData(contentsOfURL: NSURL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
-                let image = UIImage.sd_imageWithData(request)
+                let request = try? Data(contentsOf: URL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
+                let image = UIImage.sd_image(with: request)
                 
-                dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                DispatchQueue.main.async(execute: {() -> Void in
                     self.photos[photoIndex] = image
                 })
             }
         })
     }
     
-    func setPhotosInGallery(displacedView: UIImageView){
+    func setPhotosInGallery(_ displacedView: UIImageView){
         let imageProvider = SomeImageProvider(locationData: self.lastTappedLocationDataPassed, locationArray: self.photos, startImage: self.imageView)
         
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
-        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 75)
+        let footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 75)
         let headerView = CounterView(frame: frame, currentIndex: locationPhotoIndex, count: self.photos.count)
         
         footerView = FooterView(frame: footerFrame, year: "", summary: "", count: self.photos.count)
@@ -194,7 +200,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         galleryViewController.landedPageAtIndexCompletion = { index in
             if self.galleryViewController.footerView?.frame.height != 75.0 && self.galleryViewController.footerView?.frame.height != 100.0{
                 print("LANDED AT INDEX: \(index)")
-                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 self.footerView.frame = footerFrame
                 let description = self.lastTappedLocationDataPassed[index]["description"] as! String
                 headerView.currentIndex = index
@@ -203,40 +209,40 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
                 
                 let contentSize: CGFloat = (self.footerView.yearLabel?.contentSize.height)! + 5
                 if contentSize < 75{
-                    if UIDevice.currentDevice().orientation.isLandscape{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 80.0)
-                    }else if UIDevice.currentDevice().orientation.isPortrait{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
-                    }else if UIDevice.currentDevice().orientation.isFlat{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
+                    if UIDevice.current.orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: 80.0)
+                    }else if UIDevice.current.orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80.0)
+                    }else if UIDevice.current.orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80.0)
                     }
                 }else if contentSize > 600{
-                    if UIDevice.currentDevice().orientation.isLandscape{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 600.0)
-                    }else if UIDevice.currentDevice().orientation.isPortrait{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
-                    }else if UIDevice.currentDevice().orientation.isFlat{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
+                    if UIDevice.current.orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: 600.0)
+                    }else if UIDevice.current.orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 600.0)
+                    }else if UIDevice.current.orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 600.0)
                     }
                 }else {
-                    if UIDevice.currentDevice().orientation.isLandscape{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: contentSize)
-                    }else if UIDevice.currentDevice().orientation.isPortrait{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
-                    }else if UIDevice.currentDevice().orientation.isFlat{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
+                    if UIDevice.current.orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: contentSize)
+                    }else if UIDevice.current.orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: contentSize)
+                    }else if UIDevice.current.orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: contentSize)
                     }
                 }
                 self.footerView.frame = footerFrame
                 self.galleryViewController.footerView = self.footerView
             }else{
-                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
-                if UIDevice.currentDevice().orientation.isLandscape{
-                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100.0)
-                }else if UIDevice.currentDevice().orientation.isPortrait{
-                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
-                }else if UIDevice.currentDevice().orientation.isFlat{
-                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
+                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                if UIDevice.current.orientation.isLandscape{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: 100.0)
+                }else if UIDevice.current.orientation.isPortrait{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100.0)
+                }else if UIDevice.current.orientation.isFlat{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100.0)
                 }
                 self.galleryViewController.footerView?.frame = footerFrame
                 print("LANDED AT INDEX: \(index)")
@@ -245,7 +251,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
                 let description = self.lastTappedLocationDataPassed[index]["description"] as! String
                 var substring = ""
                 if description.characters.count > 29{
-                    substring = description.substringToIndex(description.startIndex.advancedBy(30))
+                    substring = description.substring(to: description.characters.index(description.startIndex, offsetBy: 30))
                 }else{
                     substring = description
                 }
@@ -257,54 +263,54 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         self.presentImageGallery(galleryViewController)
     }
     
-    func handleFooterViewTap(gestureRecognizer: UIGestureRecognizer){
+    func handleFooterViewTap(_ gestureRecognizer: UIGestureRecognizer){
         let description = self.lastTappedLocationDataPassed[galleryViewController.currentIndex]["description"] as! String
         if !description.isEmpty && description.characters.count > 29{
             if self.footerView.frame.height == 100.0{
-                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 self.footerView.frame = footerFrame
                 self.footerView.summary = description
                 let contentSize: CGFloat = (self.footerView.yearLabel?.contentSize.height)! + 5
                 if contentSize < 75{
-                    if UIDevice.currentDevice().orientation.isLandscape{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 80.0)
-                    }else if UIDevice.currentDevice().orientation.isPortrait{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
-                    }else if UIDevice.currentDevice().orientation.isFlat{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 80.0)
+                    if UIDevice.current.orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: 80.0)
+                    }else if UIDevice.current.orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80.0)
+                    }else if UIDevice.current.orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80.0)
                     }
                 }else if contentSize > 600{
-                    if UIDevice.currentDevice().orientation.isLandscape{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 600.0)
-                    }else if UIDevice.currentDevice().orientation.isPortrait{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
-                    }else if UIDevice.currentDevice().orientation.isFlat{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 600.0)
+                    if UIDevice.current.orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: 600.0)
+                    }else if UIDevice.current.orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 600.0)
+                    }else if UIDevice.current.orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 600.0)
                     }
                 }else {
-                    if UIDevice.currentDevice().orientation.isLandscape{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: contentSize)
-                    }else if UIDevice.currentDevice().orientation.isPortrait{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
-                    }else if UIDevice.currentDevice().orientation.isFlat{
-                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: contentSize)
+                    if UIDevice.current.orientation.isLandscape{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: contentSize)
+                    }else if UIDevice.current.orientation.isPortrait{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: contentSize)
+                    }else if UIDevice.current.orientation.isFlat{
+                        footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: contentSize)
                     }
                 }
                 self.footerView.frame = footerFrame
                 galleryViewController.footerView = self.footerView
             }else{
-                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
-                if UIDevice.currentDevice().orientation.isLandscape{
-                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.height, height: 100.0)
-                }else if UIDevice.currentDevice().orientation.isPortrait{
-                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
-                }else if UIDevice.currentDevice().orientation.isFlat{
-                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0)
+                var footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                if UIDevice.current.orientation.isLandscape{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: 100.0)
+                }else if UIDevice.current.orientation.isPortrait{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100.0)
+                }else if UIDevice.current.orientation.isFlat{
+                    footerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100.0)
                 }
                 self.footerView.frame = footerFrame
                 var substring = ""
                 if description.characters.count > 29{
-                    substring = description.substringToIndex(description.startIndex.advancedBy(30))
+                    substring = description.substring(to: description.characters.index(description.startIndex, offsetBy: 30))
                 }else{
                     substring = description
                 }
@@ -314,33 +320,33 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true;
     }
 }
 
 class SomeImageProvider: ImageProvider{
-    var locationArray: [UIImage!]
+    var locationArray: [UIImage?]
     var locationData: [[String:Any]]
     var startImage: UIImageView
-    required init(locationData: [[String:Any]], locationArray: [UIImage!], startImage: UIImageView) {
+    required init(locationData: [[String:Any]], locationArray: [UIImage?], startImage: UIImageView) {
         self.locationArray = locationArray
         self.locationData = locationData
         self.startImage = startImage
     }
     
-    func provideImage(completion: UIImage? -> Void) {
+    func provideImage(_ completion: (UIImage?) -> Void) {
         completion(UIImage(named: "image_big"))
     }
     
-    func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
+    func provideImage(atIndex index: Int, completion: (UIImage?) -> Void) {
         if index == 0 {
             locationArray[index] = self.startImage.image!
         }
         if index+1 < locationArray.count{
             if locationArray[index+1] == nil{
-                let request = NSData(contentsOfURL: NSURL(string: locationData[index]["image_url"] as! String)!)
-                let image = UIImage.sd_imageWithData(request)
+                let request = try? Data(contentsOf: URL(string: locationData[index]["image_url"] as! String)!)
+                let image = UIImage.sd_image(with: request)
                 locationArray[index+1] = image
             }
         }

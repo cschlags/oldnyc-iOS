@@ -42,79 +42,79 @@ import AVFoundation
 public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewControllerTransitioningDelegate {
     
     /// UI
-    private var scrollView: UIScrollView!
-    private var overlayView: UIView!
-    private var closeButton: UIButton!
-    private var detailButton: UIButton!
-    private var shareButton: UIButton!
-    private var imageView = UIImageView()
+    fileprivate var scrollView: UIScrollView!
+    fileprivate var overlayView: UIView!
+    fileprivate var closeButton: UIButton!
+    fileprivate var detailButton: UIButton!
+    fileprivate var shareButton: UIButton!
+    fileprivate var imageView = UIImageView()
     
-    private let displacedView: UIView
-    private var applicationWindow: UIWindow? {
-        return UIApplication.sharedApplication().delegate?.window?.flatMap { $0 }
+    fileprivate let displacedView: UIView
+    fileprivate var applicationWindow: UIWindow? {
+        return UIApplication.shared.delegate?.window?.flatMap { $0 }
     }
     
     /// LOCAL STATE
-    private var parentViewFrameInOurCoordinateSystem = CGRectZero
-    private var isAnimating = false
-    private var shouldRotate = false
-    private var isSwipingToDismiss = false
-    private var dynamicTransparencyActive = false
-    private let imageProvider: ImageProvider
+    fileprivate var parentViewFrameInOurCoordinateSystem = CGRect.zero
+    fileprivate var isAnimating = false
+    fileprivate var shouldRotate = false
+    fileprivate var isSwipingToDismiss = false
+    fileprivate var dynamicTransparencyActive = false
+    fileprivate let imageProvider: ImageProvider
     
     /// LOCAL CONFIG
-    private let configuration: ImageViewerConfiguration
-    private var initialCloseButtonOrigin = CGPointZero
-    private var closeButtonSize = CGSize(width: 50, height: 50)
-    private let closeButtonPadding         = 0.0
-    private var detailButtonSize = CGSize(width: 50, height: 50)
-    private let detailButtonPadding         = 0.0
-    private var shareButtonSize = CGSize(width: 50, height: 50)
-    private let shareButtonPadding         = 0.0
-    private let showDuration               = 2.0
-    private let dismissDuration            = 0.0
-    private let showCloseButtonDuration    = 0.2
-    private let hideCloseButtonDuration    = 0.05
-    private let showDetailButtonDuration    = 0.2
-    private let hideDetailButtonDuration    = 0.05
-    private let showShareButtonDuration    = 0.2
-    private let hideShareButtonDuration    = 0.05
-    private let zoomDuration               = 0.2
-    private let thresholdVelocity: CGFloat = 1000 // Based on UX experiments
-    private let cutOffVelocity: CGFloat = 1000000 // we need some sufficiently large number, nobody can swipe faster then that
+    fileprivate let configuration: ImageViewerConfiguration
+    fileprivate var initialCloseButtonOrigin = CGPoint.zero
+    fileprivate var closeButtonSize = CGSize(width: 50, height: 50)
+    fileprivate let closeButtonPadding         = 0.0
+    fileprivate var detailButtonSize = CGSize(width: 50, height: 50)
+    fileprivate let detailButtonPadding         = 0.0
+    fileprivate var shareButtonSize = CGSize(width: 50, height: 50)
+    fileprivate let shareButtonPadding         = 0.0
+    fileprivate let showDuration               = 2.0
+    fileprivate let dismissDuration            = 0.0
+    fileprivate let showCloseButtonDuration    = 0.2
+    fileprivate let hideCloseButtonDuration    = 0.05
+    fileprivate let showDetailButtonDuration    = 0.2
+    fileprivate let hideDetailButtonDuration    = 0.05
+    fileprivate let showShareButtonDuration    = 0.2
+    fileprivate let hideShareButtonDuration    = 0.05
+    fileprivate let zoomDuration               = 0.2
+    fileprivate let thresholdVelocity: CGFloat = 1000 // Based on UX experiments
+    fileprivate let cutOffVelocity: CGFloat = 1000000 // we need some sufficiently large number, nobody can swipe faster then that
     /// TRANSITIONS
-    private let presentTransition: ImageViewerPresentTransition
-    private let dismissTransition: ImageViewerDismissTransition
-    private let swipeToDismissTransition: ImageViewerSwipeToDismissTransition
+    fileprivate let presentTransition: ImageViewerPresentTransition
+    fileprivate let dismissTransition: ImageViewerDismissTransition
+    fileprivate let swipeToDismissTransition: ImageViewerSwipeToDismissTransition
     
     /// LIFE CYCLE BLOCKS
     
     /// Executed right before the image animation into its final position starts.
-    public var showInitiationBlock: (Void -> Void)?
+    public var showInitiationBlock: ((Void) -> Void)?
     /// Executed as the last step after all the show animations.
-    public var showCompletionBlock: (Void -> Void)?
+    public var showCompletionBlock: ((Void) -> Void)?
     /// Executed as the first step before the button's close action starts.
-    public var closeButtonActionInitiationBlock: (Void -> Void)?
+    public var closeButtonActionInitiationBlock: ((Void) -> Void)?
     /// Executed as the last step for close button's close action.
-    public var closeButtonActionCompletionBlock: (Void -> Void)?
+    public var closeButtonActionCompletionBlock: ((Void) -> Void)?
     /// Executed as the first step before the button's detail action starts.
-    public var detailButtonActionInitiationBlock: (Void -> Void)?
+    public var detailButtonActionInitiationBlock: ((Void) -> Void)?
     /// Executed as the last step for detail button's close action.
-    public var detailButtonActionCompletionBlock: (Void -> Void)?
+    public var detailButtonActionCompletionBlock: ((Void) -> Void)?
     /// Executed as the first step before the button's detail action starts.
-    public var shareButtonActionInitiationBlock: (Void -> Void)?
+    public var shareButtonActionInitiationBlock: ((Void) -> Void)?
     /// Executed as the last step for detail button's close action.
-    public var shareButtonActionCompletionBlock: (Void -> Void)?
+    public var shareButtonActionCompletionBlock: ((Void) -> Void)?
     /// Executed as the first step for swipe to dismiss action.
-    public var swipeToDismissInitiationBlock: (Void -> Void)?
+    public var swipeToDismissInitiationBlock: ((Void) -> Void)?
     /// Executed as the last step for swipe to dismiss action.
-    public var swipeToDismissCompletionBlock: (Void -> Void)?
+    public var swipeToDismissCompletionBlock: ((Void) -> Void)?
     /// Executed as the last step when the ImageViewer is dismissed (either via the close button, or swipe)
-    public var dismissCompletionBlock: (Void -> Void)?
+    public var dismissCompletionBlock: ((Void) -> Void)?
     
     /// INTERACTIONS
-    private let doubleTapRecognizer = UITapGestureRecognizer()
-    private let panGestureRecognizer = UIPanGestureRecognizer()
+    fileprivate let doubleTapRecognizer = UITapGestureRecognizer()
+    fileprivate let panGestureRecognizer = UIPanGestureRecognizer()
     
     // MARK: - Deinit
     
@@ -137,7 +137,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         super.init(nibName: nil, bundle: nil)
         
         transitioningDelegate = self
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
         extendedLayoutIncludesOpaqueBars = true
     }
     
@@ -147,32 +147,32 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
     
     // MARK: - Configuration
     
-    private func configureCloseButton() {
+    fileprivate func configureCloseButton() {
         
         let closeButtonAssets = configuration.closeButtonAssets
         
-        closeButton.setImage(closeButtonAssets.normal, forState: UIControlState.Normal)
-        closeButton.setImage(closeButtonAssets.highlighted, forState: UIControlState.Highlighted)
+        closeButton.setImage(closeButtonAssets.normal, for: UIControlState())
+        closeButton.setImage(closeButtonAssets.highlighted, for: UIControlState.highlighted)
         closeButton.alpha = 0.0
     }
     
-    private func configureDetailButton() {
+    fileprivate func configureDetailButton() {
         
         let detailButtonAssets = configuration.detailButtonAssets
         
-        detailButton.setImage(detailButtonAssets.normal, forState: UIControlState.Normal)
+        detailButton.setImage(detailButtonAssets.normal, for: UIControlState())
         detailButton.alpha = 0.0
     }
     
-    private func configureShareButton() {
+    fileprivate func configureShareButton() {
         
         let shareButtonAssets = configuration.shareButtonAssets
         
-        shareButton.setImage(shareButtonAssets.normal, forState: UIControlState.Normal)
+        shareButton.setImage(shareButtonAssets.normal, for: UIControlState())
         shareButton.alpha = 0.0
     }
     
-    private func configureGestureRecognizers() {
+    fileprivate func configureGestureRecognizers() {
         
         doubleTapRecognizer.addTarget(self, action: #selector(ImageViewer.scrollViewDidDoubleTap(_:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
@@ -182,30 +182,30 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         view.addGestureRecognizer(panGestureRecognizer)
     }
     
-    private func configureImageView() {
+    fileprivate func configureImageView() {
         
-        parentViewFrameInOurCoordinateSystem = CGRectIntegral(applicationWindow!.convertRect(displacedView.bounds, fromView: displacedView))
+        parentViewFrameInOurCoordinateSystem = applicationWindow!.convert(displacedView.bounds, from: displacedView).integral
         
         imageView.frame = parentViewFrameInOurCoordinateSystem
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         imageView.image = screenshotFromView(displacedView)
     }
     
-    private func configureScrollView() {
+    fileprivate func configureScrollView() {
         
         scrollView.decelerationRate = 0.5
-        scrollView.contentInset = UIEdgeInsetsZero
-        scrollView.contentOffset = CGPointZero
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
         scrollView.contentSize = imageView.frame.size
         scrollView.minimumZoomScale = 1
-        scrollView.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.New, context: nil)
+        scrollView.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     // MARK: - View Lifecycle
     
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         shouldRotate = true
     }
     
@@ -237,14 +237,14 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
     public override func loadView() {
         super.loadView()
         
-        scrollView = UIScrollView(frame: CGRectZero)
-        overlayView = UIView(frame: CGRectZero)
-        closeButton = UIButton(frame: CGRectZero)
-        detailButton = UIButton(frame: CGRectZero)
-        shareButton = UIButton(frame: CGRectZero)
+        scrollView = UIScrollView(frame: CGRect.zero)
+        overlayView = UIView(frame: CGRect.zero)
+        closeButton = UIButton(frame: CGRect.zero)
+        detailButton = UIButton(frame: CGRect.zero)
+        shareButton = UIButton(frame: CGRect.zero)
         
-        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        overlayView.autoresizingMask = [.None]
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        overlayView.autoresizingMask = UIViewAutoresizing()
         
         view.addSubview(overlayView)
         view.addSubview(scrollView)
@@ -253,9 +253,9 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         view.addSubview(shareButton)
         
         scrollView.delegate = self
-        closeButton.addTarget(self, action: #selector(ImageViewer.close(_:)), forControlEvents: .TouchUpInside)
-        detailButton.addTarget(self, action: #selector(ImageViewer.detail(_:)), forControlEvents: .TouchUpInside)
-        shareButton.addTarget(self, action: #selector(ImageViewer.action(_:)), forControlEvents: .TouchUpInside)
+        closeButton.addTarget(self, action: #selector(ImageViewer.close(_:)), for: .touchUpInside)
+        detailButton.addTarget(self, action: #selector(ImageViewer.detail(_:)), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(ImageViewer.action(_:)), for: .touchUpInside)
     }
     
     public override func viewDidLoad() {
@@ -270,108 +270,108 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
     
     // MARK: - Transitioning Delegate
     
-    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return presentTransition
     }
     
-    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return isSwipingToDismiss ? swipeToDismissTransition : dismissTransition
     }
     
     // MARK: - Animations
     
-    func close(sender: AnyObject) {
-        presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
+    func close(_ sender: AnyObject) {
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
-    func detail(sender: AnyObject) {
-        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+    func detail(_ sender: AnyObject) {
+        let detailsActivityViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
         }
         detailsActivityViewController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .Default) { UIAlertAction in
-            let webV:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-            webV.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.jogendra.com")!))
+        let OKAction = UIAlertAction(title: "View Item in NYPL Collection", style: .default) { UIAlertAction in
+            let webV:UIWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+            webV.loadRequest(URLRequest(url: URL(string: "http://www.jogendra.com")!))
             webV.tag = 69
             self.view.addSubview(webV)
-            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
+            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
             navBar.tag = 70
             self.view.addSubview(navBar);
             let navItem = UINavigationItem(title: "");
-            let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: nil, action: #selector(GalleryViewController.removeWebView));
+            let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(GalleryViewController.removeWebView));
             navItem.rightBarButtonItem = doneItem;
             navBar.setItems([navItem], animated: false);
         }
         detailsActivityViewController.addAction(OKAction)
-        self.presentViewController(detailsActivityViewController, animated: true, completion: nil)
+        self.present(detailsActivityViewController, animated: true, completion: nil)
     }
     
-    func action(sender: AnyObject){
+    func action(_ sender: AnyObject){
         let image = self.imageView.image
         let shareActivityViewController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
-        self.presentViewController(shareActivityViewController, animated: true, completion: nil)
+        self.present(shareActivityViewController, animated: true, completion: nil)
     }
     
     func rotate() {
-        guard UIDevice.currentDevice().orientation.isFlat == false &&
+        guard UIDevice.current.orientation.isFlat == false &&
             isAnimating == false else { return }
         
         isAnimating = true
         
-        UIView.animateWithDuration(hideCloseButtonDuration, animations: { self.closeButton.alpha = 0.0 })
-        UIView.animateWithDuration(hideDetailButtonDuration, animations: { self.detailButton.alpha = 0.0 })
-        UIView.animateWithDuration(hideShareButtonDuration, animations: { self.shareButton.alpha = 0.0 })
+        UIView.animate(withDuration: hideCloseButtonDuration, animations: { self.closeButton.alpha = 0.0 })
+        UIView.animate(withDuration: hideDetailButtonDuration, animations: { self.detailButton.alpha = 0.0 })
+        UIView.animate(withDuration: hideShareButtonDuration, animations: { self.shareButton.alpha = 0.0 })
         
         let aspectFitSize = aspectFitContentSize(forBoundingSize: rotationAdjustedBounds().size, contentSize: displacedView.frame.size)
-        UIView.animateWithDuration(showDuration, animations: { () -> Void in
+        UIView.animate(withDuration: showDuration, animations: { () -> Void in
             if isPortraitOnly() {
                 self.view.transform = rotationTransform()
             }
             self.view.bounds = rotationAdjustedBounds()
-            self.imageView.bounds = CGRect(origin: CGPointZero, size: aspectFitSize)
+            self.imageView.bounds = CGRect(origin: CGPoint.zero, size: aspectFitSize)
             self.imageView.center = self.scrollView.center
             self.scrollView.contentSize = self.imageView.bounds.size
             self.scrollView.setZoomScale(1.0, animated: false)
             
-        }) { (finished) -> Void in
+        }, completion: { (finished) -> Void in
             if (finished) {
                 self.isAnimating = false
                 self.scrollView.maximumZoomScale = maximumZoomScale(forBoundingSize: rotationAdjustedBounds().size, contentSize: self.imageView.bounds.size)
-                UIView.animateWithDuration(self.showCloseButtonDuration, animations: { self.closeButton.alpha = 1.0 })
-                UIView.animateWithDuration(self.showDetailButtonDuration, animations: { self.detailButton.alpha = 1.0 })
-                UIView.animateWithDuration(self.showShareButtonDuration, animations: { self.shareButton.alpha = 1.0 })
+                UIView.animate(withDuration: self.showCloseButtonDuration, animations: { self.closeButton.alpha = 1.0 })
+                UIView.animate(withDuration: self.showDetailButtonDuration, animations: { self.detailButton.alpha = 1.0 })
+                UIView.animate(withDuration: self.showShareButtonDuration, animations: { self.shareButton.alpha = 1.0 })
             }
-        }
+        }) 
     }
     
-    func showAnimation(duration: NSTimeInterval, completion: ((Bool) -> Void)?) {
+    func showAnimation(_ duration: TimeInterval, completion: ((Bool) -> Void)?) {
         
         guard isAnimating == false else { return }
         
         isAnimating = true
         showInitiationBlock?()
-        displacedView.hidden = true
+        displacedView.isHidden = true
         
         overlayView.alpha = 0.0
-        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.backgroundColor = UIColor.black
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             self.view.transform = rotationTransform()
             self.overlayView.alpha = 1.0
             self.view.bounds = rotationAdjustedBounds()
             let aspectFitSize = aspectFitContentSize(forBoundingSize: rotationAdjustedBounds().size, contentSize: self.configuration.imageSize)
-            self.imageView.bounds = CGRect(origin: CGPointZero, size: aspectFitSize)
+            self.imageView.bounds = CGRect(origin: CGPoint.zero, size: aspectFitSize)
             self.imageView.center = rotationAdjustedCenter(self.view)
             self.scrollView.contentSize = self.imageView.bounds.size
             
-        }) { (finished) -> Void in
+        }, completion: { (finished) -> Void in
             completion?(finished)
             
             if finished {
                 if isPortraitOnly() {
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageViewer.rotate), name: UIDeviceOrientationDidChangeNotification, object: nil)
+                    NotificationCenter.default.addObserver(self, selector: #selector(ImageViewer.rotate), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
                 }
                 self.applicationWindow!.windowLevel = UIWindowLevelStatusBar + 1
                 
@@ -382,42 +382,42 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
                 
                 self.isAnimating = false
                 self.scrollView.maximumZoomScale = maximumZoomScale(forBoundingSize: rotationAdjustedBounds().size, contentSize: self.imageView.bounds.size)
-                UIView.animateWithDuration(self.showCloseButtonDuration, animations: { self.closeButton.alpha = 1.0 })
-                UIView.animateWithDuration(self.showDetailButtonDuration, animations: { self.detailButton.alpha = 1.0 })
-                UIView.animateWithDuration(self.showShareButtonDuration, animations: { self.shareButton.alpha = 1.0 })
+                UIView.animate(withDuration: self.showCloseButtonDuration, animations: { self.closeButton.alpha = 1.0 })
+                UIView.animate(withDuration: self.showDetailButtonDuration, animations: { self.detailButton.alpha = 1.0 })
+                UIView.animate(withDuration: self.showShareButtonDuration, animations: { self.shareButton.alpha = 1.0 })
                 self.configureGestureRecognizers()
                 self.showCompletionBlock?()
-                self.displacedView.hidden = false
+                self.displacedView.isHidden = false
             }
-        }
+        }) 
     }
     
-    func closeAnimation(duration: NSTimeInterval, completion: ((Bool) -> Void)?) {
+    func closeAnimation(_ duration: TimeInterval, completion: ((Bool) -> Void)?) {
         
         guard (self.isAnimating == false) else { return }
         isAnimating = true
         closeButtonActionInitiationBlock?()
-        displacedView.hidden = true
+        displacedView.isHidden = true
         
-        UIView.animateWithDuration(hideCloseButtonDuration, animations: { self.closeButton.alpha = 0.0 })
+        UIView.animate(withDuration: hideCloseButtonDuration, animations: { self.closeButton.alpha = 0.0 })
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             self.scrollView.zoomScale = self.scrollView.minimumZoomScale
             self.overlayView.alpha = 0.0
             self.closeButton.alpha = 0.0
             self.detailButton.alpha = 0.0
             self.shareButton.alpha = 0.0
-            self.view.transform = CGAffineTransformIdentity
+            self.view.transform = CGAffineTransform.identity
             self.view.bounds = (self.applicationWindow?.bounds)!
-            self.imageView.frame = CGRectIntegral(self.applicationWindow!.convertRect(self.displacedView.bounds, fromView: self.displacedView))
+            self.imageView.frame = self.applicationWindow!.convert(self.displacedView.bounds, from: self.displacedView).integral
             
-        }) { (finished) -> Void in
+        }, completion: { (finished) -> Void in
             completion?(finished)
             if finished {
-                NSNotificationCenter.defaultCenter().removeObserver(self)
+                NotificationCenter.default.removeObserver(self)
                 self.applicationWindow!.windowLevel = UIWindowLevelNormal
                 
-                self.displacedView.hidden = false
+                self.displacedView.isHidden = false
                 self.isAnimating = false
                 
                 self.closeButtonActionCompletionBlock?()
@@ -425,7 +425,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
                 self.shareButtonActionCompletionBlock?()
                 self.dismissCompletionBlock?()
             }
-        }
+        }) 
     }
     
     func swipeToDismissAnimation(withVerticalTouchPoint verticalTouchPoint: CGFloat,  targetOffset: CGFloat, verticalVelocity: CGFloat, completion: ((Bool) -> Void)?) {
@@ -435,17 +435,17 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         let springVelocity = fabs(verticalVelocity / (targetOffset - verticalTouchPoint))
         
         /// How much time it will take to travel the remaining distance given the above speed.
-        let expectedDuration = NSTimeInterval( fabs(targetOffset - verticalTouchPoint) / fabs(verticalVelocity))
+        let expectedDuration = TimeInterval( fabs(targetOffset - verticalTouchPoint) / fabs(verticalVelocity))
         
-        UIView.animateWithDuration(expectedDuration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: springVelocity, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.animate(withDuration: expectedDuration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: springVelocity, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
             self.scrollView.setContentOffset(CGPoint(x: 0, y: targetOffset), animated: false)
             
             }, completion: { (finished) -> Void in
                 completion?(finished)
                 
                 if finished {
-                    NSNotificationCenter.defaultCenter().removeObserver(self)
-                    self.view.transform = CGAffineTransformIdentity
+                    NotificationCenter.default.removeObserver(self)
+                    self.view.transform = CGAffineTransform.identity
                     self.view.bounds = (self.applicationWindow?.bounds)!
                     self.imageView.frame = self.parentViewFrameInOurCoordinateSystem
                     
@@ -462,11 +462,11 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         })
     }
     
-    private func swipeToDismissCanceledAnimation() {
+    fileprivate func swipeToDismissCanceledAnimation() {
         
-        UIView.animateWithDuration(zoomDuration, animations: { () -> Void in
+        UIView.animate(withDuration: zoomDuration, animations: { () -> Void in
             
-            self.scrollView.setContentOffset(CGPointZero, animated: false)
+            self.scrollView.setContentOffset(CGPoint.zero, animated: false)
             
             }, completion: { (finished) -> Void in
                 
@@ -482,9 +482,9 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
     
     // MARK: - Interaction Handling
     
-    func scrollViewDidDoubleTap(recognizer: UITapGestureRecognizer) {
+    func scrollViewDidDoubleTap(_ recognizer: UITapGestureRecognizer) {
         
-        let touchPoint = recognizer.locationOfTouch(0, inView: imageView)
+        let touchPoint = recognizer.location(ofTouch: 0, in: imageView)
         
         let aspectFillScale = aspectFillZoomScale(forBoundingSize: rotationAdjustedBounds().size, contentSize: imageView.bounds.size)
         
@@ -492,44 +492,44 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
             
             let zoomingRect = zoomRect(ForScrollView: scrollView, scale: aspectFillScale, center: touchPoint)
             
-            UIView.animateWithDuration(zoomDuration, animations: {
+            UIView.animate(withDuration: zoomDuration, animations: {
                 
-                self.scrollView.zoomToRect(zoomingRect, animated: false)
+                self.scrollView.zoom(to: zoomingRect, animated: false)
             })
         }
         else  {
-            UIView.animateWithDuration(zoomDuration, animations: {
+            UIView.animate(withDuration: zoomDuration, animations: {
                 
                 self.scrollView.setZoomScale(1.0, animated: false)
             })
         }
     }
     
-    func scrollViewDidPan(recognizer: UIPanGestureRecognizer) {
+    func scrollViewDidPan(_ recognizer: UIPanGestureRecognizer) {
         
         guard scrollView.zoomScale == scrollView.minimumZoomScale else { return }
         
         if isSwipingToDismiss == false {
             swipeToDismissInitiationBlock?()
-            displacedView.hidden = false
+            displacedView.isHidden = false
         }
         isSwipingToDismiss = true
         dynamicTransparencyActive = true
         
         let targetOffsetToReachEdge =  (view.bounds.height / 2) + (imageView.bounds.height / 2)
-        let lastTouchPoint = recognizer.translationInView(view)
-        let verticalVelocity = recognizer.velocityInView(view).y
+        let lastTouchPoint = recognizer.translation(in: view)
+        let verticalVelocity = recognizer.velocity(in: view).y
         
         switch recognizer.state {
             
-        case .Began:
+        case .began:
             applicationWindow!.windowLevel = UIWindowLevelNormal
             fallthrough
             
-        case .Changed:
+        case .changed:
             scrollView.setContentOffset(CGPoint(x: 0, y: -lastTouchPoint.y), animated: false)
             
-        case .Ended:
+        case .ended:
             handleSwipeToDismissEnded(verticalVelocity, lastTouchPoint: lastTouchPoint, targetOffset: targetOffsetToReachEdge)
             
         default:
@@ -537,7 +537,7 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
         }
     }
     
-    func handleSwipeToDismissEnded(verticalVelocity: CGFloat, lastTouchPoint: CGPoint, targetOffset: CGFloat) {
+    func handleSwipeToDismissEnded(_ verticalVelocity: CGFloat, lastTouchPoint: CGPoint, targetOffset: CGFloat) {
         
         let velocity = abs(verticalVelocity)
         
@@ -553,24 +553,24 @@ public final class ImageViewer: UIViewController, UIScrollViewDelegate, UIViewCo
             let touchPoint = (verticalVelocity > 0) ? -lastTouchPoint.y : lastTouchPoint.y
             
             swipeToDismissTransition.setParameters(touchPoint, targetOffset: offset, verticalVelocity: verticalVelocity)
-            presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            presentingViewController?.dismiss(animated: true, completion: nil)
             
         default: break
         }
     }
     
-    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    public func scrollViewDidZoom(scrollView: UIScrollView) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         
         imageView.center = contentCenter(forBoundingSize: scrollView.bounds.size, contentSize: scrollView.contentSize)
     }
     
     // MARK: - KVO
     
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if (dynamicTransparencyActive == true && keyPath == "contentOffset") {
             

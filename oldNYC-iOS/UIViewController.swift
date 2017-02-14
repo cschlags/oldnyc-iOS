@@ -10,13 +10,13 @@ import UIKit
 
 public extension UIViewController {
     
-    public func presentImageViewer(imageViewer: ImageViewer, completion: (Void -> Void)? = {}) {
+    public func presentImageViewer(_ imageViewer: ImageViewer, completion: ((Void) -> Void)? = {}) {
         
-        presentViewController(imageViewer, animated: true, completion: completion)
+        present(imageViewer, animated: true, completion: completion)
     }
     
-    public func presentImageGallery(gallery: GalleryViewController, completion: (Void -> Void)? = {}) {
+    public func presentImageGallery(_ gallery: GalleryViewController, completion: ((Void) -> Void)? = {}) {
         
-        presentViewController(gallery, animated: true, completion: completion)
+        present(gallery, animated: true, completion: completion)
     }
 }

@@ -14,7 +14,7 @@ import AVFoundation
 /// it into some rect of some size ..given we wuold want to keep the content rects aspect ratio.
 func aspectFitContentSize(forBoundingSize boundingSize: CGSize, contentSize: CGSize) -> CGSize {
     
-    return AVMakeRectWithAspectRatioInsideRect(contentSize, CGRect(origin: CGPointZero, size: boundingSize)).size
+    return AVMakeRect(aspectRatio: contentSize, insideRect: CGRect(origin: CGPoint.zero, size: boundingSize)).size
 }
 
 func aspectFillZoomScale(forBoundingSize boundingSize: CGSize, contentSize: CGSize) -> CGFloat {
@@ -48,13 +48,13 @@ func zoomRect(ForScrollView scrollView: UIScrollView, scale: CGFloat, center: CG
     return CGRect(x: originX, y: originY, width: width, height: height)
 }
 
-func screenshotFromView(view: UIView) -> UIImage {
+func screenshotFromView(_ view: UIView) -> UIImage {
     
     let image: UIImage
     
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, UIScreen.mainScreen().scale)
-    view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: false)
-    image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, UIScreen.main.scale)
+    view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
+    image = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
     
     return image
@@ -62,21 +62,21 @@ func screenshotFromView(view: UIView) -> UIImage {
 
 func rotationTransform() -> CGAffineTransform {
     
-    return CGAffineTransformMakeRotation(degreesToRadians(rotationAngleToMatchDeviceOrientation(UIDevice.currentDevice().orientation)))
+    return CGAffineTransform(rotationAngle: degreesToRadians(rotationAngleToMatchDeviceOrientation(UIDevice.current.orientation)))
 }
 
-func degreesToRadians(degree: CGFloat) -> CGFloat {
+func degreesToRadians(_ degree: CGFloat) -> CGFloat {
     return CGFloat(M_PI) * degree / 180
 }
 
-private func rotationAngleToMatchDeviceOrientation(orientation: UIDeviceOrientation) -> CGFloat {
+private func rotationAngleToMatchDeviceOrientation(_ orientation: UIDeviceOrientation) -> CGFloat {
     
     var desiredRotationAngle: CGFloat = 0
     
     switch orientation {
-    case .LandscapeLeft:                    desiredRotationAngle = 90
-    case .LandscapeRight:                   desiredRotationAngle = -90
-    case .PortraitUpsideDown:               desiredRotationAngle = 180
+    case .landscapeLeft:                    desiredRotationAngle = 90
+    case .landscapeRight:                   desiredRotationAngle = -90
+    case .portraitUpsideDown:               desiredRotationAngle = 180
     default:                                desiredRotationAngle = 0
     }
     
@@ -85,12 +85,12 @@ private func rotationAngleToMatchDeviceOrientation(orientation: UIDeviceOrientat
 
 func rotationAdjustedBounds() -> CGRect {
     
-    let applicationWindow = UIApplication.sharedApplication().delegate?.window?.flatMap { $0 }
-    guard let window = applicationWindow else { return UIScreen.mainScreen().bounds }
+    let applicationWindow = UIApplication.shared.delegate?.window?.flatMap { $0 }
+    guard let window = applicationWindow else { return UIScreen.main.bounds }
     
     if isPortraitOnly() {
         
-        return (UIDevice.currentDevice().orientation.isLandscape) ? CGRect(origin: CGPointZero, size: window.bounds.size.inverted()): window.bounds
+        return (UIDevice.current.orientation.isLandscape) ? CGRect(origin: CGPoint.zero, size: window.bounds.size.inverted()): window.bounds
     }
     
     return window.bounds
@@ -98,7 +98,7 @@ func rotationAdjustedBounds() -> CGRect {
 
 func isPortraitOnly() -> Bool {
     
-    return UIApplication.sharedApplication().supportedInterfaceOrientationsForWindow(nil) == .Portrait
+    return UIApplication.shared.supportedInterfaceOrientations(for: nil) == .portrait
 }
 
 func maximumZoomScale(forBoundingSize boundingSize: CGSize, contentSize: CGSize) -> CGFloat {
@@ -107,9 +107,9 @@ func maximumZoomScale(forBoundingSize boundingSize: CGSize, contentSize: CGSize)
     return min(boundingSize.width, boundingSize.height) / min(contentSize.width, contentSize.height) * 4
 }
 
-func rotationAdjustedCenter(view: UIView) -> CGPoint {
+func rotationAdjustedCenter(_ view: UIView) -> CGPoint {
     
     guard isPortraitOnly() else { return view.center }
     
-    return (UIDevice.currentDevice().orientation.isLandscape) ? view.center.inverted() : view.center
+    return (UIDevice.current.orientation.isLandscape) ? view.center.inverted() : view.center
 }

@@ -10,12 +10,25 @@ import UIKit
 import CoreLocation
 import Mapbox
 import SwiftyJSON
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class MapViewController: UIViewController,
                          MGLMapViewDelegate,
                          CLLocationManagerDelegate {
 
-    private var foregroundNotification : NSObjectProtocol!
+    fileprivate var foregroundNotification : NSObjectProtocol!
     
     var mapView : MGLMapView!
     var lastTappedLocationData = [[String : Any]]()
@@ -24,57 +37,56 @@ class MapViewController: UIViewController,
 
     @IBOutlet weak var mapBrandingLogo: UIImageView!
     @IBOutlet weak var menuButton : UIButton!
-    @IBAction func tappedMenuButton(sender: AnyObject) {
-        performSegueWithIdentifier("toMenu", sender: nil)
+    @IBAction func tappedMenuButton(_ sender: AnyObject) {
+        performSegue(withIdentifier: "toMenu", sender: nil)
     }
     @IBOutlet weak var centerOnUserButton : UIButton!
-    @IBAction func tappedCenterOnUserbutton(sender: UIButton) {
+    @IBAction func tappedCenterOnUserbutton(_ sender: UIButton) {
         
         let fromCamera = mapView.camera
         
-        let toCamera = MGLMapCamera(lookingAtCenterCoordinate: (mapView.userLocation?.coordinate)!, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
+        let toCamera = MGLMapCamera(lookingAtCenter: (mapView.userLocation?.coordinate)!, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
 
-        mapView.setCamera(toCamera, withDuration: 0.5, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in self.mapView.setUserTrackingMode(.Follow, animated:false)})
+        mapView.setCamera(toCamera, withDuration: 0.5, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in self.mapView.setUserTrackingMode(.follow, animated:false)})
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated:false)
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
-        mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL(withVersion: 9))
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Place marker annotations on map.
+        generateMarkersFromJSON()
         
         // Configure map settings.
         mapView.showsUserLocation = true
-        mapView.logoView.hidden = true
-        mapView.attributionButton.hidden = true
-        mapView.scrollEnabled = true
-        mapView.rotateEnabled = false
-        mapView.pitchEnabled = false
+        mapView.logoView.isHidden = true
+        mapView.attributionButton.isHidden = true
+        mapView.isScrollEnabled = true
+        mapView.isRotateEnabled = true
+        mapView.isPitchEnabled = true
         
         // Set the map's center coordinate over NYC.
         let startingLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: startingLocation.coordinate.latitude, longitude: startingLocation.coordinate.longitude), zoomLevel:12, animated:false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: startingLocation.coordinate.latitude, longitude: startingLocation.coordinate.longitude), zoomLevel:12, animated:false)
         mapView.minimumZoomLevel = 10
         mapView.maximumZoomLevel = 18
         
         view.addSubview(mapView)
-        view.bringSubviewToFront(menuButton)
-        view.bringSubviewToFront(mapBrandingLogo)
+        view.bringSubview(toFront: menuButton)
+        view.bringSubview(toFront: mapBrandingLogo)
         
         mapView.delegate = self
-        
-        
-        // Place marker annotations on map.
-        generateMarkersFromJSON()
         
         locationManager.requestWhenInUseAuthorization()
         
@@ -85,8 +97,8 @@ class MapViewController: UIViewController,
             locationManager.startUpdatingLocation()
         }
         
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-            foregroundNotification = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            foregroundNotification = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
                 [unowned self] notification in
                 
                 print("app is in foreground")
@@ -97,9 +109,9 @@ class MapViewController: UIViewController,
                         if answer == true {
                             print(currentCoordinates)
                             //self.centerOnUserLocation(currentCoordinates)
-                            self.view.bringSubviewToFront(self.centerOnUserButton)
+                            self.view.bringSubview(toFront: self.centerOnUserButton)
                         } else if answer == false {
-                            self.view.sendSubviewToBack(self.centerOnUserButton)
+                            self.view.sendSubview(toBack: self.centerOnUserButton)
                         }
                     })
                 }
@@ -107,14 +119,14 @@ class MapViewController: UIViewController,
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     
     deinit {
         // make sure to remove the observer when this view controller is dismissed/deallocated
-        NSNotificationCenter.defaultCenter().removeObserver(foregroundNotification)
+        NotificationCenter.default.removeObserver(foregroundNotification)
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,16 +135,16 @@ class MapViewController: UIViewController,
     }
     
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
             //if let currentCoordinates = CLLocationCoordinate2D(latitude: 40.761850, longitude: -73.887072)
             if let currentCoordinates : CLLocationCoordinate2D = manager.location?.coordinate {
                 self.isUserInNYC(currentCoordinates, completion: { (answer) in
                     if answer == true {
                         self.centerOnUserLocation(currentCoordinates)
-                        self.view.bringSubviewToFront(self.centerOnUserButton)
+                        self.view.bringSubview(toFront: self.centerOnUserButton)
                     } else if answer == false {
-                        self.view.sendSubviewToBack(self.centerOnUserButton)
+                        self.view.sendSubview(toBack: self.centerOnUserButton)
                     }
                 })
             }
@@ -144,19 +156,28 @@ class MapViewController: UIViewController,
     
     // Read markers.json, and generate markers for each coordinate.
     func generateMarkersFromJSON() {
-        if let path = NSBundle.mainBundle().pathForResource("markers", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "markers", ofType: "json") {
             do {
-                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: data)
                 if jsonObj != JSON.null {
-
+                    var markers = [MGLPointAnnotation]()
+                    
                     // Create markers for each item.
                     for item in jsonObj["markers"].arrayValue {
                         let lat = item["latitude"].double
                         let lon = item["longitude"].double
                         let title = item["marker_title"].stringValue
-                        placeMarker(lat!, lon: lon!, title: title)
+                        
+                        // Add markers to annotations array.
+                        let marker = MGLPointAnnotation()
+                        marker.coordinate = CLLocationCoordinate2DMake(lat!, lon!)
+                        marker.title = title
+                        
+                        markers.append(marker)
                     }
+                    // Add all markers to map at once.
+                    mapView.addAnnotations(markers)
                     
                 } else {
                     print("could not get json from file")
@@ -169,18 +190,9 @@ class MapViewController: UIViewController,
         }
     }
     
-    // Creates a marker annotation for the given lat and lon.
-    func placeMarker(lat: Double, lon: Double, title: String) {
-        let marker = MGLPointAnnotation()
-        marker.coordinate = CLLocationCoordinate2DMake(lat, lon)
-        marker.title = title
-        
-        mapView.addAnnotation(marker)
-    }
-    
-    // Define and use custom marker style
-    func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
-        var annotationImage = mapView.dequeueReusableAnnotationImageWithIdentifier("LocationMarker")
+    // Define and use custom marker style.
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "LocationMarker")
         
         if annotationImage == nil {
             let image = UIImage(named: "LocationMarker")
@@ -191,7 +203,7 @@ class MapViewController: UIViewController,
     }
     
     // When user taps on marker annotation, retrieve image information for given location.
-    func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
+    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
         let tappedLat = String(format:"%2.6f", annotation.coordinate.latitude)
         let tappedLon = String(format:"%2.6f", annotation.coordinate.longitude)
         
@@ -199,14 +211,14 @@ class MapViewController: UIViewController,
 
         let jsonPath = "by-location/" + tappedLat + tappedLon
         
-        if let path = NSBundle.mainBundle().pathForResource(jsonPath, ofType: "json") {
+        if let path = Bundle.main.path(forResource: jsonPath, ofType: "json") {
             do {
-                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: data)
                 if jsonObj != JSON.null {
                     
                     self.setLastTappedLocationData(jsonObj)
-                    self.performSegueWithIdentifier("toGallery", sender: self)
+                    self.performSegue(withIdentifier: "toGallery", sender: self)
                     
                 } else {
                     print("could not get json from file")
@@ -221,14 +233,14 @@ class MapViewController: UIViewController,
         mapView.deselectAnnotation(annotation, animated: false)
     }
     
-    func mapView(mapView: MGLMapView, didDeselectAnnotation annotation: MGLAnnotation) {
+    func mapView(_ mapView: MGLMapView, didDeselect annotation: MGLAnnotation) {
     }
     
     func getLastTappedLocationData() -> [[String : Any]] {
         return lastTappedLocationData
     }
     
-    func setLastTappedLocationData(jsonObj : JSON) {
+    func setLastTappedLocationData(_ jsonObj : JSON) {
         self.lastTappedLocationData.removeAll()
         
         // For each image in location's JSON data, save attributes into dictionary.
@@ -256,14 +268,14 @@ class MapViewController: UIViewController,
         }
         
         // Sort "image" elements in lastTappedLocationData by year
-        lastTappedLocationData.sortInPlace{ ($0["date"] as? String) < ($1["date"] as? String) }
+        lastTappedLocationData.sort{ ($0["date"] as? String) < ($1["date"] as? String) }
     }
     
-    func isUserInNYC(currentCoordinates: CLLocationCoordinate2D, completion: (answer: Bool?) -> Void) {
+    func isUserInNYC(_ currentCoordinates: CLLocationCoordinate2D, completion: @escaping (_ answer: Bool?) -> Void) {
         let location = CLLocation(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude)
         let geocoder = CLGeocoder()
         
-//        print("-> Finding user address...")
+        print("-> Finding user address...") // debugging
         
         geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error)->Void in
             var placemark:CLPlacemark!
@@ -271,25 +283,25 @@ class MapViewController: UIViewController,
             if error == nil && placemarks!.count > 0 {
                 placemark = placemarks![0] as CLPlacemark
                 
-//                print("Locality:" + placemark.locality!)
-//                print(placemark.administrativeArea)
-//                print("subAdmin:" + placemark.subAdministrativeArea!)
-//                print("subLocality:" + placemark.subLocality!)
-//                print(placemark.ocean)
-//                print(placemark.inlandWater)
+                print("Locality:" + placemark.locality!) // debugging
+                //print(placemark.administrativeArea) // debugging
+                print("subAdmin:" + placemark.subAdministrativeArea!) // debugging
+                print("subLocality:" + placemark.subLocality!) // debugging
+                //print(placemark.ocean) // debugging
+                //print(placemark.inlandWater) // debugging
                 
                 if (placemark.locality == "New York" && placemark.inlandWater == nil) {
-                    completion(answer: true)
+                    completion(true)
                 } else {
-                    completion(answer: false)
+                    completion(false)
                 }
             }
         })
     }
     
-    func centerOnUserLocation(currentCoordinates: CLLocationCoordinate2D) {
+    func centerOnUserLocation(_ currentCoordinates: CLLocationCoordinate2D) {
         let fromCamera = self.mapView.camera
-        let toCamera = MGLMapCamera(lookingAtCenterCoordinate: currentCoordinates, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
+        let toCamera = MGLMapCamera(lookingAtCenter: currentCoordinates, fromDistance: fromCamera.altitude, pitch: 0, heading: 0)
         
         self.mapView.setCamera(toCamera, withDuration: 0.75, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), completionHandler: {() -> Void in
             self.mapView.setZoomLevel(14, animated: true)
@@ -298,9 +310,9 @@ class MapViewController: UIViewController,
         })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender:AnyObject!){
+    override func prepare(for segue: UIStoryboardSegue, sender:Any!){
         if (segue.identifier == "toGallery"){
-            let svc = segue.destinationViewController as! PhotoGalleryViewController;
+            let svc = segue.destination as! PhotoGalleryViewController;
             svc.lastTappedLocationDataPassed = self.lastTappedLocationData
             svc.lastTappedLocationName = self.lastTappedLocationName
             let backItem = UIBarButtonItem()
@@ -309,7 +321,7 @@ class MapViewController: UIViewController,
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any!) -> Bool {
         if identifier == "toGallery"{
             if (self.lastTappedLocationData.isEmpty == true){
                 return false
@@ -318,7 +330,7 @@ class MapViewController: UIViewController,
         return true
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true;
     }
 }

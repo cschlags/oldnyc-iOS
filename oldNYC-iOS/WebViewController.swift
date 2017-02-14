@@ -13,9 +13,9 @@ class WebViewController: UIViewController {
     @IBOutlet var webView:UIWebView!
     
     
-    override func viewWillAppear(animated: Bool) {
-        if let url = NSURL(string: "https://docs.google.com/forms/d/16ryWDwz6W0jKRGtF6BOcebfvWCdA_Yn-c-vB6y3WqUw/viewform") {
-            let request = NSURLRequest(URL: url)
+    override func viewWillAppear(_ animated: Bool) {
+        if let url = URL(string: "https://docs.google.com/forms/d/16ryWDwz6W0jKRGtF6BOcebfvWCdA_Yn-c-vB6y3WqUw/viewform") {
+            let request = URLRequest(url: url)
             webView.loadRequest(request)
         }
     }

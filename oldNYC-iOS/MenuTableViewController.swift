@@ -25,9 +25,9 @@ class MenuTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     
@@ -37,12 +37,12 @@ class MenuTableViewController: UITableViewController {
     var sectionContent = [["Send Your Feedback", "Data Attribution"]]
 
     // Define how many sections in table.
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     // Define how many rows in each section.
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 2
         } else {
@@ -50,13 +50,13 @@ class MenuTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
     
     // Generate table sections and cells.
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
         
         // Configure the cell:
         cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row]
@@ -65,7 +65,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     // Define where each cell takes the user.
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
             
         // Section 1
@@ -73,20 +73,20 @@ class MenuTableViewController: UITableViewController {
             
             // After tapping "Send Your Feedback", send users to Typeform in Web View.
             if indexPath.row == 0 {
-                performSegueWithIdentifier("toWebView", sender: self)
+                performSegue(withIdentifier: "toWebView", sender: self)
                 }
             if indexPath.row == 1 {
-                performSegueWithIdentifier("toDataAttribution", sender: self)
+                performSegue(withIdentifier: "toDataAttribution", sender: self)
             }
         default:
             break
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return false
     }

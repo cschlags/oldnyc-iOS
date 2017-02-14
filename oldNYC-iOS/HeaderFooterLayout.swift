@@ -16,34 +16,34 @@ public typealias MarginBottom = CGFloat
 /// Represents possible layouts for the close button
 public enum CloseButtonLayout {
     
-    case PinLeft(MarginTop, MarginLeft)
-    case PinRight(MarginTop, MarginRight)
+    case pinLeft(MarginTop, MarginLeft)
+    case pinRight(MarginTop, MarginRight)
 }
 
 public enum DetailButtonLayout {
-    case PinLeft(MarginTop, MarginLeft)
-    case PinRight(MarginTop, MarginRight)
+    case pinLeft(MarginTop, MarginLeft)
+    case pinRight(MarginTop, MarginRight)
 }
 
 public enum ShareButtonLayout {
-    case PinLeft(MarginTop, MarginLeft)
-    case PinRight(MarginTop, MarginRight)
+    case pinLeft(MarginTop, MarginLeft)
+    case pinRight(MarginTop, MarginRight)
 }
 
 /// Represents various possible layouts for the header
 public enum HeaderLayout {
     
-    case PinLeft(MarginTop, MarginLeft)
-    case PinRight(MarginTop, MarginRight)
-    case PinBoth(MarginTop, MarginLeft, MarginRight)
-    case Center(MarginTop)
+    case pinLeft(MarginTop, MarginLeft)
+    case pinRight(MarginTop, MarginRight)
+    case pinBoth(MarginTop, MarginLeft, MarginRight)
+    case center(MarginTop)
 }
 
 /// Represents various possible layouts for the footer
 public enum FooterLayout {
     
-    case PinLeft(MarginBottom, MarginLeft)
-    case PinRight(MarginBottom, MarginRight)
-    case PinBoth(MarginBottom, MarginLeft, MarginRight)
-    case Center(MarginBottom)
+    case pinLeft(MarginBottom, MarginLeft)
+    case pinRight(MarginBottom, MarginRight)
+    case pinBoth(MarginBottom, MarginLeft, MarginRight)
+    case center(MarginBottom)
 }
