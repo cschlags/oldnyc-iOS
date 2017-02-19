@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7879586C1E5163B8005FE263 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879586B1E5163B8005FE263 /* SwiftyJSON.framework */; };
-		78EDDF421E5164D200090B40 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EDDF411E5164D200090B40 /* SwiftyJSON.swift */; };
 		8420B65A1CB0EF11003829C7 /* markers.json in Resources */ = {isa = PBXBuildFile; fileRef = CB4DD3441C56DE0300BD4729 /* markers.json */; };
 		8420B65B1CB0F106003829C7 /* by-location in Resources */ = {isa = PBXBuildFile; fileRef = CBE6AA2D1C83CAD00097699A /* by-location */; };
 		84339B6B1CC3BFED00063C81 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84339B6A1CC3BFED00063C81 /* CounterView.swift */; };
@@ -37,7 +36,6 @@
 		84714C891CC534360038BF8C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84714C871CC534350038BF8C /* UIView.swift */; };
 		84714C8A1CC534360038BF8C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84714C881CC534350038BF8C /* UIViewController.swift */; };
 		848B04521C815D7400ED79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B04501C815D7400ED79E9 /* Main.storyboard */; };
-		84BD92FD1CCC64AB00DBD73B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BD92FC1CCC64AB00DBD73B /* Reachability.swift */; };
 		84C17B4A1C963E5B00D491AF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 84C17B491C963E5A00D491AF /* Podfile */; };
 		84FFBCAA1C82971E00148118 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */; };
 		CB3388B51C7E9DC300F61AE7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB3388B41C7E9DC300F61AE7 /* README.txt */; };
@@ -58,7 +56,6 @@
 		33F5D03D0E8530B53358FC80 /* Pods-oldNYC-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oldNYC-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-oldNYC-iOS/Pods-oldNYC-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		6544EC335517A289FC63DFD1 /* Pods_oldNYC_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oldNYC_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7879586B1E5163B8005FE263 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/oldNYC-iOS-benrnoilxwuacpbaicrvzdtzbjnz/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		78EDDF411E5164D200090B40 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../Pods/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		78FE1EEC1E515D5100FF3D04 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		78FE1EEE1E515DBF00FF3D04 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		84339B6A1CC3BFED00063C81 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
@@ -88,7 +85,6 @@
 		84714C881CC534350038BF8C /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		848B04511C815D7400ED79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oldNYC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		84BD92FC1CCC64AB00DBD73B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		84C17B491C963E5A00D491AF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3388B41C7E9DC300F61AE7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -184,14 +180,12 @@
 				CBE10BC41C8381BE002BD357 /* DataAttributionViewController.swift */,
 				84339B6A1CC3BFED00063C81 /* CounterView.swift */,
 				844D5BC51CC4E69000B65B83 /* FooterView.swift */,
-				84BD92FC1CCC64AB00DBD73B /* Reachability.swift */,
 				845117901C7FF78E00EDE9A5 /* PhotoGalleryViewController.swift */,
 				84FFBCA91C82971E00148118 /* GalleryCollectionViewCell.swift */,
 				84A50E841C9A599F00833710 /* oldNYC-iOS-Bridging-Header.h */,
 				848B04501C815D7400ED79E9 /* Main.storyboard */,
 				CBE10BC61C8397C2002BD357 /* WKWebViewController.swift */,
 				CB5783ED1C41A1A300A55D30 /* Info.plist */,
-				78EDDF411E5164D200090B40 /* SwiftyJSON.swift */,
 				CB5783E81C41A1A300A55D30 /* Assets.xcassets */,
 				CBE10BBD1C82BBC2002BD357 /* HidingNavigationBar */,
 			);
@@ -351,7 +345,6 @@
 				CBE10BC31C8378AE002BD357 /* MenuTableViewController.swift in Sources */,
 				CB5783E21C41A1A300A55D30 /* AppDelegate.swift in Sources */,
 				846A005C1CC532A3008DDFC6 /* GalleryViewController.swift in Sources */,
-				84BD92FD1CCC64AB00DBD73B /* Reachability.swift in Sources */,
 				846A00721CC532B2008DDFC6 /* ImageViewerSwipeToDismissTransition.swift in Sources */,
 				846A006E1CC532B2008DDFC6 /* ImageViewer.swift in Sources */,
 				84714C8A1CC534360038BF8C /* UIViewController.swift in Sources */,
@@ -378,7 +371,6 @@
 				846A006D1CC532B2008DDFC6 /* ImageViewControllerFactory.swift in Sources */,
 				846A006F1CC532B2008DDFC6 /* ImageViewerConfiguration.swift in Sources */,
 				846A00741CC532BE008DDFC6 /* UtilityFunctions.swift in Sources */,
-				78EDDF421E5164D200090B40 /* SwiftyJSON.swift in Sources */,
 				844D5BC61CC4E69000B65B83 /* FooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,7 +504,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 397HLL8JUB;
+				DEVELOPMENT_TEAM = LRAK7WQC9P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
@@ -524,7 +516,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -546,7 +538,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 397HLL8JUB;
+				DEVELOPMENT_TEAM = LRAK7WQC9P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
@@ -557,7 +549,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "OldNYC.oldNYC-iOS1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
