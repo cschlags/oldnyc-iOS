@@ -91,21 +91,34 @@ final public class GalleryViewController : UIPageViewController, UIViewControlle
             
             switch item {
                 
-            case .imageDividerWidth(let width):             dividerWidth = Float(width)
-            case .spinnerStyle(let style):                  spinnerStyle = style
-            case .spinnerColor(let color):                  spinnerColor = color
-            case .closeButton(let button):                  closeButton = button
-            case .detailButton(let button):                 detailButton = button
-            case .shareButton(let button):                  shareButton = button
-            case .pagingMode(let mode):                     galleryPagingMode = mode
-            case .headerViewLayout(let layout):             headerLayout = layout
-            case .footerViewLayout(let layout):             footerLayout = layout
-            case .closeLayout(let layout):                  closeLayout = layout
-            case .detailLayout(let layout):                 detailLayout = layout
-            case .shareLayout(let layout):                  shareLayout = layout
-            case .statusBarHidden(let hidden):              statusBarHidden = hidden
-            case .hideDecorationViewsOnLaunch(let hidden):  isDecorationViewsHidden = hidden
-            default: break
+            case .imageDividerWidth(let width):
+                dividerWidth = Float(width)
+            case .spinnerStyle(let style):
+                spinnerStyle = style
+            case .spinnerColor(let color):
+                spinnerColor = color
+            case .closeButton(let button):
+                closeButton = button
+            case .detailButton(let button):
+                detailButton = button
+            case .shareButton(let button):
+                shareButton = button
+            case .pagingMode(let mode):
+                galleryPagingMode = mode
+            case .headerViewLayout(let layout):
+                headerLayout = layout
+            case .footerViewLayout(let layout):
+                footerLayout = layout
+            case .closeLayout(let layout):
+                closeLayout = layout
+            case .detailLayout(let layout):
+                detailLayout = layout
+            case .shareLayout(let layout):
+                shareLayout = layout
+            case .statusBarHidden(let hidden):
+                statusBarHidden = hidden
+            case .hideDecorationViewsOnLaunch(let hidden):
+                isDecorationViewsHidden = hidden
             }
         }
         
