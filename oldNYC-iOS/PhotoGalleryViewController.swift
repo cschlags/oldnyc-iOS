@@ -171,7 +171,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     func populatePhotoArray(){
         let photoInt:Int = self.lastTappedLocationDataPassed.count
         self.photos = [UIImage!](repeating: nil, count: photoInt)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {() -> Void in
+        DispatchQueue.global(qos: .userInteractive).async(execute: {() -> Void in
             let NumberOfPhotos = self.lastTappedLocationDataPassed.count
             for photoIndex in 0 ..< NumberOfPhotos {
                 let request = try? Data(contentsOf: URL(string: self.lastTappedLocationDataPassed[photoIndex]["image_url"] as! String)!)
