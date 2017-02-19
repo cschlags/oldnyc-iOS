@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import FMMosaicLayout
 import SDWebImage
+import ReachabilitySwift
 
 class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     fileprivate let reuseIdentifier = "galleryCell"
@@ -129,7 +130,7 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
         return 2.0
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {    
         let reachability = Reachability()!
         
         if reachability.isReachable {
