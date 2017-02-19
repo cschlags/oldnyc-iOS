@@ -1,5 +1,5 @@
 //
-//  WebViewController.swift
+//  WKWebViewController.swift
 //  oldNYC-iOS
 //
 //  Created by Orian Breaux and Christina Leuci.
@@ -7,22 +7,30 @@
 //
 
 import UIKit
+import WebKit
 
-class WebViewController: UIViewController {
+class ViewController: UIViewController, WKUIDelegate {
 
-    @IBOutlet var webView:UIWebView!
+    @IBOutlet var webView: WKWebView!
     
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let url = URL(string: "https://docs.google.com/forms/d/16ryWDwz6W0jKRGtF6BOcebfvWCdA_Yn-c-vB6y3WqUw/viewform") {
-            let request = URLRequest(url: url)
-            webView.loadRequest(request)
-        }
+        let url = URL(string: "https://docs.google.com/forms/d/16ryWDwz6W0jKRGtF6BOcebfvWCdA_Yn-c-vB6y3WqUw/viewform")
+        let request = URLRequest(url: url!)
+        webView.load(request)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
