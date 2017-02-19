@@ -132,25 +132,23 @@ class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDele
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reachability = Reachability()!
         
-        DispatchQueue.global().async {
-            if reachability.isReachable {
-                DispatchQueue.main.async {
-                    self.locationPhotoIndex = indexPath.row
-                    let request = try? Data(contentsOf: URL(string: self.lastTappedLocationDataPassed[self.locationPhotoIndex]["image_url"] as! String)!)
-                    let image = UIImage.sd_image(with: request)
-                    self.imageView = UIImageView(image: image!)
-                    self.setPhotosInGallery(self.imageView)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    let detailsActivityViewController = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .actionSheet)
-                
-                    let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in }
-                    detailsActivityViewController.addAction(cancelAction)
-                    self.present(detailsActivityViewController, animated: true, completion: nil)
-                    NSLog("Internet connection FAILED")
-                }
+        if reachability.isReachable {
+            DispatchQueue.main.async {
+                self.locationPhotoIndex = indexPath.row
+                let request = try? Data(contentsOf: URL(string: self.lastTappedLocationDataPassed[self.locationPhotoIndex]["image_url"] as! String)!)
+                let image = UIImage.sd_image(with: request)
+                self.imageView = UIImageView(image: image!)
+                self.setPhotosInGallery(self.imageView)
             }
+        } else {
+            DispatchQueue.main.async {
+                let detailsActivityViewController = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .actionSheet)
+                
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in }
+                detailsActivityViewController.addAction(cancelAction)
+                self.present(detailsActivityViewController, animated: true, completion: nil)
+                NSLog("Internet connection FAILED")
+            }            
         }
         
         do {
