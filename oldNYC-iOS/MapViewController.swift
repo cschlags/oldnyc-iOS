@@ -67,6 +67,10 @@ class MapViewController: UIViewController,
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL(withVersion: 9))
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        // Place marker annotations on map.
+        DispatchQueue.global().async {
+            self.generatePointsFromJSON()
+        }
         
         // Configure map settings.
         mapView.showsUserLocation = true
@@ -120,11 +124,6 @@ class MapViewController: UIViewController,
         
         // Add our own gesture recognizer to handle taps on our custom map features.
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:))))
-        
-        DispatchQueue.global(qos: .userInteractive).async {
-            // Place marker annotations on map.
-            self.generatePointsFromJSON()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,12 +174,12 @@ class MapViewController: UIViewController,
                     for item in jsonObj["markers"].arrayValue {
                         let lat = item["latitude"].double
                         let lon = item["longitude"].double
-                        let title = item["marker_title"].stringValue
+                        let title = String(format: "%2.6f", item["latitude"].double!) + String(format: "%2.6f", item["longitude"].double!)
                         
                         // Add each marker (a point feature) to markers array (point features array).
                         let feature = MGLPointFeature()
                         feature.coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
-                        feature.title = title
+                        feature.attributes["title"] = title
 
                         features.append(feature)
                     }
@@ -196,6 +195,7 @@ class MapViewController: UIViewController,
                         ])
                     markersLayer.circleOpacity = MGLStyleValue(rawValue: 0.6)
                     mapView.style?.addLayer(markersLayer)
+                    print("markers shape layer added to map")
                     
                 } else {
                     print("could not get json from file")
@@ -229,16 +229,10 @@ class MapViewController: UIViewController,
             // Use point feature's coordinates to construct JSON request & perform segue.
             if let f = closestFeatures.first {
                 
-                print(f.coordinate.latitude)
-                print(f.coordinate.longitude)
-                
-                let latForJSON = String(format:"%1.6f", f.coordinate.latitude)
-                let longForJSON = String(format:"%1.6f", f.coordinate.longitude)
-                
-                print(latForJSON)
-                print(longForJSON)
-                
-                let jsonPath = "by-location/" + latForJSON + longForJSON
+                let coordForJSON = String(describing: f.attribute(forKey: "title")!)
+                print(coordForJSON)
+
+                let jsonPath = "by-location/" + coordForJSON
                 print(jsonPath)
                 
                 if let path = Bundle.main.path(forResource: jsonPath, ofType: "json") {
