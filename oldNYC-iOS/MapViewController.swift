@@ -229,10 +229,17 @@ class MapViewController: UIViewController,
             // Use point feature's coordinates to construct JSON request & perform segue.
             if let f = closestFeatures.first {
                 
-                let latForJSON = String(format:"%2.6f", f.coordinate.latitude)
-                let longForJSON = String(format:"%2.6f", f.coordinate.longitude)
+                print(f.coordinate.latitude)
+                print(f.coordinate.longitude)
+                
+                let latForJSON = String(format:"%1.6f", f.coordinate.latitude)
+                let longForJSON = String(format:"%1.6f", f.coordinate.longitude)
+                
+                print(latForJSON)
+                print(longForJSON)
                 
                 let jsonPath = "by-location/" + latForJSON + longForJSON
+                print(jsonPath)
                 
                 if let path = Bundle.main.path(forResource: jsonPath, ofType: "json") {
                     do {
