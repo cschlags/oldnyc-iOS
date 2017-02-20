@@ -32,6 +32,7 @@ class MapViewController: UIViewController,
     fileprivate var foregroundNotification : NSObjectProtocol!
     
     var mapView : MGLMapView!
+    var markersShapeSource : MGLShapeSource?
     var lastTappedLocationData = [[String : Any]]()
     var lastTappedLocationName : String = ""
     let locationManager = CLLocationManager()
@@ -66,8 +67,6 @@ class MapViewController: UIViewController,
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL(withVersion: 9))
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        // Place marker annotations on map.
-        generateMarkersFromJSON()
         
         // Configure map settings.
         mapView.showsUserLocation = true
@@ -118,6 +117,14 @@ class MapViewController: UIViewController,
                 }
             }
         }
+        
+        // Add our own gesture recognizer to handle taps on our custom map features.
+        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:))))
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            // Place marker annotations on map.
+            self.generatePointsFromJSON()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -155,71 +162,40 @@ class MapViewController: UIViewController,
     
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
-    // Read markers.json, and generate markers for each coordinate.
-    func generateMarkersFromJSON() {
+    // Generate circle style layer (circle for each location) from markers.json.
+    func generatePointsFromJSON() {
         if let path = Bundle.main.path(forResource: "markers", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: data)
                 if jsonObj != JSON.null {
-                    var markers = [MGLPointAnnotation]()
+                    var features = [MGLPointFeature]()
                     
-                    // Create markers for each item.
+                    // Create point features (markers) for each item.
                     for item in jsonObj["markers"].arrayValue {
                         let lat = item["latitude"].double
                         let lon = item["longitude"].double
                         let title = item["marker_title"].stringValue
                         
-                        // Add markers to annotations array.
-                        let marker = MGLPointAnnotation()
-                        marker.coordinate = CLLocationCoordinate2DMake(lat!, lon!)
-                        marker.title = title
-                        
-                        markers.append(marker)
-                    }
-                    // Add all markers to map at once.
-                    mapView.addAnnotations(markers)
-                    
-                } else {
-                    print("could not get json from file")
-                }
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        } else {
-            print("Invalid filename/path.")
-        }
-    }
-    
-    // Define and use custom marker style.
-    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
-        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "LocationMarker")
-        
-        if annotationImage == nil {
-            let image = UIImage(named: "LocationMarker")
-            annotationImage = MGLAnnotationImage(image: image!, reuseIdentifier: "LocationMarker")
-        }
-        
-        return annotationImage
-    }
-    
-    // When user taps on marker annotation, retrieve image information for given location.
-    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
-        let tappedLat = String(format:"%2.6f", annotation.coordinate.latitude)
-        let tappedLon = String(format:"%2.6f", annotation.coordinate.longitude)
-        
-        lastTappedLocationName = annotation.title!!
+                        // Add each marker (a point feature) to markers array (point features array).
+                        let feature = MGLPointFeature()
+                        feature.coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
+                        feature.title = title
 
-        let jsonPath = "by-location/" + tappedLat + tappedLon
-        
-        if let path = Bundle.main.path(forResource: jsonPath, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
-                let jsonObj = JSON(data: data)
-                if jsonObj != JSON.null {
+                        features.append(feature)
+                    }
+                    markersShapeSource = MGLShapeSource(identifier:"markers", features: features, options: nil)
+                    mapView.style?.addSource(markersShapeSource!)
                     
-                    self.setLastTappedLocationData(jsonObj)
-                    self.performSegue(withIdentifier: "toGallery", sender: self)
+                    let markersLayer = MGLCircleStyleLayer(identifier: "markers", source: markersShapeSource!)
+                    markersLayer.sourceLayerIdentifier = "markers"
+                    markersLayer.circleColor = MGLStyleValue(rawValue: .red)
+                    markersLayer.circleRadius = MGLStyleValue(interpolationBase: 1.75, stops: [
+                        12: MGLStyleValue(rawValue: 3),
+                        22: MGLStyleValue(rawValue: 180)
+                        ])
+                    markersLayer.circleOpacity = MGLStyleValue(rawValue: 0.6)
+                    mapView.style?.addLayer(markersLayer)
                     
                 } else {
                     print("could not get json from file")
@@ -230,12 +206,62 @@ class MapViewController: UIViewController,
         } else {
             print("Invalid filename/path.")
         }
-        
-        mapView.deselectAnnotation(annotation, animated: false)
     }
+    
+    // When user taps on map, check for closest marker & retrive image info for given location.
+    func handleMapTap(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let point = sender.location(in: sender.view!)
+            
+            let touchCoordinate = mapView.convert(point, toCoordinateFrom: sender.view!)
+            let touchLocation = CLLocation(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
+            
+            // Get all point features inside a 50x50 rectangle centered on the user's touch coordinate.
+            let touchRect = CGRect(origin: point, size: .zero).insetBy(dx: -50.0, dy: -50.0)
+            let possibleFeatures = mapView.visibleFeatures(in: touchRect, styleLayerIdentifiers: Set(["markers"])).filter { $0 is MGLPointFeature }
+            
+            
+            // Get the closest point feature.
+            let closestFeatures = possibleFeatures.sorted(by: {
+                return CLLocation(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude).distance(from: touchLocation) < CLLocation(latitude: $1.coordinate.latitude, longitude: $1.coordinate.longitude).distance(from: touchLocation)
+            })
+            
+            // Use point feature's coordinates to construct JSON request & perform segue.
+            if let f = closestFeatures.first {
+                
+                let latForJSON = String(format:"%2.6f", f.coordinate.latitude)
+                let longForJSON = String(format:"%2.6f", f.coordinate.longitude)
+                
+                let jsonPath = "by-location/" + latForJSON + longForJSON
+                
+                if let path = Bundle.main.path(forResource: jsonPath, ofType: "json") {
+                    do {
+                        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
+                        let jsonObj = JSON(data: data)
+                        if jsonObj != JSON.null {
+                            self.setLastTappedLocationData(jsonObj)
+                            self.performSegue(withIdentifier: "toGallery", sender: self)
+                        }
+                    }
+                    catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                } else {
+                    print("Invalid filename/path")
+                }
+                    
+                return
+            }
+            
+            // If no features were found, deselect the selected annotation, if any.
+            mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
+        }
+    }
+    
     
     func mapView(_ mapView: MGLMapView, didDeselect annotation: MGLAnnotation) {
     }
+
     
     func getLastTappedLocationData() -> [[String : Any]] {
         return lastTappedLocationData
