@@ -65,12 +65,7 @@ class MapViewController: UIViewController,
         super.viewDidLoad()
         
         mapView = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL(withVersion: 9))
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Place marker annotations on map.
-        DispatchQueue.global().async {
-            self.generatePointsFromJSON()
-        }
+        mapView.isOpaque = true
         
         // Configure map settings.
         mapView.showsUserLocation = true
@@ -80,20 +75,22 @@ class MapViewController: UIViewController,
         mapView.isRotateEnabled = true
         mapView.isPitchEnabled = true
         
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         // Set the map's center coordinate over NYC.
         let startingLocation:CLLocation = CLLocation(latitude: 40.71356, longitude: -73.99084)
         mapView.setCenter(CLLocationCoordinate2D(latitude: startingLocation.coordinate.latitude, longitude: startingLocation.coordinate.longitude), zoomLevel:12, animated:false)
         mapView.minimumZoomLevel = 10
         mapView.maximumZoomLevel = 18
         
+        mapView.delegate = self
+        
         view.addSubview(mapView)
         view.bringSubview(toFront: menuButton)
         view.bringSubview(toFront: mapBrandingLogo)
         
-        mapView.delegate = self
-        
-        locationManager.requestWhenInUseAuthorization()
-        
+        // Add our own gesture recognizer to handle taps on our custom map features.
+        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:))))
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -121,9 +118,6 @@ class MapViewController: UIViewController,
                 }
             }
         }
-        
-        // Add our own gesture recognizer to handle taps on our custom map features.
-        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:))))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -161,13 +155,23 @@ class MapViewController: UIViewController,
     
 //********** FUNCTIONS FOR GENERATING MAP UI **********//
     
+    // Add circle style layer to map when mapView finishes loading.
+    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+        self.addItemsToMap()
+        
+        locationManager.requestWhenInUseAuthorization()
+        
+        
+    }
+    
     // Generate circle style layer (circle for each location) from markers.json.
-    func generatePointsFromJSON() {
+    func addItemsToMap() {
         if let path = Bundle.main.path(forResource: "markers", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: data)
                 if jsonObj != JSON.null {
+                    guard let style = mapView.style else { return }
                     var features = [MGLPointFeature]()
                     
                     // Create point features (markers) for each item.
@@ -194,7 +198,7 @@ class MapViewController: UIViewController,
                         22: MGLStyleValue(rawValue: 180)
                         ])
                     markersLayer.circleOpacity = MGLStyleValue(rawValue: 0.6)
-                    mapView.style?.addLayer(markersLayer)
+                    style.addLayer(markersLayer)
                     print("markers shape layer added to map")
                     
                 } else {
