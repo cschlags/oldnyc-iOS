@@ -11,6 +11,7 @@ import SwiftyJSON
 import FMMosaicLayout
 import SDWebImage
 import ReachabilitySwift
+import Crashlytics
 
 class PhotoGalleryViewController: UICollectionViewController, FMMosaicLayoutDelegate{
     fileprivate let reuseIdentifier = "galleryCell"

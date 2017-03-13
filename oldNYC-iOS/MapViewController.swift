@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import Mapbox
 import SwiftyJSON
+import Crashlytics
+
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -92,32 +94,46 @@ class MapViewController: UIViewController,
         // Add our own gesture recognizer to handle taps on our custom map features.
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:))))
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.startUpdatingLocation()
-        }
         
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            foregroundNotification = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
-                [unowned self] notification in
-                
-                print("app is in foreground")
-                
-                if let currentCoordinates : CLLocationCoordinate2D = self.locationManager.location?.coordinate {
-                    print(currentCoordinates)
-                    self.isUserInNYC(currentCoordinates, completion: { (answer) in
-                        if answer == true {
-                            print(currentCoordinates)
-                            //self.centerOnUserLocation(currentCoordinates)
-                            self.view.bringSubview(toFront: self.centerOnUserButton)
-                        } else if answer == false {
-                            self.view.sendSubview(toBack: self.centerOnUserButton)
-                        }
-                    })
+        if CLLocationManager.locationServicesEnabled() {
+            let authorizationStatus = CLLocationManager.authorizationStatus()
+            
+            switch(authorizationStatus) {
+                case .notDetermined:
+                    locationManager.requestWhenInUseAuthorization()
+                case .authorizedAlways, .authorizedWhenInUse:
+                    locationManager.delegate = self
+                    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+                    locationManager.startUpdatingLocation()
+                case .restricted, .denied:
+                    print("App not authorized to use location services.")
+            }
+            
+            if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
+                foregroundNotification = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
+                    [unowned self] notification in
+                    
+                    print("app is in foreground")
+                    
+                    if let currentCoordinates : CLLocationCoordinate2D = self.locationManager.location?.coordinate {
+                        print(currentCoordinates)
+                        self.isUserInNYC(currentCoordinates, completion: { (answer) in
+                            if answer == true {
+                                print(currentCoordinates)
+                                //self.centerOnUserLocation(currentCoordinates)
+                                self.view.bringSubview(toFront: self.centerOnUserButton)
+                            } else if answer == false {
+                                self.view.sendSubview(toBack: self.centerOnUserButton)
+                            }
+                        })
+                    }
                 }
             }
+            
+        } else {
+            print("Location services are not enabled.")
         }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -158,10 +174,6 @@ class MapViewController: UIViewController,
     // Add circle style layer to map when mapView finishes loading.
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         self.addItemsToMap()
-        
-        locationManager.requestWhenInUseAuthorization()
-        
-        
     }
     
     // Generate circle style layer (circle for each location) from markers.json.

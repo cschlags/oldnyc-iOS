@@ -7,4 +7,6 @@ target 'oldNYC-iOS' do
   pod 'FMMosaicLayout'
   pod 'SDWebImage', '~>3.7'
   pod 'ReachabilitySwift', '~> 3'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
