@@ -327,10 +327,10 @@ class MapViewController: UIViewController,
             if error == nil && placemarks!.count > 0 {
                 placemark = placemarks![0] as CLPlacemark
                 
-                print("Locality:" + placemark.locality!) // debugging
+                //print("Locality:" + placemark.locality!) // debugging
                 //print(placemark.administrativeArea) // debugging
-                print("subAdmin:" + placemark.subAdministrativeArea!) // debugging
-                print("subLocality:" + placemark.subLocality!) // debugging
+                //print("subAdmin:" + placemark.subAdministrativeArea!) // debugging
+                //print("subLocality:" + placemark.subLocality!) // debugging
                 //print(placemark.ocean) // debugging
                 //print(placemark.inlandWater) // debugging
                 
